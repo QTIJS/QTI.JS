@@ -1,0 +1,101 @@
+@import url(basic/style.css);
+@import url(qtijs-logo.css);
+@import url(results-table.css);
+
+/*
+** TWEAK COLORS, MARGINS, PADDING
+*/
+
+body {
+  background-color: #105000;
+  margin-left: 36px;
+}
+[data-qtijs-tag="assessmentTest"] {
+  margin: 4em 0 0 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 601px;
+  max-width: calc(100% - 36px);
+}
+[data-qtijs-tag="assessmentTest"]::before {
+  width: 601px;
+  max-width: calc(100% - 72px);
+  padding: .5em 1em;
+  border-right-color: #eee;
+  border-bottom-color: #FFFFFF55;
+  left: 36px;
+}
+[data-qtijs-tag=testPart].qtijs-current > .qtijs-navigation,
+[data-qtijs-tag=testFeedback].qtijs-current > .qtijs-navigation,
+[data-qtijs-tag=assessmentTest] > [data-qtijs-tag=timeLimits],
+[data-qtijs-tag=testPart] > [data-qtijs-tag=timeLimits],
+[data-qtijs-tag=testPart][data-qtijs-navigation-mode=linear].qtijs-review-mode::before {
+  width: 637px;
+  max-width: calc(100% - 36px);
+}
+
+[data-qtijs-tag="testPart"] > [data-qtijs-tag="assessmentSection"] > [data-qtijs-tag="assessmentSection"]{
+  padding-top: 2em;
+}
+[data-qtijs-tag="assessmentTest"],
+[data-qtijs-tag="testPart"] > [data-qtijs-tag="assessmentSection"] > [data-qtijs-tag="assessmentSection"]:nth-of-type(odd) {
+  background: #bdddc4;
+}
+[data-qtijs-tag="testPart"] > [data-qtijs-tag="assessmentSection"] > [data-qtijs-tag="assessmentSection"]:nth-of-type(even) {
+  background: #eafcfc;
+}
+[data-qtijs-navigation-mode=linear] [data-qtijs-tag=assessmentItem].qtijs-current {
+  outline: unset;
+}
+[data-qtijs-navigation-mode=nonlinear] > [data-qtijs-tag="assessmentSection"] {
+  padding: 2em 0 1.5em 0;
+}
+[data-qtijs-navigation-mode=linear] [data-qtijs-tag="assessmentSection"] {
+  padding: 0;
+  height: 200vh;
+}
+[data-qtijs-tag="assessmentItem"] {
+  padding-top: 2em;
+}
+[data-qtijs-tag=prompt] {
+  background: transparent;
+  padding: 1em;  
+}  
+
+/*
+** MISCELLANEOUS TWEAKS
+*/
+
+.center {
+  text-align: center !important;
+}
+.poem {
+  text-align: center;
+}
+.poem p {
+  width: 80%;
+  margin: 1em auto 1em auto;
+  text-align: center;
+}
+
+/*  adaptive.xml and adaptive-template.xml */
+div.qtijs-input-wrap input[type=radio][data-qtijs-item=adaptive_template],
+div.qtijs-input-wrap input[type=radio][data-qtijs-item=adaptive] {
+  float: none;
+}
+
+/*
+** DEBUG
+*/
+
+[data-qtijs-tag="assessmentTest"].debug [data-qtijs-tag="assessmentItem"].qtijs-current::after {
+  display: block;
+  content: attr(data-qtijs-section) " / " attr(data-qtijs-item);
+  font-size: 14px;
+  margin-top: 1em;
+  position: absolute;
+  right: 5px;
+  bottom: -1.4em;
+  font-style: italic;
+  opacity: .5;
+}

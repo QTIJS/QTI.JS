@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2.xsd" identifier="i14073357147621368" title="TAO" label="TAO" xml:lang="en-US" adaptive="false" timeDependent="false" toolName="TAO" toolVersion="3.2.0-RC2">
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="integer"/>
+  <responseDeclaration identifier="RESPONSE_1" cardinality="ordered" baseType="identifier"/>
+  <responseDeclaration identifier="RESPONSE_3" cardinality="single" baseType="integer"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float" normalMaximum="0"/>
+  <stylesheet href="style/custom/tao-user-styles.css" type="text/css" media="all" title=""/>
+  <itemBody>
+    <div class="grid-row">
+      <div class="col-6">
+        <mediaInteraction responseIdentifier="RESPONSE" autostart="false" minPlays="0" maxPlays="0" loop="false">
+          <object data="https://www.youtube.com/watch?v=YJWSVUPSQqw" type="video/youtube" width="356" height="270"/>
+        </mediaInteraction>
+      </div>
+      <div class="col-6">
+        <p>
+          <img src="tao_logo_big.png" alt="tao_logo_big" width="208" height="132"/>
+        </p>
+        <p><strong>B</strong>e free</p>
+        <p><strong>B</strong>e creative</p>
+        <p>TAO is an Open Source e-Testing platform that empowers you to build, deliver, and share innovative and engaging assessments online – in any language or subject matter.</p>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <h3>Can you meet the Challenge ?</h3>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-6">
+        <sliderInteraction responseIdentifier="RESPONSE_3" lowerBound="0" upperBound="1000000" step="1000" stepLabel="false" orientation="horizontal" reverse="false">
+          <prompt>How Many Test takers already took a test delivered by TAO in the world  ? </prompt>
+        </sliderInteraction>
+      </div>
+      <div class="col-6">
+        <img src="education-schooling.jpg" alt="education schooling" width="344" height="246"/>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <orderInteraction responseIdentifier="RESPONSE_1" shuffle="false" maxChoices="12" minChoices="1" orientation="vertical">
+          <prompt>From top classify the following QTI interactions supported by TAO according to their relevance for your own e-assessment </prompt>
+          <simpleChoice identifier="choice_1" fixed="false" showHide="show">Exclusive Choice</simpleChoice>
+          <simpleChoice identifier="choice_2" fixed="false" showHide="show">HotSpot</simpleChoice>
+          <simpleChoice identifier="choice_3" fixed="false" showHide="show">Reordering</simpleChoice>
+          <simpleChoice identifier="choice_4" fixed="false" showHide="show">Extended Text Entry</simpleChoice>
+          <simpleChoice identifier="choice_5" fixed="false" showHide="show">HotText</simpleChoice>
+          <simpleChoice identifier="choice_6" fixed="false" showHide="show">File Upload</simpleChoice>
+          <simpleChoice identifier="choice_7" fixed="false" showHide="show">Inline Choice</simpleChoice>
+          <simpleChoice identifier="choice_8" fixed="false" showHide="show">Inline Text Entry</simpleChoice>
+          <simpleChoice identifier="choice_9" fixed="false" showHide="show">Match</simpleChoice>
+          <simpleChoice identifier="choice_10" fixed="false" showHide="show">Media </simpleChoice>
+          <simpleChoice identifier="choice_11" fixed="false" showHide="show">Associate</simpleChoice>
+          <simpleChoice identifier="choice_12" fixed="false" showHide="show">Gap Match</simpleChoice>
+        </orderInteraction>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <p>
+           
+        </p>
+      </div>
+    </div>
+  </itemBody>
+  <responseProcessing>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE"/>
+          <correct identifier="RESPONSE"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE_3"/>
+          <correct identifier="RESPONSE_3"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE_1"/>
+          <correct identifier="RESPONSE_1"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+  </responseProcessing>
+</assessmentItem>

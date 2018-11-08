@@ -1,0 +1,55 @@
+.c1, .c1ps, .c2, .c3, .c4 {
+  font-size: smaller;
+  font-weight: normal;
+  text-align: left;
+  margin:0;
+  padding:0;
+  font-style: italic;
+  text-align: center;
+  line-height:1.2em;
+}
+.c2 {
+  font-weight: bold;
+}
+a.c5a {
+  text-decoration: none;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  color: #999;
+}
+#order-mountains .qtijs-ghost, #order-mountains li {
+  border: solid 2px #eee;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #eee;
+}
+#order-mountains img {
+  width: 90%;
+  margin: 1em;
+}
+#order-mountains ol {
+  counter-reset: mountain;  
+  padding:.4em;
+  margin:1em auto;
+  height:850px;
+  width: 95%;
+}
+#order-mountains li {
+  counter-increment: mountain;  
+  display: block;
+  position: relative;  
+  float: left;
+  width: 45%;
+  height: 380px;
+  margin: 3px;
+  padding: 1em 5px 5px 5px;
+}
+#order-mountains li:before {
+  content: counter(mountain) ". ";
+  display: inline-block;
+  white-space: pre;
+  font-style: italic;
+}
+#order-mountains li + li {
+    margin:5px;
+}

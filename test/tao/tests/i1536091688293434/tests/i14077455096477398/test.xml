@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="Test-1" title="TAO Interoperability" toolName="tao" toolVersion="2.7" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2p1.xsd">
+  <timeLimits maxTime="7810" allowLateSubmission="false"/>
+  <testPart identifier="QTIExamples" navigationMode="linear" submissionMode="individual">
+    <itemSessionControl maxAttempts="1" showFeedback="false" allowReview="true" showSolution="false" allowComment="false" allowSkipping="true" validateResponses="false"/>
+    <timeLimits allowLateSubmission="false"/>
+    <assessmentSection identifier="assessmentSection-2" required="false" fixed="false" title="Section 1" visible="false" keepTogether="true">
+      <assessmentItemRef identifier="item-17" required="false" fixed="false" href="../../../../items/i153609168936237/qti.xml"/>
+      <assessmentItemRef identifier="item-2" required="false" fixed="false" href="../../../../items/i1536091689975240/qti.xml"/>
+      <assessmentItemRef identifier="item-3" required="false" fixed="false" href="../../../../items/i153609169040443/qti.xml"/>
+      <assessmentItemRef identifier="item-4" required="false" fixed="false" href="../../../../items/i1536091690906946/qti.xml"/>
+      <assessmentItemRef identifier="item-5" required="false" fixed="false" href="../../../../items/i1536091691462949/qti.xml"/>
+      <assessmentItemRef identifier="item-6" required="false" fixed="false" href="../../../../items/i1536091691546652/qti.xml"/>
+      <assessmentItemRef identifier="item-7" required="false" fixed="false" href="../../../../items/i1536091691235955/qti.xml"/>
+      <assessmentItemRef identifier="item-8" required="false" fixed="false" href="../../../../items/i1536091692115258/qti.xml"/>
+      <assessmentItemRef identifier="item-9" required="false" fixed="false" href="../../../../items/i1536091692849761/qti.xml"/>
+      <assessmentItemRef identifier="item-10" required="false" fixed="false" href="../../../../items/i153609168351/qti.xml"/>
+      <assessmentItemRef identifier="item-11" required="false" fixed="false" href="../../../../items/i153609168439674/qti.xml"/>
+      <assessmentItemRef identifier="item-12" required="false" fixed="false" href="../../../../items/i153609168472257/qti.xml"/>
+      <assessmentItemRef identifier="item-13" required="false" fixed="false" href="../../../../items/i153609168593110/qti.xml"/>
+      <assessmentItemRef identifier="item-14" required="false" fixed="false" href="../../../../items/i1536091686326322/qti.xml"/>
+      <assessmentItemRef identifier="item-15" required="false" fixed="false" href="../../../../items/i153609168654016/qti.xml"/>
+    </assessmentSection>
+  </testPart>
+  <outcomeProcessing/>
+</assessmentTest>

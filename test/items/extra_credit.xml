@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="extra_credit"
+  title="Extra Credit (Custom Operator)"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="boolean" />
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+  
+  <itemBody>
+    <endAttemptInteraction id="extraCredit" responseIdentifier="RESPONSE" title="Get a free point"/>
+  </itemBody>
+
+  <script>
+    <!-- Friendly custom operator which says hello and returns a point. -->
+    registerOperator("extraCredit",(elem)=>{alert("Here is a point for clicking.");return 1.0});
+  </script>
+
+  <style>
+    button#extraCredit {
+      background: red;
+      color: white;
+      padding: .5em;
+      text-align: center;
+      border: none;
+      font-family: sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  </style>
+  
+  <responseProcessing>
+    <setOutcomeValue identifier="SCORE">
+      <customOperator class="extraCredit" />
+    </setOutcomeValue>
+  </responseProcessing>
+</assessmentItem>

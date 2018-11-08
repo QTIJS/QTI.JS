@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  identifier="VF880349"
+  title="Summarize"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSEA" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>D</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <responseDeclaration identifier="RESPONSEB" cardinality="multiple" baseType="identifier">
+    <correctResponse>
+      <value>A</value>
+      <value>F</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>  
+
+  <assessmentStimulusRef identifier="freddy1" href="freddy_in_peril_pt1.xml" />
+
+  <!-- EBSR -->
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSEA" maxChoices="1">
+      <prompt>
+        <h2>Part A</h2>
+        <p>
+          Which sentences best summarize the passage from <em>Freddy
+          in Peril</em>, Part 1?
+        </p>
+      </prompt>
+      <simpleChoice identifier="A">
+        A. Many strange sounds disturb Freddy as he works on his
+        story in the middle of the night. He tries to focus on his
+        writing to take his mind off his fear.
+      </simpleChoice>
+      <simpleChoice identifier="B">
+        B. Freddy meets a man named Professor Fleischkopf and
+        thinks that he is trying to hurt him. He comes up with an
+        escape plan, but it may be too late.
+      </simpleChoice>
+      <simpleChoice identifier="C">
+        C. Freddy waits for Enrico and Caruso to stop singing so
+        that he can finally start writing his story. However, soon
+        another noise disturbs his work.
+      </simpleChoice>
+      <simpleChoice identifier="D">
+        D. While trying to work on a story, Freddy was interrupted
+        by many noises. He immediately thinks it is Professor
+        Fleischkopf, a person Freddy believes is out to get him.
+      </simpleChoice>
+    </choiceInteraction>
+
+    <choiceInteraction responseIdentifier="RESPONSEB" maxChoices="2">
+      <prompt>
+        <h2>Part B</h2>
+        <p>
+          Which <strong>two</strong> sentences best support the answer
+          to Part A?
+        </p>
+      </prompt>
+      <simpleChoice identifier="A">
+        A. “Professor Fleischkopf was after me—he aimed to get me
+        in his clutches.” (paragraph 2)
+      </simpleChoice>
+      <simpleChoice identifier="B">
+        B. “Enrico and Caruso, the singing guinea pigs, had
+        finally shut up, and Sir William, the civilized tomcat,
+        had retired to his blanket.”  (paragraph 4)
+      </simpleChoice>
+      <simpleChoice identifier="C">
+        “C. And then, just as I was rereading what I’d typed on
+        the screen, I heard the front door open downstairs.”
+        (paragraph 9)
+      </simpleChoice>
+      <simpleChoice identifier="D">
+        D. “Then two things happened: First, I heard someone
+        insert something in the lock; second, a smell hit me.”
+        (paragraph 18)
+      </simpleChoice>
+      <simpleChoice identifier="E">
+        E. “A sudden, acrid stench of sulfur.” (paragraph 19)
+      </simpleChoice>
+      <simpleChoice identifier="F">
+        F. “It was yesterday’s visitor—the man who had suddenly
+        appeared in Mr. John’s study.” (paragraph 21)
+      </simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing template="match_ab_correct.xml"/>  
+</assessmentItem>

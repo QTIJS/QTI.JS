@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest
+  class="debug"
+  identifier="IGUIDE_EXAMPLES_TEST"
+  title="Implementation Guide Examples">
+  <outcomeDeclaration identifier="TF" cardinality="single" baseType="identifier" />
+  <testPart identifier="testpart1" navigationMode="linear" submissionMode="simultaneous">
+    <assessmentSectionRef identifier="section" href="section.xml" />
+  </testPart>
+  <testFeedback outcomeIdentifier="TF" showHide="hide">
+    <em>Congratulations, you have reached the end of the test.
+    Your results have been submitted.</em>
+  </testFeedback>
+</assessmentTest>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  identifier="chard1"
+  title="Chard 1"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>true</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <templateDeclaration identifier="PROMPT" cardinality="single" baseType="string">
+    <defaultValue>
+      <value>Swiss Chard is a kind of beet.</value>
+    </defaultValue>
+  </templateDeclaration>
+  
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE">
+      <prompt><printedVariable identifier="PROMPT" /></prompt>
+      <simpleChoice identifier="true">True</simpleChoice>
+      <simpleChoice identifier="false">False</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>

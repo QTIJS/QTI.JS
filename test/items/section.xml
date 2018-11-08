@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentSection xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  visible="false"
+  title="IGUIDE"
+  identifier="section">
+  <assessmentSectionRef identifier="section1" href="simple_examples.xml" />
+  <assessmentSectionRef identifier="section2" href="advanced_examples.xml" />
+</assessmentSection> 

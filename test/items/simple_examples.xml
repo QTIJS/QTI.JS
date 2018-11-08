@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentSection visible="true" title="Simple Items" identifier="simple_examples">
+  <itemSessionControl maxAttempts="0" />
+  <assessmentSection visible="true" title="Form Interactions" identifier="form_interactions">
+    <assessmentItemRef identifier="i101" href="choice.xml" />
+    <assessmentItemRef identifier="i102" href="choice_multiple.xml" />
+    <assessmentItemRef identifier="i103" href="choice_multiple_chocolade.xml" />
+    <assessmentItemRef identifier="i104" href="order.xml" />
+    <assessmentItemRef identifier="i105" href="associate.xml"/>
+    <assessmentItemRef identifier="i106" href="match.xml" />
+    <assessmentItemRef identifier="i107" href="gap_match.xml" />
+    <assessmentItemRef identifier="i108" href="inline_choice.xml" />
+    <assessmentItemRef identifier="i109" href="inline_choice_math.xml" /> 
+    <assessmentItemRef identifier="i110" href="text_entry.xml" />
+    <assessmentItemRef identifier="i111" href="extended_text.xml" />
+    <assessmentItemRef identifier="i112" href="extended_text_rubric.xml" /> 
+    <assessmentItemRef identifier="i113" href="hottext.xml" />
+    <assessmentItemRef identifier="i114" href="slider.xml" />
+    <assessmentItemRef identifier="i115" href="upload.xml" />
+  </assessmentSection>
+
+  <assessmentSection visible="true" title="Graphic Interactions" identifier="graphic_interactions">
+    <assessmentItemRef identifier="i116" href="hotspot.xml" />
+    <assessmentItemRef identifier="i117" href="select_point.xml" />
+    <assessmentItemRef identifier="i118" href="graphic_order.xml" /> 
+    <assessmentItemRef identifier="i119" href="graphic_associate.xml" />
+    <assessmentItemRef identifier="i120" href="graphic_gap_match.xml" />
+    <assessmentItemRef identifier="i121" href="position_object.xml" />
+    <assessmentItemRef identifier="i122" href="drawing.xml" />
+  </assessmentSection>
+
+  <assessmentSection visible="true" title="Other Interactions" identifier="other_interactions">
+    <assessmentItemRef identifier="i123" href="media.xml" />
+    <assessmentItemRef identifier="i124" href="custom.xml" />
+    <assessmentItemRef identifier="i125" href="extra_credit.xml" />        
+  </assessmentSection>
+</assessmentSection>

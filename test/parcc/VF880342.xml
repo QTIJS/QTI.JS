@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  identifier="VF880342"
+  title="Nocturnally"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSEA" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>B</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <responseDeclaration identifier="RESPONSEB" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>C</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>  
+
+  <assessmentStimulusRef identifier="freddy1" href="freddy_in_peril_pt1.xml" />
+
+  <!-- EBSR -->
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSEA" maxChoices="1">
+      <prompt>
+        <h2>Part A</h2>
+        <p>
+          What does the phrase <strong>nocturnally active</strong> mean as it is
+          used in paragraph 5?
+        </p>
+      </prompt>
+      <simpleChoice identifier="A">A. to be alone at night</simpleChoice>
+      <simpleChoice identifier="B">B. to be alert at night</simpleChoice>
+      <simpleChoice identifier="C">C. to be quiet at night</simpleChoice>
+      <simpleChoice identifier="D">D. to never sleep at night</simpleChoice>
+    </choiceInteraction>
+
+    <choiceInteraction responseIdentifier="RESPONSEB" maxChoices="1">
+      <prompt>
+        <h2>Part B</h2>
+        <p>
+          Which phrase from paragraph 5 best supports the answer
+          to Part A?
+        </p>
+      </prompt>
+      <simpleChoice identifier="A">A. “... on a short story.”</simpleChoice>
+      <simpleChoice identifier="B">B. “... my favorite time for writing.”</simpleChoice>
+      <simpleChoice identifier="C">C. “... always wide awake at that hour ...”</simpleChoice>
+      <simpleChoice identifier="D">D. “... typing away briskly.”</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing template="match_ab_correct.xml"/>
+</assessmentItem>

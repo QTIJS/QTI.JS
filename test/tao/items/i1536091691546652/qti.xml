@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2.xsd" identifier="i140750644282389" title="Picasso" label="Picasso" xml:lang="en-US" adaptive="false" timeDependent="false" toolName="TAO" toolVersion="3.2.0-RC2">
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier"/>
+  <responseDeclaration identifier="RESPONSE_1" cardinality="single" baseType="string"/>
+  <responseDeclaration identifier="RESPONSE_2" cardinality="single" baseType="string"/>
+  <responseDeclaration identifier="RESPONSE_3" cardinality="single" baseType="file"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float" normalMaximum="0"/>
+  <itemBody>
+    <div class="grid-row">
+      <div class="col-12">
+        <img src="PicassoGuernica.jpg" alt="PicassoGuernica" width="631" height="283"/>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">In-line text entry ? Inline Choice ? Free Text entry or Upload a file interaction ..</div>
+    </div>
+    <div class="grid-row">
+      <div class="col-7">
+        <p>Pablo Ruiz y Picasso, also known as Pablo Picasso (Spanish: [ˈpaβlo piˈkaso]; 25 October 1881 – 8 April 1973), was a Spanish painter, sculptor, printmaker, ceramicist, stage designer, poet and playwright who spent most of his adult life in France. As one of the greatest and most influential artists of the 20th century, he is known for co-founding the <inlineChoiceInteraction responseIdentifier="RESPONSE" shuffle="false" required="false"><inlineChoice identifier="choice_1" fixed="false" showHide="show">cubist</inlineChoice><inlineChoice identifier="choice_2" fixed="false" showHide="show">surrealism</inlineChoice><inlineChoice identifier="choice_3" fixed="false" showHide="show">pointillism</inlineChoice><inlineChoice identifier="choice_4" fixed="false" showHide="show">impressionism</inlineChoice></inlineChoiceInteraction>
+
+ movement, the invention of constructed sculpture, the co-invention of collage, and for the wide variety of styles that he helped develop and explore. Among his most famous works are the proto-Cubist Les Demoiselles d'Avignon (1907), and G <textEntryInteraction responseIdentifier="RESPONSE_1" base="10" placeholderText=""/>
+
+(1937)</p>
+      </div>
+      <div class="col-5">
+        <img src="Les_Demoiselles_d'Avignon.jpg" alt="Les_Demoiselles_d Avignon" width="200" height="207"/>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <extendedTextInteraction responseIdentifier="RESPONSE_2" base="10" minStrings="0" format="plain">
+          <prompt>Describe the Rose period of Picasso in a few words</prompt>
+        </extendedTextInteraction>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <uploadInteraction responseIdentifier="RESPONSE_3">
+          <prompt>Feeling some artistic insipration? Upload your drawing, word any documents you would like to</prompt>
+        </uploadInteraction>
+      </div>
+    </div>
+  </itemBody>
+  <responseProcessing>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE"/>
+          <correct identifier="RESPONSE"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE_1"/>
+          <correct identifier="RESPONSE_1"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE_2"/>
+          <correct identifier="RESPONSE_2"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE_3"/>
+          <correct identifier="RESPONSE_3"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+  </responseProcessing>
+</assessmentItem>

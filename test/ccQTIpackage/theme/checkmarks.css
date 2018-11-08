@@ -1,0 +1,22 @@
+[data-qtijs-tag=feedbackInline] {
+  position: relative;
+}
+[data-qtijs-tag=feedbackInline] span.correct,
+[data-qtijs-tag=feedbackInline] span.incorrect {
+  display: block;
+  height: 1.5em;
+  width: 1.5em;
+  position: absolute;
+  left: -3.5em;
+  padding: 0;
+  margin-left: 1.5em;
+  margin-top: -1.4em;
+  background: top left / 1.5em 1.5em no-repeat;
+  color: transparent;
+}
+[data-qtijs-tag=feedbackInline] span.correct {
+  background-image: url("images/correct.png");
+}
+[data-qtijs-tag=feedbackInline] span.incorrect {
+  background-image: url("images/incorrect.png");
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="drawing"
+  title="La casa di Giovanni"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="file"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <itemBody>
+    <p>Read the following description of Giovanni's house and then
+      colour the picture accordingly.</p>
+
+    <drawingInteraction responseIdentifier="RESPONSE">
+      <prompt>Il tetto &#232; rosso e i muri sono gialli.</prompt>
+      <object type="image/png" data="images/house.png"
+              width="144" height="260"></object>
+    </drawingInteraction>
+  </itemBody>
+  <responseProcessing template="score.xml" />
+</assessmentItem>

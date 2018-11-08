@@ -1,0 +1,11 @@
+This is the "blue-green" theme for QTI.JS
+
+This theme supports non-linear tests,
+and displays the items in two columns,
+falling back to one column if the display
+is not wide enough.
+
+Designed for the ccQTIpackage items from
+IMS, it supports only choiceInteractions,
+textEntryInteractions and extendedTextInteractions.
+

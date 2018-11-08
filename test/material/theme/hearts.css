@@ -1,0 +1,41 @@
+:root {
+  --hearts-lit-color: white;
+  --hearts-unlit-color: #FFFFFF33;
+}
+.hearts {
+  margin: auto;
+  text-align: center;
+}
+.hearts input {
+  visibility: collapse;
+}
+.hearts label {
+  display: inline-block;          
+  width: 4.5rem;
+  height: 5.5rem;
+  overflow: hidden;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: Times New Roman;
+  font-family: sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--hearts-lit-color);
+  transition: color .6s ease-in;
+}
+.hearts label::before {
+  content: ' ♥';
+  padding-left:1rem;  
+  font-size:6rem;  
+}
+body .hearts:hover .qtijs-input-wrap > label.qtijs-choice {
+  color: var(--hearts-lit-color);
+}
+.hearts:hover .qtijs-input-wrap:hover ~ .qtijs-input-wrap > label,
+.hearts .qtijs-input-wrap.checked ~ .qtijs-input-wrap > label {
+  color: var(--hearts-unlit-color);
+}
+.hearts .qtijs-input-wrap {
+  display: inline-block;
+}

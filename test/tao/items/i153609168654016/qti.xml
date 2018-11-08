@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2p1.xsd" identifier="match-single-cardinality" title="Associate Things" label="Associate Things" xml:lang="en-US" adaptive="false" timeDependent="false" toolName="TAO" toolVersion="3.2.0-RC2">
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="directedPair">
+    <correctResponse>
+      <value><![CDATA[M C]]></value>
+    </correctResponse>
+  </responseDeclaration>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+  <itemBody>
+    <matchInteraction responseIdentifier="RESPONSE" shuffle="true" maxAssociations="1" minAssociations="1">
+      <prompt>Please mark the unique valid association below:</prompt>
+      <simpleMatchSet>
+        <simpleAssociableChoice identifier="M" fixed="false" matchMax="1" matchMin="0">Mouse</simpleAssociableChoice>
+        <simpleAssociableChoice identifier="S" fixed="false" matchMax="1" matchMin="0">Soda</simpleAssociableChoice>
+        <simpleAssociableChoice identifier="W" fixed="false" matchMax="1" matchMin="0">Wheel</simpleAssociableChoice>
+        <simpleAssociableChoice identifier="D" fixed="false" matchMax="1" matchMin="0">Darth Vader</simpleAssociableChoice>
+      </simpleMatchSet>
+      <simpleMatchSet>
+        <simpleAssociableChoice identifier="A" fixed="false" matchMax="1" matchMin="0">Astronaut</simpleAssociableChoice>
+        <simpleAssociableChoice identifier="C" fixed="false" matchMax="1" matchMin="0">Computer</simpleAssociableChoice>
+        <simpleAssociableChoice identifier="P" fixed="false" matchMax="1" matchMin="0">Plane</simpleAssociableChoice>
+        <simpleAssociableChoice identifier="N" fixed="false" matchMax="1" matchMin="0">Number</simpleAssociableChoice>
+      </simpleMatchSet>
+    </matchInteraction>
+  </itemBody>
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct"/>
+</assessmentItem>

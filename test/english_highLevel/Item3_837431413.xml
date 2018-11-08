@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+    xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+	identifier="Item3_837431413"
+    title="Short Answer"
+    adaptive="false"
+    timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>0.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>20.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <itemBody>
+	<p>
+      Explain the difference in attitude towards life in America between the first and the
+	  second generation of Latino immigrants.
+    </p>
+	<extendedTextInteraction responseIdentifier="RESPONSE"/>
+  </itemBody>
+</assessmentItem>

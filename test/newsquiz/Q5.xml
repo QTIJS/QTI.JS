@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Q5"
+  title="5 of 6"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="c1" cardinality="single" baseType="boolean"/>
+  <responseDeclaration identifier="c2" cardinality="single" baseType="boolean"/> 
+  <responseDeclaration identifier="c3" cardinality="single" baseType="boolean"/> 
+  <responseDeclaration identifier="c4" cardinality="single" baseType="boolean"/>
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  
+  <itemBody>
+    <p>
+      Which of these best matches your views on health care?
+    </p>
+    <endAttemptInteraction responseIdentifier="c1"
+      title="The government should have minimal or no involvement in
+      providing or funding health care."/>
+    <endAttemptInteraction responseIdentifier="c2"
+      title="The government should subsidize the cost of private insurance
+      for people who can’t afford it, through a system more or less
+      like the Affordable Care Act."/>
+    <endAttemptInteraction responseIdentifier="c3"
+      title="We should have a single-payer system, like “Medicare for all.”"/>
+    <endAttemptInteraction responseIdentifier="c4"
+      title="The whole health care industry should be socialized. Health
+      care would be funded through a single-payer government system,
+      and doctors would be public employees, like in Britain."/>
+  </itemBody>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c1">
+    <p><strong>You disagree with democratic socialists.</strong>
+      They believe health care — along with necessities like food,
+      housing, education and child care — is a basic right that
+      should be guaranteed to everyone.</p>
+
+    <p>Ultimately, democratic socialists want a fully socialized
+      health care system, somewhat like Britain’s, in which the
+      government covers the cost of care and the doctors and other
+      medical personnel are public employees. This is distinct
+      from a system like “Medicare for all,” in which the
+      government would cover the cost of care but personnel would
+      remain privately employed, and medical facilities privately
+      operated. However, democratic socialists support “Medicare
+      for all” in the meantime because they acknowledge that a
+      fully socialized system isn’t politically achievable right
+      now.</p>
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c2">
+    <p><strong>You disagree with democratic socialists.</strong>
+      While you agree that the government has a role to play in
+      ensuring access to health care, democratic socialists
+      believe health care — along with necessities like food,
+      housing, education and child care — is a basic right that
+      should be guaranteed to everyone. They also believe that
+      middle-of-the-road solutions like the Affordable Care Act
+      further divisions between the middle class (who can afford
+      insurance if given tax credits and subsidies) and the poor
+      (who may still be unable to afford it, and who suffer if
+      government programs like Medicaid receive less of the health
+      care budget).</p>
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c3">
+    <p><strong>You partly agree with democratic socialists.</strong>
+      Like you, they believe health care — along with necessities
+      like food, housing, education and child care — is a basic
+      right that should be guaranteed to everyone. But they want to
+      go a step further and create a fully socialized health care
+      system, somewhat like Britain’s, in which the government
+      covers the cost of care and doctors and other medical
+      personnel are public employees. Under “Medicare for all,” by
+      contrast, the government would cover the cost of care but
+      personnel would remain privately employed, and medical
+      facilities privately operated.</p>
+    
+    <p>That being said, democratic socialists do support “Medicare
+      for all” in the meantime because they acknowledge that a
+      fully socialized system isn’t politically achievable right
+      now.</p>
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c4">
+    <p><strong>You agree with democratic socialists.</strong> They
+      believe health care — along with necessities like food,
+      housing, education and child care — is a basic right that
+      should be guaranteed to everyone. They also believe that
+      doctors and medical facilities should be publicly employed and
+      run, as is the case in Britain’s National Health Service.</p>
+
+    <p>This system would be a step beyond “Medicare for all,” in
+      which the government would cover the cost of care but
+      personnel would remain privately employed, and medical
+      facilities privately operated. However, democratic socialists
+      acknowledge that a fully socialized system isn’t politically
+      achievable right now, so they support “Medicare for all” in
+      the meantime.</p>
+  </modalFeedback>
+
+  <responseProcessing template="rptemplate.xml" />
+</assessmentItem>

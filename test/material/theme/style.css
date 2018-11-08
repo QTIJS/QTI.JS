@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+@import url(hearts.css);
+
+:root {
+  --swiss-chard-green: #548941;
+  --swiss-chard-red: #e41c4d;
+  --carrot-orange: #f67e28;
+  --carrot-green: #84bf53;
+  --mcdonalds-red: #dd1021;
+  --mcdonalds-yellow: #ffc300;
+  --background-color: black;
+  --border-color: black;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Roboto Slab", sans-serif;
+  color: white;
+  width: 100vw;
+  max-width:100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin:0;
+  padding:0;
+}
+[data-qtijs-tag=assessmentItem], [data-qtijs-tag=testFeedback] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 5em 15px 15px 15px;
+  font-size: 38px;  
+  box-sizing: border-box;
+  background: var(--background-color);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s;
+}
+[data-qtijs-tag=testFeedback] {
+  background-color: var(--swiss-chard-green);
+  text-align: center;  
+}
+[data-qtijs-tag=assessmentItem]::before, [data-qtijs-tag=testFeedback]::before {
+  content: "Veggies Quiz";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4em;
+  box-sizing: border-box;
+  padding: 1em;
+  font-size: 30px;
+  font-family: Roboto, serif;
+  font-weight: bold;
+  text-align: left;
+  background-color: var(--border-color);
+  box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.61);
+}
+[data-qtijs-tag=assessmentItem].qtijs-current,
+[data-qtijs-tag=testFeedback].qtijs-current {
+  opacity: 1;
+  pointer-events: auto;
+}
+[data-qtijs-tag=assessmentItem][data-qtijs-category=frenchfries] {
+  --background-color: var(--mcdonalds-red);
+  --border-color: var(--mcdonalds-yellow);
+}
+[data-qtijs-tag=assessmentItem][data-qtijs-category=carrots] {
+  --background-color: var(--carrot-orange);
+  --border-color: var(--carrot-green);
+}
+[data-qtijs-tag=assessmentItem][data-qtijs-category=chard] {
+  --background-color: var(--swiss-chard-green);
+  --border-color: var(--swiss-chard-red);
+}
+[data-qtijs-tag=assessmentItem] span.qtijs-next {
+  position: absolute;
+  height: 2em;
+  width: 2em;
+  bottom: 0;
+  border-radius: 1em;
+  margin: 1.2em calc(50vw - 1em);
+  box-shadow: 3px 2px 10px -1px rgba(0,0,0,0.61);
+  cursor: pointer;
+  background: var(--border-color) url(images/arrow-right.svg)
+                 center center / 1.5em 1.5em no-repeat;
+}
+[data-qtijs-tag=choiceInteraction] {
+  font-size: 1.9rem;
+}  
+[data-qtijs-tag=prompt] {
+  color: white;
+  text-align: center;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 38px;
+}
+
+/* Material Design style checkboxes */
+[data-qtijs-tag=itemBody]:not(.hearts) .qtijs-input-wrap {
+  width: 75%;
+  margin: auto;    
+}
+[data-qtijs-tag=itemBody]:not(.hearts) [data-qtijs-tag=prompt] + .qtijs-input-wrap {
+  margin-top: 2em;
+}
+[data-qtijs-tag=itemBody]:not(.hearts) label {
+  padding: 12px 12px;
+  width: 100%;
+  display: block;
+  text-align: left;
+  cursor: pointer;
+  margin-top: .3em;
+  position: relative;
+  z-index: 2;
+  transition: color 200ms ease-in;
+  overflow: hidden;
+}
+[data-qtijs-tag=itemBody]:not(.hearts) label::before {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  content: '';
+  background-color: var(--border-color);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale3d(1, 1, 1);
+  transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  opacity: 0;
+  z-index: -1;
+}
+[data-qtijs-tag=itemBody]:not(.hearts) label::after {
+  width: 32px;
+  height: 32px;
+  content: '';
+  border: 2px solid #D1D7DC;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+  background-repeat: no-repeat;
+  background-position: 2px 3px;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: all 200ms ease-in;
+}
+[data-qtijs-tag=itemBody]:not(.hearts) .checked label {
+  color: #fff;
+}
+[data-qtijs-tag=itemBody]:not(.hearts) .checked label::before {
+  transform: translate(-50%, -50%) scale3d(56, 56, 1);
+  opacity: 1;
+}
+[data-qtijs-tag=itemBody]:not(.hearts) .checked label::after {
+  background-color: var(--background-color);
+  border-color: var(--background-color);
+}
+[data-qtijs-tag=itemBody]:not(.hearts) input {
+  width: 32px;
+  height: 32px;
+  order: 1;
+  z-index: 2;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  visibility: hidden;
+}
+

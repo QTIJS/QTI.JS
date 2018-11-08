@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Domine');
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin');
+
+body {
+  margin: 0;;
+  padding: 0;  
+  font-size: 18px;
+  line-height: 1.625em;
+  max-width: 900px;
+}
+h1 {
+  font-family: "Libre Franklin";
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 3em 0 0 0;
+  margin: 0 auto 0 0;
+  border-top: solid 1px #DDD;
+}
+h2 {
+  font-family: Domine;
+  font-size: 40px;
+  font-weight: 200;
+  text-align: center;
+  line-height: 48px;
+  max-width: 80%;
+  margin: 1em auto;
+}
+h2::after {
+  content: "";
+  display:block;
+  height: 1px;
+  width: 70%;
+  border-bottom: solid 1px #DDD;
+  margin: 20px auto 10px;
+}
+p.byline {
+  font-size: .9rem;
+  font-family: Domine;  
+  font-weight: 600;
+  text-align: center;
+}
+p.byline span.date {
+  display: inline-block;
+  padding-left: .75em;  
+  font-family: "Libre Franklin";
+  font-weight: 500;
+  color: #7f7f7f;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+p.headline {
+  font-size: 22px;
+  margin-top: 1em;
+  font-family: "Libre Franklin";
+  line-height: 1.5em;
+  text-align: center;
+}
+a[rel="related"] {
+  display: block;  
+  font-family: "Libre Franklin";
+  font-size: 12px;
+  font-weight: 700;
+  color: #326891;
+  margin: 0 auto;
+}
+figure {
+  margin: 2em 0 3em 0;
+  padding: 0;
+}
+figure img {
+  width: 100%;
+}
+figcaption {
+  line-height: 1.2em;
+  margin-top: -3px;
+  color: #555;
+  font-size: 17px;
+}
+figcaption .photographer {
+  color: #999;
+}
+button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  margin-top:.5em;
+  border: none;
+  border-radius: 3px;  
+  background: #eaf2f9;
+  font-family: Times New Roman;
+  font-size: inherit;                                 
+  text-align: left;
+  color: #053e69;
+  line-height: 1.25em;
+  cursor: pointer;
+  transition: all .35s ease-out;
+  transition-property: padding,background-color;
+}
+button:hover {
+  background: #0b2f60;
+  color: white;
+}
+button:focus {
+  outline: none;
+}
+
+/*
+ */
+
+[data-qtijs-tag=assessmentTest] {
+  margin: 1em 5%;
+  font-family: Times New Roman, serif;
+  padding: 3em 5em 2em 2em;
+  background: white url(logo.svg) top center / auto 2em no-repeat;
+}
+[data-qtijs-tag=assessmentTest] p {
+  margin: .5em 0em;
+}
+[data-qtijs-tag=assessmentTest] p + p {
+  margin-top: 1.2em;
+}
+[data-qtijs-tag=assessmentItem] {
+  font-size: 1.3rem;
+  position: relative;
+  margin: 2em 0 0;
+  padding: 1em;
+  --qtijs-scroll-to: false;
+}
+[data-qtijs-tag=assessmentItem].qtijs-not-attemptable [data-qtijs-tag=itemBody] {
+  opacity: .7;  
+  pointer-events: none;
+  transition: opacity 2s cubic-bezier(0.755, 0.05, 0.855, 0.06);
+}
+[data-qtijs-tag=assessmentItem] + [data-qtijs-tag=assessmentItem] {
+  border-top: solid 1px #DDD;
+}
+[data-qtijs-tag=assessmentItem]::before {
+  display: block;
+  position: absolute;
+  content: attr(title);  
+  left: -2.5em;
+  top: 1.5em;
+  color: #777;
+}
+[data-qtijs-tag=assessmentItem].qtijs-not-attemptable button {
+  background-color: #f7f7f7;
+  color: #656565;  
+}
+[data-qtijs-tag=assessmentItem].qtijs-not-attemptable button.qtijs-clicked {
+  background-color: #9b9078;
+  color:white;
+}
+[data-qtijs-tag=modalFeedback] {
+  margin: 1em 0 0 0;
+  padding: .5em;
+}
+[data-qtijs-show-hide=show], [data-qtijs-show-hide=hide].qtijs-triggered {
+  display: none;
+}
+[data-qtijs-show-hide=hide], [data-qtijs-show-hide=show].qtijs-triggered {
+  display: block;
+}

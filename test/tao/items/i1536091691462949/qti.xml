@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2.xsd" identifier="i14075056192700387" title="Appearance" label="Appearance" xml:lang="en-US" adaptive="false" timeDependent="false" toolName="TAO" toolVersion="3.2.0-RC2">
+  <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="directedPair"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float" normalMaximum="0"/>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <itemBody>
+    <div class="grid-row">
+      <div class="col-12">Did you know you could change easily colors, fonts used in your item using the appearance function of the item creator ? </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <matchInteraction responseIdentifier="RESPONSE" shuffle="false" maxAssociations="12" minAssociations="1">
+          <prompt/>
+          <simpleMatchSet>
+            <simpleAssociableChoice identifier="choice_1" fixed="false" showHide="show" matchMax="0" matchMin="0">TAO</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_2" fixed="false" showHide="show" matchMax="0" matchMin="0">Other Proprietary Solutions </simpleAssociableChoice>
+          </simpleMatchSet>
+          <simpleMatchSet>
+            <simpleAssociableChoice identifier="choice_3" fixed="false" showHide="show" matchMax="0" matchMin="0">Free to use ?</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_4" fixed="false" showHide="show" matchMax="0" matchMin="0">Free to modify ?</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_5" fixed="false" showHide="show" matchMax="0" matchMin="0">Free to redistribute ? </simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_6" fixed="false" showHide="show" matchMax="0" matchMin="0">Customizable ?</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_7" fixed="false" showHide="show" matchMax="0" matchMin="0">QTI compliant ? </simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_8" fixed="false" showHide="show" matchMax="0" matchMin="0">APIs ? </simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_9" fixed="false" showHide="show" matchMax="0" matchMin="0">A user community ? </simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_10" fixed="false" showHide="show" matchMax="0" matchMin="0">Sustainable ? </simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_11" fixed="false" showHide="show" matchMax="0" matchMin="0">Reliable ? </simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_12" fixed="false" showHide="show" matchMax="0" matchMin="0">Scalable ? </simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_13" fixed="false" showHide="show" matchMax="0" matchMin="0">Runs in any modern web browser ?</simpleAssociableChoice>
+            <simpleAssociableChoice identifier="choice_14" fixed="false" showHide="show" matchMax="0" matchMin="0">Runs on mobile devices ?</simpleAssociableChoice>
+          </simpleMatchSet>
+        </matchInteraction>
+      </div>
+    </div>
+  </itemBody>
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct"/>
+</assessmentItem>

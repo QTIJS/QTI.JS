@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="I102013"
+  title="I102013"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>true</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  <outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single"  baseType="float"/>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>100</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="1">
+
+      <prompt>
+        Because there is a nearly 1:1 correlation between IQ and
+        performance in school, it can be stated that students with a
+        high IQ are more likely to perform well in school than those
+        with lower IQs.
+      </prompt>
+
+      <simpleChoice identifier="true" fixed="true">
+        True
+        <feedbackInline outcomeIdentifier="FEEDBACK" identifier="true" showHide="show">
+          <span class="correct">Correct</span>
+        </feedbackInline>
+      </simpleChoice>
+
+      <simpleChoice identifier="false" fixed="true">
+        False
+        <feedbackInline outcomeIdentifier="FEEDBACK" identifier="false" showHide="show">
+          <span class="incorrect">Incorrect</span>
+          The correlation logically implies good
+          performance.
+        </feedbackInline>
+      </simpleChoice>
+    </choiceInteraction>
+    <infoControl title="Hint">This is a hint</infoControl>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/CC2_match.xml"/>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="general">
+    general feedback
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACKBASIC" showHide="show" identifier="correct">
+    correct
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACKBASIC" showHide="show" identifier="incorrect">
+    incorrect
+  </modalFeedback>
+</assessmentItem>

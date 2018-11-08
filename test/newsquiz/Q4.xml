@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Q4"
+  title="4 of 6"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="c1" cardinality="single" baseType="boolean"/>
+  <responseDeclaration identifier="c2" cardinality="single" baseType="boolean"/> 
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  
+  <itemBody>
+    <p>
+      Do you believe labor unions are a positive force?
+    </p>
+    <endAttemptInteraction responseIdentifier="c1" title="Yes"/>
+    <endAttemptInteraction responseIdentifier="c2" title="No"/>
+  </itemBody>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c1">
+    <p><strong>You agree with democratic socialists.</strong> They
+      believe unions are essential on two fronts: to hold companies
+      accountable to their workers and, in the long term, to empower
+      workers to challenge capitalism as a whole.</p>
+
+    <p>Making it easier for workers to unionize “changes the power
+      dynamic between workers and bosses,” Ms. Svart said. Strikes
+      “demonstrate that our society can’t function without the work of
+      millions of people,” she added. “They can’t run the economy
+      without us.”</p>
+
+    <p>Ultimately, democratic socialists want workers to control the
+      means of production. In the meantime, they see unions as a way
+      to give workers more power under capitalism.</p>
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c2">
+    <p><strong>You disagree with democratic socialists.</strong> They
+      believe unions are essential on two fronts: to hold companies
+      accountable to their workers and, in the long term, to empower
+      workers to challenge capitalism as a whole.</p>
+
+    <p>Making it easier for workers to unionize “changes the power
+      dynamic between workers and bosses,” Ms. Svart said. Strikes
+      “demonstrate that our society can’t function without the work of
+      millions of people,” she added. “They can’t run the economy
+      without us.”</p>
+
+    <p>Ultimately, democratic socialists want workers to control the
+      means of production. In the meantime, they see unions as a way
+      to give workers more power under capitalism.</p>
+  </modalFeedback>
+
+  <responseProcessing template="rptemplate.xml" />
+</assessmentItem>

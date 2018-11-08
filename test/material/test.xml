@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="veggies"
+  title="Veggies Quiz" >
+  
+  <testPart identifier="testpart1" navigationMode="linear" submissionMode="individual">
+
+    <!-- Find out how much they like swiss chard and carrots -->
+    <assessmentSection identifier="likes" visible="false">
+      <assessmentItemRef identifier="like_chard" href="like_chard.xml" category="chard"/>
+      <assessmentItemRef identifier="like_carrots" href="like_carrots.xml" category="carrots"/>
+    </assessmentSection>
+
+    <assessmentSection identifier="questions" visible="false">
+      <ordering shuffle="true"/>
+
+      <!-- Should end up with 2-4 questions, 2 for each vegetable 
+           the candidate "likes", shuffled and interleaved. -->
+      <assessmentSection identifier="chard_questions" visible="false" keepTogether="false">
+        <selection select="2"/>
+        <assessmentItemRef identifier="chard1" href="chard1.xml" category="chard">
+          <preCondition><variable identifier="like_chard.LIKE"/></preCondition>
+        </assessmentItemRef>
+        <assessmentItemRef identifier="chard2" href="chard2.xml" category="chard">
+          <preCondition><variable identifier="like_chard.LIKE"/></preCondition>
+        </assessmentItemRef>
+        <assessmentItemRef identifier="chard3" href="chard3.xml" category="chard">
+          <preCondition><variable identifier="like_chard.LIKE"/></preCondition>
+        </assessmentItemRef>
+      </assessmentSection>
+
+      <assessmentSection identifier="carrot_questions" visible="false" keepTogether="false">
+        <selection select="2"/>
+        <assessmentItemRef identifier="carrots1" href="carrots1.xml" category="carrots">
+          <preCondition><variable identifier="like_carrots.LIKE"/></preCondition>
+        </assessmentItemRef>
+        <assessmentItemRef identifier="carrots2" href="carrots2.xml" category="carrots">
+          <preCondition><variable identifier="like_carrots.LIKE"/></preCondition>
+        </assessmentItemRef>
+        <assessmentItemRef identifier="carrots3" href="carrots3.xml" category="carrots">
+          <preCondition><variable identifier="like_carrots.LIKE"/></preCondition>
+        </assessmentItemRef>
+      </assessmentSection>
+    </assessmentSection>
+
+    <!-- If the candidate likes neither swiss chard nor carrots, 
+         should end up with 2 french fries questions, shuffled. -->
+    <assessmentSection identifier="frenchfries_questions" visible="false">
+      <selection select="2"/>
+      <ordering shuffle="true"/>
+      <preCondition>
+        <not>
+          <or>
+            <variable identifier="like_chard.LIKE"/>
+            <variable identifier="like_carrots.LIKE"/>
+          </or>
+        </not>
+      </preCondition>
+      <assessmentItemRef identifier="frenchfries1" href="frenchfries1.xml"
+                         category="frenchfries"/>
+      <assessmentItemRef identifier="frenchfries2" href="frenchfries2.xml"
+                         category="frenchfries"/>
+      <assessmentItemRef identifier="frenchfries3" href="frenchfries3.xml"
+                         category="frenchfries"/>
+    </assessmentSection>
+  </testPart>
+
+  <testFeedback access="atEnd">
+    We're fresh out of<br/> veggie questions.<br/><br/>
+    Next week: fruits.
+  </testFeedback>
+</assessmentTest>

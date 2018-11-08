@@ -1,0 +1,47 @@
+nav.qtijs-tabs {
+  display: flex;
+  position: relative;   
+  clear:both;
+  margin-top: 1em;
+  margin-bottom: -1em;
+}
+nav.qtijs-tabs .qtijs-tab {
+  display: block;
+  left: 1px;
+  --tab-padding: .5em;
+  --tab-font-size: .9em;
+  margin-left: -1px; 
+  font-size: var(--tab-font-size);
+  border: 1px solid #ccc; 
+  padding: var(--tab-padding);
+  border-bottom: solid 1px white;
+  border-radius: 10px 10px 0 0;
+  background: #eee; 
+  cursor: pointer;
+  width: auto;
+}
+nav.qtijs-tabs .qtijs-tab:first-child {
+  margin-left: .5em;
+}
+nav.qtijs-tabs .qtijs-tab:hover {
+  background-color: white;
+}
+nav.qtijs-tabs .qtijs-tab.qtijs-clicked {
+  font-weight: bold;
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+nav.qtijs-tabs ~ [data-qtijs-tag=assessmentStimulus] {
+  position: absolute;
+  top: calc((2 * var(--tab-padding)) + var(--tab-font-size));
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+}
+nav.qtijs-tabs ~ [data-qtijs-tag=assessmentStimulus].qtijs-clicked {
+  position: relative;   
+  z-index: 1;
+  opacity: 1;
+  top: .7em;
+}

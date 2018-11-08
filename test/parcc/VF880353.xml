@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  identifier="VF880353"
+  title="Best Description"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSEA" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>C</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <responseDeclaration identifier="RESPONSEB" cardinality="multiple" baseType="directedPair">
+    <correctResponse>
+      <value>S21 G1</value>
+      <value>S19 G2</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>  
+
+  <assessmentStimulusRef identifier="freddy2" href="freddy_in_peril_pt2.xml" />
+  
+  <!-- TECR -->
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSEA" maxChoices="1">
+      <prompt>
+        <h2>Part A</h2>
+        <p>
+          Which statement best describes how Freddy and Sir
+          William react to the professor trying to break in?
+        </p>
+      </prompt>
+      
+      <simpleChoice identifier="A">
+        A. Freddy remains calm while Sir William is alarmed.
+      </simpleChoice>
+      <simpleChoice identifier="B">
+        B. Freddy panics while Sir William remains sleeping.
+      </simpleChoice>
+      <simpleChoice identifier="C">
+        C. Freddy is terrified while Sir William is confused.
+      </simpleChoice>
+      <simpleChoice identifier="D">
+        D. Freddy is alert while Sir William is concerned.
+      </simpleChoice>
+    </choiceInteraction>
+
+    <gapMatchInteraction responseIdentifier="RESPONSEB">
+      <prompt>
+        <h2>Part B</h2>
+        <p>
+          From the list, drag <strong>one</strong> sentence from the
+          passage that shows how Freddy reacts
+          and <strong>one</strong> sentence that shows how Sir William
+          reacts. and drop them into the boxes.
+        </p>
+      </prompt>
+      
+      <gapText identifier="S15" matchMax="1">
+        "Exactly," I whispered, "He's trying to get in."
+        (paragraph 15)
+      </gapText>
+
+      <gapText identifier="S27"  matchMax="1">
+        "It was those eyes of his," I said, and I described how
+        Professor Fleishkopf had focused his ice-cold gaze on
+        me. (paragraph 27)
+      </gapText>
+      
+      <gapText identifier="S19"  matchMax="1">
+        "You?" Sir William stared down at me, shaking his
+        head. "My dear Freddy, you'll have to explain. Why on
+        earth would anyone--" (paragraph 19)
+      </gapText>
+      
+      <gapText identifier="S21"  matchMax="1">
+        "He's inside! He's coming" (paragraph 21)
+      </gapText>
+      
+      <gapText identifier="S17" matchMax="1">
+        "Its that man from yesterday--the one with the
+        disgusting shampoo.  But what's he doing here?"
+        (paragraph 17)
+      </gapText>
+      
+      <gapText identifier="S24" matchMax="1">
+        "All right, go look for a hiding place. I'll see what I
+        can do", Sir William sighed. (paragraph 24)
+      </gapText>
+
+      <table>
+        <tr>
+          <th>Evidence to show how Freddy reacts.</th>
+          <th>Evidence to show how Sir William reacts.</th>
+        </tr>
+        <tr>
+          <td><gap identifier="G1" /></td>
+          <td><gap identifier="G2" /></td>
+        </tr>
+      </table>
+    </gapMatchInteraction>
+  </itemBody>
+
+  <responseProcessing template="match_ab_correct.xml"/>
+</assessmentItem>

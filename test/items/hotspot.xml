@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="hotspot"
+  title="UK Airports (Take 1)"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>A</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <itemBody>
+    <p>
+      The picture illustrates four of the most popular destinations
+      for air travellers arriving in the United Kingdom: London,
+      Manchester, Edinburgh and Glasgow.
+    </p>
+    <hotspotInteraction responseIdentifier="RESPONSE">
+      <prompt>Which one is Glasgow?</prompt>
+      <object width="206" height="280" type="image/png" data="images/ukair.png"></object>
+      <hotspotChoice shape="circle" coords="78,102,8"  identifier="A"/>
+      <hotspotChoice shape="circle" coords="117,171,8" identifier="B"/>
+      <hotspotChoice shape="circle" coords="166,227,8" identifier="C"/>
+      <hotspotChoice shape="circle" coords="100,102,8" identifier="D"/>
+    </hotspotInteraction>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>

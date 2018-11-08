@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest class="debug" xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="IGUIDE_EXAMPLES_TEST"
+  title="Implementation Guide Examples">
+
+  <outcomeDeclaration identifier="TF" cardinality="single" baseType="identifier"
+                      view="testConstructor"/>
+  <outcomeDeclaration identifier="ALL_IDS" cardinality="multiple"
+                      baseType="identifier" view="testConstructor"/>
+  <outcomeDeclaration identifier="ALL_SCORES" cardinality="multiple"
+                      baseType="identifier" view="testConstructor"/>  
+
+  <!--
+  <testPart identifier="testpart1" navigationMode="nonlinear" submissionMode="individual">
+    <timeLimits maxTime="7200" />
+   <assessmentSectionRef identifier="s1" href="simple_examples.xml" />
+  </testPart>
+  <testPart identifier="testpart2" navigationMode="nonlinear" submissionMode="individual">
+    <timeLimits maxTime="7200" />
+    <assessmentSectionRef identifier="s2" href="advanced_examples.xml" />
+  </testPart>
+  -->
+
+  <testPart identifier="testpart1" navigationMode="nonlinear" submissionMode="individual">
+    <timeLimits maxTime="7200" />
+   <assessmentSectionRef identifier="section" href="section.xml" />
+  </testPart>
+  
+  <outcomeProcessing>
+    <setOutcomeValue identifier="ALL_IDS">
+      <debugOperator name="itemIdentifiers" />
+    </setOutcomeValue>
+    <setOutcomeValue identifier="ALL_SCORES">
+      <testVariables variableIdentifier="SCORE"/>
+    </setOutcomeValue>
+    <setOutcomeValue identifier="TF">
+      <baseValue baseType="identifier">true</baseValue>
+    </setOutcomeValue>
+  </outcomeProcessing>
+  
+  <testFeedback outcomeIdentifier="TF" identifier="true" showHide="show" access="during">
+    <h3>Results</h3>
+    <table class="qtijs-pivotable" data-qtijs-pivot-target="results-table" >
+      <printedVariable identifier="ALL_IDS"
+        data-qtijs-tag="tr"
+        data-qtijs-prefix="&lt;td&gt;identifier&lt;/td&gt;&lt;td&gt;"
+        data-qtijs-suffix="&lt;/gt;"
+        data-qtijs-delimiter="&lt;/td&gt;&lt;td&gt;"/>
+      <printedVariable identifier="ALL_SCORES"
+        data-qtijs-tag="tr"
+        data-qtijs-prefix="&lt;td&gt;SCORE&lt;/td&gt;&lt;td&gt;"
+        data-qtijs-suffix="&lt;/gt;"
+        data-qtijs-delimiter="&lt;/td&gt;&lt;td&gt;"/>
+    </table>
+    <table id="results-table"></table>
+  </testFeedback>
+</assessmentTest>

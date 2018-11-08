@@ -1,0 +1,13 @@
+[data-qtijs-tag="assessmentTest"]::before {
+  background: #116ea6 url(images/qtijs-logo.svg) no-repeat 1em 2.7em / 6em;
+  height: 8em;
+}
+[data-qtijs-tag="assessmentTest"] {
+  margin: 6em 0 0 0;
+}
+span.qtijs-next {
+  background: url(images/arrow-right-white.svg) center / 2em 2em no-repeat;
+}
+span.qtijs-prev {
+  background: url(images/arrow-left-white.svg) center / 2em 2em no-repeat;
+}

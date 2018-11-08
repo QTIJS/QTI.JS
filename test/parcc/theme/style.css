@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin');
+@import url(basic/core.css);
+@import url(basic/nonlinear-slideshow.css);
+@import url(numbered.css);
+@import url(tabs.css);
+
+:root {
+  --qtijs-basic-assessment-test-hdr-bg: rgba(87,66,97);
+  --qtijs-basic-assessment-test-hdr-color: white;
+  --qtijs-basic-details-color: #AAA;
+  --qtijs-basic-input-bg: inherit;
+  --qtijs-basic-item-bg: #F4F2F9;
+  --qtijs-basic-item-color: black;
+  --qtijs-basic-item-heading-bg: #248F8Fcc;
+  --qtijs-basic-modal-feedback-bg: #FFE;
+  --qtijs-basic-overtime-color: red;
+  --qtijs-basic-rubric-bg: #F4F2F9;
+  --qtijs-basic-scorer-rubric-bg: #fcedf3;
+  --qtijs-basic-summary-color: #777;
+  --qtijs-basic-test-feedback-bg: #28416d;
+  --qtijs-basic-test-feedback-color: white;
+  --qtijs-basic-item-disabled-bg: #d0e7ef;
+}    
+
+/* Make width 100% and split into two columns. */
+[data-qtijs-tag=assessmentTest] {
+  font-family: "Libre Franklin";
+  font-size: 16px;
+  line-height:1.5rem;
+  margin: 7em 0 0 0;
+  color: #333;
+  width: calc(100% - 1px);
+  max-width: none;
+  min-height: 100vh;
+  background: #F4F2F9;
+  overflow: hidden;
+}
+[data-qtijs-tag=assessmentTest]::before {
+  width: 100%;
+  max-width: none;
+  border-bottom: #F4F2F9;
+  font-family: "Libre Franklin";
+  font-size: 14px;
+  text-align: left;
+  color: #9a2c35;
+  height: 100px;
+  padding: 1em;
+  line-height:150px;
+  background-image:
+   url(parcc_logo.svg),
+   linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(87,66,97,1) 75%);
+  background-position: top -.8em left -2.2em, left;
+  background-repeat: no-repeat, no-repeat;
+}
+[data-qtijs-tag=testPart] {
+  columns: 2;
+  column-rule: solid 1px #DDD;
+  column-gap: 0;
+  max-height: 120vh;
+}
+
+[data-qtijs-tag=testFeedback].qtijs-current > .qtijs-navigation,
+[data-qtijs-tag=testPart].qtijs-current > .qtijs-navigation {
+  width: 100%
+}
+
+[data-qtijs-navigation-mode=nonlinear] [data-qtijs-tag=assessmentSection][data-qtijs-visible=false] {
+  margin-top: 0;
+}
+[data-qtijs-tag=assessmentItem], [data-qtijs-tag=testFeedback] {
+  text-align: left;
+  padding:0;
+}
+span.qtijs-next {
+  background: url(arrow-right-white.svg) center / 2em 2em no-repeat;
+}
+span.qtijs-prev {
+  background: url(arrow-left-white.svg) center / 2em 2em no-repeat;
+}
+
+/* Remove slide-in transition */
+[data-qtijs-tag=assessmentTest] > [data-qtijs-tag=testFeedback].qtijs-current,
+[data-qtijs-navigation-mode=nonlinear] .qtijs-current {
+  transition: none;
+}
+
+/* testFeedback formatting */
+[data-qtijs-tag=assessmentTest] > [data-qtijs-tag=testFeedback].qtijs-current {
+  position: absolute;
+  padding: 2em;
+  border: solid 1px #9a2c35;
+  font-style: italic;
+  top: 0;
+  width: 400px;
+  left: 200px !important;
+}
+/* No outline on current assessmentItem */
+[data-qtijs-tag=assessmentItem].qtijs-current {
+  outline: none;
+}
+
+/* Limit height of assessmentStimulus */
+[data-qtijs-tag=assessmentStimulus] {
+  outline: white solid 1px;
+  width: 100%;
+  margin-top:1em;  
+  height: calc(100vh - 33vh);
+  z-index: -1;
+  overflow-y: scroll;
+}
+
+/* Adjust position of assessmentStimulus when there are tabs */
+nav.qtijs-tabs ~ [data-qtijs-tag=assessmentStimulus].qtijs-clicked {
+  top: 0;
+}
+
+/* Give assessmentStimulus a style scrollbar */
+[data-qtijs-tag=assessmentStimulus]::-webkit-scrollbar {
+  width: 6px;
+  background: white;
+}
+[data-qtijs-tag=assessmentStimulus]::-webkit-scrollbar-thumb {
+  background: rgba(87,66,97);
+}
+
+/* Column break before itemBody */
+[data-qtijs-tag=itemBody] {
+  -webkit-column-break-before: always;
+  break-before: column;
+}
+
+/* Don't generate title for assessmentItems */
+[data-qtijs-tag=assessmentItem].qtijs-current::before,
+[data-qtijs-tag=assessmentItem]::before {
+  content: none
+}
+[data-qtijs-tag=testPart] > [data-qtijs-tag=assessmentSection] > [data-qtijs-tag=assessmentSection] {
+  margin-top: 1em;
+}
+
+/* Generate "Question 1 of 7" label above itemBody */
+[data-qtijs-tag=itemBody]::before {
+  content: attr(label);
+  font-style: italic;
+  font-size: smaller;
+  display: block;
+}
+
+/* Don't change left-border of submitted and submittable items */
+[data-qtijs-tag=assessmentItem].qtijs-submitted,
+[data-qtijs-tag=assessmentItem].qtijs-submittable {
+  border-left: solid 3px transparent;
+}
+
+/* Remove special styling of rubricBlocks */
+[data-qtijs-tag=rubricBlock] {
+  position: relative;
+  margin: auto;
+  font-weight: normal;
+  text-align: left;
+  width: 540px;
+  max-width: 90%;
+  background-color: var(--qtijs-basic-rubric-bg);
+  border: none;
+  padding: 0;
+}
+
+/* Remove content generated from view attribute above rubricBlocks */
+[data-qtijs-tag=rubricBlock]::before {
+  display:none;
+}
+
+/* Remove centering of prompts and headings like in basic */
+[data-qtijs-tag=prompt] {
+  font-weight: normal;
+  text-align: left;  
+}
+[data-qtijs-tag=prompt] p {
+  font-weight: normal;
+}
+[data-qtijs-tag=itemBody] h2 {
+  font-size: 1rem;
+  padding-left: .5rem;
+}
+[data-qtijs-tag=assessmentTest] h2 {
+  text-align: left;
+}
+
+/* Make selected choices bold */
+.qtijs-input-wrap {
+  font-weight: normal;
+  border: none;
+  z-order: 1;
+  opacity: .99;
+}  
+.qtijs-input-wrap.checked {
+  font-weight: bold;
+}  
+.qtijs-input-wrap input[type=radio],
+.qtijs-input-wrap input[type=checkbox] {
+  float: none;
+}
+
+/* Style gapMatchInteractions where gaps are in a table */
+[data-qtijs-tag=gapMatchInteraction] [data-qtijs-tag=gapText] {
+  display: inline-block;
+  padding: 2px .3em;
+  font-size: 1rem;
+  font-weight: 500;
+  background: white;
+  margin: 0;
+  border: solid 1px;
+  line-height:1.2em;
+  max-width: 80%;
+  z-index: 2;
+  opacity: .99;
+  cursor: pointer;
+}
+[data-qtijs-tag=gapMatchInteraction] [data-qtijs-tag=gapText] + [data-qtijs-tag=gapText] {
+  margin-top:.2em;
+}
+[data-qtijs-tag=gapMatchInteraction] table {
+  width: 90%;
+  border-top: solid 2px;  
+  border-spacing: 0 1.3em;  
+  padding-top: 1em;
+  margin-top: 2em;
+}
+[data-qtijs-tag=gapMatchInteraction] table td {
+  height: 3em;
+  margin-top: 1em;
+  border: solid 1px;
+  width: 47.5%;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+[data-qtijs-tag=gapMatchInteraction] span.qtijs-gap {
+  display:inline-block;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+}
+[data-qtijs-tag=gapMatchInteraction] span.qtijs-gap.qtijs-filled {
+  font-weight: normal;
+  font-size: 1rem;
+  letter-spacing: normal;
+  line-height: normal;
+}
+[data-qtijs-tag=assessmentItem] .qtijs-ghost {
+  font-weight: normal;
+  font-size: 1rem;
+  letter-spacing: normal;
+  line-height: normal;
+}
+
+/* Quill toolbar */
+[data-qtijs-tag=assessmentItem] .ql-toolbar.ql-snow button {
+  margin:0;
+  width: 16px;  
+}
+
+/* style attribution class */
+p.attribution {
+  font-size: smaller;
+}
+
+/* fancy blockquotes */
+[data-qtijs-tag=assessmentTest] blockquote {
+  margin: 0 1em;
+}
+[data-qtijs-tag=assessmentTest] blockquote::before {
+  position: relative;
+  content: "\201C";
+  font-size: 60px;
+  color: #999;
+  top: 25px;
+  display: inline-block;      
+}
+
+/* access=during testFeedback  accessible through header button. */
+button.qtijs-header {
+  position: fixed;
+  display: block;
+  height: auto;
+  width: auto;
+  right: 4px;
+  top: 4.5rem;
+  padding:5px;
+  background: #aa5ecb;
+  border: none;
+  border-radius: 5px;
+  text-transform: capitalize;
+  font-size:.8rem;
+  color: white;
+  z-index:10;
+}
+button.qtijs-header:focus {
+  outline: none;
+}
+[data-qtijs-tag=assessmentTest] > [data-qtijs-tag=testFeedback].qtijs-popup {
+  position: fixed;
+  top: 5rem;
+  left: calc(100% - 12em);
+  right: 4px;
+  width: auto;
+  height: auto;
+  z-index: 2;
+  opacity: 1;
+  padding: 10px;
+  border: solid #aa5ecb 1px;
+  font-size: smaller;
+  line-height:1.2em;
+}

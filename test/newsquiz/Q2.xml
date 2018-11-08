@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Q2"
+  title="2 of 6"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="c1" cardinality="single" baseType="boolean"/>
+  <responseDeclaration identifier="c2" cardinality="single" baseType="boolean"/> 
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  
+  <itemBody>
+    <p>
+      In a capitalist system, do you believe government regulations
+      are helpful or harmful?
+    </p>
+    <endAttemptInteraction responseIdentifier="c1" title="Helpful"/>
+    <endAttemptInteraction responseIdentifier="c2" title="Harmful"/>
+  </itemBody>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c1">
+    <p><strong>You agree with democratic socialists.</strong> They
+    believe that as long as private corporations exist — and they
+    freely acknowledge that that will be the case for the
+    foreseeable future — the government should regulate them in
+    order to, in their view, mitigate the harms of capitalism and
+    push companies to act in the best interests of workers and
+    society as a whole. For example, a democratic socialist might
+    support strengthening labor laws, raising the minimum wage,
+    mandating parental leave, barring companies from outsourcing
+    jobs to low-wage countries and banning environmentally harmful
+    activities.</p>
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c2">
+    <p><strong>You disagree with democratic socialists.</strong>
+    They believe that as long as private corporations exist — and
+    they freely acknowledge that that will be the case for the
+    foreseeable future — the government should regulate them in
+    order to, in their view, mitigate the harms of capitalism and
+    push companies to act in the best interests of workers and
+    society as a whole. For example, a democratic socialist might
+    support strengthening labor laws, raising the minimum wage,
+    mandating parental leave, barring companies from outsourcing
+    jobs to low-wage countries and banning environmentally harmful
+    activities.</p>
+  </modalFeedback>
+
+  <responseProcessing template="rptemplate.xml" />
+</assessmentItem>

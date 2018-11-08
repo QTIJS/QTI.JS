@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  identifier="VF880351"
+  title="Darting"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSEA" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>A</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <responseDeclaration identifier="RESPONSEB" cardinality="multiple" baseType="identifier">
+    <correctResponse>
+      <value>C</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>  
+
+  <assessmentStimulusRef id="freddy2" href="freddy_in_peril_pt2.xml" />
+
+  <!-- EBSR -->
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSEA" maxChoices="1">
+      <prompt>
+        <h2>Part A</h2>
+        <p>
+          Read this sentence from paragraph 5 of the passage from
+          <em>Freddy in Peril,</em> Part 2.
+        </p>
+        <blockquote>
+          Darting to the opposite end of the desk, I climbed down
+          my miniature rope ladder at top speed, reached the
+          floor, and scurried into the room next door, where Sir
+          William was lying on his cat blanket.
+        </blockquote>
+        <p>
+          How does the meaning of <strong>darting</strong> help the reader
+          understand Freddy’s actions?
+        </p>
+      </prompt>
+      <simpleChoice identifier="A">A. He is moving quickly across the desk.</simpleChoice>
+      <simpleChoice identifier="B">B. He is climbing down a rope.</simpleChoice>
+      <simpleChoice identifier="C">C. He is throwing items onto the floor.</simpleChoice>
+      <simpleChoice identifier="D">D. He is jumping over objects on the desk.</simpleChoice>
+    </choiceInteraction>
+
+    <choiceInteraction responseIdentifier="RESPONSEB" maxChoices="1">
+      <prompt>
+        <h2>Part B</h2>
+        <p>Which phrase from the sentence best helps the reader
+        understand the meaning of the word darting as it is used
+        in paragraph 5?</p>
+      </prompt>
+      <simpleChoice identifier="A">A. “opposite end”</simpleChoice>
+      <simpleChoice identifier="B">B. “climbed down”</simpleChoice>
+      <simpleChoice identifier="C">C. “top speed”</simpleChoice>
+      <simpleChoice identifier="D">D. “reached the floor”</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing template="match_ab_correct.xml"/>
+</assessmentItem>

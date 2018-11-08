@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2.xsd" identifier="i1407415874422375" title="Math" label="Math" xml:lang="en-US" adaptive="false" timeDependent="false" toolName="TAO" toolVersion="3.2.0-RC2">
+  <responseDeclaration identifier="RESPONSE" cardinality="ordered" baseType="identifier"/>
+  <responseDeclaration identifier="RESPONSE_1" cardinality="multiple" baseType="pair"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float" normalMaximum="0"/>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <stylesheet href="style/custom/tao-user-styles.css" type="text/css" media="all" title=""/>
+  <itemBody>
+    <div class="grid-row">
+      <div class="col-12">
+        <orderInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="3" minChoices="1" orientation="vertical">
+          <prompt>In all QTI interactions, any textBlock may actually contain pictures, formmatted texts or mathMl expressions. Order the pictures !</prompt>
+          <simpleChoice identifier="choice_1" fixed="false" showHide="show">
+            <img src="numbers-sand.jpg" alt="numbers sand" width="153" height="100"/>
+          </simpleChoice>
+          <simpleChoice identifier="choice_2" fixed="false" showHide="show">
+            <img src="789-sand.jpg" alt="789 sand" width="167" height="100"/>
+          </simpleChoice>
+          <simpleChoice identifier="choice_3" fixed="false" showHide="show">
+            <img src="456-sand.jpg" alt="456 sand" width="161" height="100"/>
+          </simpleChoice>
+        </orderInteraction>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <associateInteraction responseIdentifier="RESPONSE_1" shuffle="false" maxAssociations="2" minAssociations="2">
+          <prompt>As you can see you may render mathML expression. The syntax may be mathML or TeX <br/>
+Associate the right syntax with the way it should look alike !<br/>
+Did you know that a QTI associate could constraint how many associations the test taker has to make ?<br/>
+ </prompt>
+          <simpleAssociableChoice identifier="choice_4" fixed="false" showHide="show" matchMax="0" matchMin="0">
+            <p>
+              <m:math>
+                <m:semantics>
+                  <m:mstyle displaystyle="true">
+                    <m:mrow class="MJX-TeXAtom-ORD">
+                      <m:mi>x</m:mi>
+                      <m:mo>=</m:mo>
+                      <m:mrow class="MJX-TeXAtom-ORD">
+                        <m:mfrac>
+                          <m:mrow>
+                            <m:mo>−</m:mo>
+                            <m:mi>b</m:mi>
+                            <m:mo>±</m:mo>
+                            <m:msqrt>
+                              <m:msup>
+                                <m:mi>b</m:mi>
+                                <m:mn>2</m:mn>
+                              </m:msup>
+                              <m:mo>−</m:mo>
+                              <m:mn>4</m:mn>
+                              <m:mi>a</m:mi>
+                              <m:mi>c</m:mi>
+                            </m:msqrt>
+                          </m:mrow>
+                          <m:mrow>
+                            <m:mn>2</m:mn>
+                            <m:mi>a</m:mi>
+                          </m:mrow>
+                        </m:mfrac>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mstyle>
+                  <m:annotation encoding="latex">x = {-b \pm \sqrt{b^2 - 4ac}\over 2a}</m:annotation>
+                </m:semantics>
+              </m:math>
+            </p>
+            <p> </p>
+          </simpleAssociableChoice>
+          <simpleAssociableChoice identifier="choice_5" fixed="false" showHide="show" matchMax="0" matchMin="0">
+            <p>x = {-b \pm \sqrt{b^2 - 4ac}\over 2a}</p>
+          </simpleAssociableChoice>
+          <simpleAssociableChoice identifier="choice_6" fixed="false" showHide="show" matchMax="0" matchMin="0"><m:math><m:semantics><m:mstyle displaystyle="true"><m:mrow class="MJX-TeXAtom-ORD"><m:munderover><m:mo>∫</m:mo><m:mi>a</m:mi><m:mi>b</m:mi></m:munderover><m:msup><m:mi>x</m:mi><m:mn>2</m:mn></m:msup><m:mrow class="MJX-TeXAtom-ORD"><m:mi mathvariant="normal">d</m:mi></m:mrow><m:mi>x</m:mi></m:mrow></m:mstyle><m:annotation encoding="latex">\int\limits_a^b x^2  \mathrm{d} x</m:annotation></m:semantics></m:math><br/>
+ </simpleAssociableChoice>
+          <simpleAssociableChoice identifier="choice_7" fixed="false" showHide="show" matchMax="0" matchMin="0">\int\limits_a^b x^2  \mathrm{d} x</simpleAssociableChoice>
+        </associateInteraction>
+      </div>
+    </div>
+  </itemBody>
+  <responseProcessing>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE"/>
+          <correct identifier="RESPONSE"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE_1"/>
+          <correct identifier="RESPONSE_1"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+  </responseProcessing>
+</assessmentItem>

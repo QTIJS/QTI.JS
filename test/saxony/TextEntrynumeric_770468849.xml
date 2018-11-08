@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="TextEntrynumeric_770468849"
+  title="textEntry (numeric, relative)"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE_1" cardinality="single" baseType="float">
+	<correctResponse>
+	  <value>4.136</value>
+	</correctResponse>
+  </responseDeclaration>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>0.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>1.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier"
+		              view="testConstructor">
+	<defaultValue>
+	  <value>empty</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="FEEDBACKMODAL" cardinality="multiple" baseType="identifier"
+		              view="testConstructor"/>
+  <itemBody>
+	<p>Wieviele Einwohner hat der Freistaat Sachsen?</p>
+	<div><textEntryInteraction responseIdentifier="RESPONSE_1"/> Mio. (Stand: 31. August
+	  2011)</div>
+  </itemBody>
+  <responseProcessing>
+	<responseCondition>
+	  <responseIf>
+		<equal toleranceMode="relative" tolerance="5.0 5.0" includeLowerBound="true"
+			   includeUpperBound="true">
+		  <variable identifier="RESPONSE_1"/>
+		  <correct identifier="RESPONSE_1"/>
+		</equal>
+		<setOutcomeValue identifier="SCORE">
+		  <sum>
+			<variable identifier="SCORE"/>
+			<baseValue baseType="float">1.0</baseValue>
+		  </sum>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<not>
+		  <isNull>
+			<variable identifier="RESPONSE_1"/>
+		  </isNull>
+		</not>
+		<setOutcomeValue identifier="FEEDBACKBASIC">
+		  <baseValue baseType="identifier">incorrect</baseValue>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <not>
+			<match>
+			  <variable identifier="FEEDBACKBASIC"/>
+			  <baseValue baseType="identifier">empty</baseValue>
+			</match>
+		  </not>
+		  <equal toleranceMode="exact">
+			<variable identifier="SCORE"/>
+			<variable identifier="MAXSCORE"/>
+		  </equal>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKBASIC">
+		  <baseValue baseType="identifier">correct</baseValue>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <match>
+			<baseValue baseType="identifier">correct</baseValue>
+			<variable identifier="FEEDBACKBASIC"/>
+		  </match>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL"/>
+			<baseValue baseType="identifier">FEEDBACK_33287150</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <match>
+			<baseValue baseType="identifier">incorrect</baseValue>
+			<variable identifier="FEEDBACKBASIC"/>
+		  </match>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL"/>
+			<baseValue baseType="identifier">FEEDBACK_4085837</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+  </responseProcessing>
+  <modalFeedback identifier="FEEDBACK_33287150" outcomeIdentifier="FEEDBACKMODAL" showHide="show"
+		         title="Richtig!">Sachsen hat rund 4,1 Millionen Einwohner bei einer Fläche von rund 18.400
+	Quadratkilometern und gehört damit zu den kleineren Ländern der
+	Bundesrepublik.</modalFeedback>
+  <modalFeedback identifier="FEEDBACK_4085837" outcomeIdentifier="FEEDBACKMODAL" showHide="show"
+		         title="Leider Falsch!">Sachsen hat rund 4,1 Millionen Einwohner bei einer Fläche von rund
+	18.400 Quadratkilometern und gehört damit zu den kleineren Ländern der
+	Bundesrepublik.</modalFeedback>
+</assessmentItem>

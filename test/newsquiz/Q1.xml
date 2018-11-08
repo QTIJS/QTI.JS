@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Q1"
+  title="1 of 6"
+  adaptive="false"
+  timeDependent="false">
+  
+  <responseDeclaration identifier="c1" cardinality="single" baseType="boolean"/>
+  <responseDeclaration identifier="c2" cardinality="single" baseType="boolean"/> 
+  <responseDeclaration identifier="c3" cardinality="single" baseType="boolean"/> 
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  
+  <itemBody>
+    <p>
+      Let’s start with the big question. In an ideal world, who
+      would control the means of production?
+    </p>
+    <endAttemptInteraction responseIdentifier="c1" title="Private owners"/>
+    <endAttemptInteraction responseIdentifier="c2" title="The government"/>
+    <endAttemptInteraction responseIdentifier="c3" title="Workers" />
+  </itemBody>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c1">
+    <p><strong>You disagree with democratic socialists.</strong>
+    They believe that an economy based on private profit — in
+    other words, capitalism — is inherently exploitative. This is
+    a key difference between democratic socialism and mainstream
+    progressivism, including European-style social democracy.</p>
+
+    <p>Democratic socialists see social democracies “as an
+    improvement over the present situation in the United States,”
+    said Maria Svart, the national director of the D.S.A., but
+    “it’s really still society and the economy functioning on
+    terms that are set by the capitalist class. Our ultimate goal
+    is for working people to run our society and run our
+    workplaces and our economies.”</p>
+
+    <p>They don’t want Soviet-style state control of the
+    economy. While they believe a small number of industries would
+    be best administered by the government, they oppose
+    authoritarianism and support a mostly decentralized economy
+    controlled by workers and consumers, such as through
+    cooperatives.</p>
+  </modalFeedback>
+  
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c2">
+    <p><strong>You disagree with democratic socialists.</strong>
+    Democratic socialists don’t want the government to control the
+    economy as it did in, for example, the Soviet Union. Leninism,
+    Stalinism, Maoism — none of those ideologies are democratic
+    socialism.</p>
+
+    <p>Democratic socialists explicitly reject authoritarian forms
+    of communism. While they do believe that a small number of
+    industries, including energy and steel, would be best
+    administered by the government, they support a mostly
+    decentralized economy controlled by workers and consumers,
+    such as through cooperatives.</p>
+
+    <p>“Our ultimate goal is for working people to run our society
+    and run our workplaces and our economies,” said Maria Svart,
+    the national director of the D.S.A. “It’s a vision of
+    actually, truly democratizing the economy, not just taking a
+    lot of public services away from the profit-seeking private
+    marketplace.”</p>
+  </modalFeedback>
+  
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c3">
+    <p><strong>You agree with democratic socialists.</strong> They
+    believe that wherever possible, industries should be
+    controlled by the workers who operate them and the consumers
+    who depend on them — not by corporations, and not by the
+    government either. Essentially, they believe that the more
+    control that is directly in workers’ hands, the better.</p>
+
+    <p>“Our ultimate goal is for working people to run our society
+    and run our workplaces and our economies,” said Maria Svart,
+    the national director of the D.S.A. “It’s a vision of
+    actually, truly democratizing the economy, not just taking a
+    lot of public services away from the profit-seeking private
+    marketplace.”</p>
+
+    <p>Democratic socialists do believe that a small number of
+    industries, including energy and steel, would be best
+    administered by the government. But generally speaking, they
+    want a decentralized economy. They explicitly oppose
+    authoritarian communism as seen in the Soviet Union; instead,
+    they favor arrangements like workers’ cooperatives.</p>
+  </modalFeedback>
+
+  <responseProcessing template="rptemplate.xml" />
+</assessmentItem>
+

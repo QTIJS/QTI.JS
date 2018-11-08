@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="choice_multiple_chocolade"
+  title="Chocolate Milk"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="MR01" cardinality="multiple" baseType="identifier"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <itemBody>
+    <choiceInteraction responseIdentifier="MR01" shuffle="true" maxChoices="10">
+      <prompt>
+        How to make chocolate milk. Select the combination of steps
+        that lead to a nice glass of hot and steamy chocolate milk.
+      </prompt>
+
+      <simpleChoice identifier="C01">
+        Take a lighter
+      </simpleChoice>
+      <simpleChoice identifier="C02">
+        Open the gas on the stove
+      </simpleChoice>
+      <simpleChoice identifier="C03">
+        Light the gas
+      </simpleChoice>
+      <simpleChoice identifier="C04">
+        Pour the milk in the pan
+      </simpleChoice>
+      <simpleChoice identifier="C05">
+        Add 2 tea spoons of cocoa into the mug
+      </simpleChoice>
+      <simpleChoice identifier="C06">
+        Add 2 tea spoons of sugar into the mug
+      </simpleChoice>
+      <simpleChoice identifier="C07">
+        Add 2 spoons of water into the mug
+      </simpleChoice>
+      <simpleChoice identifier="C08">
+        Stir the water, cocoa and sugar until the
+        mixture is smooth
+      </simpleChoice>
+      <simpleChoice identifier="C09">
+        Put the pan with milk on the stove
+      </simpleChoice>
+      <simpleChoice identifier="C10">
+        Pour the boiling milk into the mug
+      </simpleChoice>
+      <simpleChoice identifier="C11">
+        Put the mug with the mixture and milk into
+        the microwave.
+      </simpleChoice>
+      <simpleChoice identifier="C12">
+        Add milk to the mug with the smooth mixture.
+      </simpleChoice>
+      <simpleChoice identifier="C13">
+        Add cold milk from the fridge into the mug
+        with smooth mixture.
+      </simpleChoice>
+      <simpleChoice identifier="C14">
+        Set the microwave on 700 Watt and set the
+        timer to 2 minutes.
+      </simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="MR01"/>
+          <multiple>
+            <baseValue baseType="identifier">C01</baseValue>
+            <baseValue baseType="identifier">C02</baseValue>
+            <baseValue baseType="identifier">C03</baseValue>
+            <baseValue baseType="identifier">C04</baseValue>
+            <baseValue baseType="identifier">C05</baseValue>
+            <baseValue baseType="identifier">C06</baseValue>
+            <baseValue baseType="identifier">C07</baseValue>
+            <baseValue baseType="identifier">C08</baseValue>
+            <baseValue baseType="identifier">C09</baseValue>
+            <baseValue baseType="identifier">C10</baseValue>
+          </multiple>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <baseValue baseType="float">1</baseValue>
+        </setOutcomeValue>
+      </responseIf>
+      <responseElseIf>
+        <match>
+          <variable identifier="MR01"/>
+          <multiple>
+            <baseValue baseType="identifier">C05</baseValue>
+            <baseValue baseType="identifier">C06</baseValue>
+            <baseValue baseType="identifier">C07</baseValue>
+            <baseValue baseType="identifier">C08</baseValue>
+            <baseValue baseType="identifier">C11</baseValue>
+            <baseValue baseType="identifier">C12</baseValue>
+            <baseValue baseType="identifier">C13</baseValue>
+            <baseValue baseType="identifier">C14</baseValue>
+          </multiple>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <baseValue baseType="float">1</baseValue>
+        </setOutcomeValue>
+      </responseElseIf>
+    </responseCondition>
+  </responseProcessing>
+</assessmentItem>

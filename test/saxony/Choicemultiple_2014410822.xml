@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+    xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+	identifier="Choicemultiple_2014410822"
+    title="choice (multiple)"
+    adaptive="false"
+	timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE_13390220" cardinality="multiple" baseType="identifier">
+	<correctResponse>
+	  <value>choice_693643701</value>
+	  <value>choice_853818748</value>
+	</correctResponse>
+  </responseDeclaration>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>0.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>1.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier">
+	<defaultValue>
+	  <value>empty</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="FEEDBACKMODAL" cardinality="multiple" baseType="identifier"
+		              view="testConstructor"/>
+  <itemBody>
+	<div>Welche Städte verfügen <b>nicht</b> über einen Internationalen Flughafen?</div>
+	<choiceInteraction responseIdentifier="RESPONSE_13390220" shuffle="false" maxChoices="0">
+	  <simpleChoice identifier="choice_998819535">Leipzig</simpleChoice>
+	  <simpleChoice identifier="choice_693643701">Chemnitz</simpleChoice>
+	  <simpleChoice identifier="choice_1658152974">Dresden</simpleChoice>
+	  <simpleChoice identifier="choice_853818748">Zwickau</simpleChoice>
+	</choiceInteraction>
+  </itemBody>
+  <responseProcessing>
+	<responseCondition>
+	  <responseIf>
+		<isNull>
+		  <variable identifier="RESPONSE_13390220"/>
+		</isNull>
+		<setOutcomeValue identifier="FEEDBACKBASIC">
+		  <baseValue baseType="identifier">empty</baseValue>
+		</setOutcomeValue>
+	  </responseIf>
+	  <responseElseIf>
+		<match>
+		  <variable identifier="RESPONSE_13390220"/>
+		  <correct identifier="RESPONSE_13390220"/>
+		</match>
+		<setOutcomeValue identifier="SCORE">
+		  <sum>
+			<variable identifier="SCORE"/>
+			<variable identifier="MAXSCORE"/>
+		  </sum>
+		</setOutcomeValue>
+		<setOutcomeValue identifier="FEEDBACKBASIC">
+		  <baseValue baseType="identifier">correct</baseValue>
+		</setOutcomeValue>
+	  </responseElseIf>
+	  <responseElse>
+		<setOutcomeValue identifier="FEEDBACKBASIC">
+		  <baseValue baseType="identifier">incorrect</baseValue>
+		</setOutcomeValue>
+	  </responseElse>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <match>
+			<baseValue baseType="identifier">correct</baseValue>
+			<variable identifier="FEEDBACKBASIC"/>
+		  </match>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL"/>
+			<baseValue baseType="identifier">FEEDBACK_4634459</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <match>
+			<baseValue baseType="identifier">incorrect</baseValue>
+			<variable identifier="FEEDBACKBASIC"/>
+		  </match>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL"/>
+			<baseValue baseType="identifier">FEEDBACK_11521292</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+  </responseProcessing>
+  <modalFeedback identifier="FEEDBACK_4634459" outcomeIdentifier="FEEDBACKMODAL" showHide="show"
+		         title="Richtig!">Der Freistaat Sachsen verfügt über zwei Internationale Flughäfen:
+  Leipzig/Halle und Dresden.</modalFeedback>
+  <modalFeedback identifier="FEEDBACK_11521292" outcomeIdentifier="FEEDBACKMODAL" showHide="show"
+		         title="Leider Falsch!">Der Freistaat Sachsen verfügt über zwei Internationale Flughäfen:
+  Leipzig/Halle und Dresden.</modalFeedback>
+</assessmentItem>

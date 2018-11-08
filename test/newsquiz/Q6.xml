@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Q6"
+  title="6 of 6"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="c1" cardinality="single" baseType="boolean"/>
+  <responseDeclaration identifier="c2" cardinality="single" baseType="boolean"/> 
+  <responseDeclaration identifier="c3" cardinality="single" baseType="boolean"/> 
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  
+  <itemBody>
+    <p>
+      Ideally, how should major social or political changes be
+      achieved?
+    </p>
+    <endAttemptInteraction responseIdentifier="c1"
+      title="Through the traditional democratic process: elections,
+      legislation and popular lobbying."/>
+    <endAttemptInteraction responseIdentifier="c2"
+      title="Through grass-roots organizing."/>
+    <endAttemptInteraction responseIdentifier="c3"
+      title="By any means necessary, including violence and/or revolution."/>
+  </itemBody>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c1">
+    <p><strong>You partly agree with democratic
+    socialists.</strong> They support and participate in the
+    electoral process, and they believe any socialist government
+    must be achieved democratically, with the support of a
+    majority of the population. But they don’t believe the
+    electoral and legislative processes are sufficient on their
+    own.</p>
+
+    <p>Crucial to the democratic socialist philosophy is the
+    desire for workers to achieve changes for themselves — for
+    instance, through unions and tenant organizations — rather
+    than relying on people in traditional positions of
+    authority.</p>
+
+    <p>“We would prefer, for example, for us to win universal rent
+    control in New York through organizing millions of New
+    Yorkers,” Ms. Svart said. “We believe that it’s through the
+    process of pushing for these changes that people empower
+    themselves.”</p>
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c2">
+    <p><strong>You agree with democratic socialists.</strong>
+    While they support and participate in the electoral process
+    (as evidenced by the many D.S.A. candidates this year), they
+    believe the ideal way to make change is through mass
+    mobilization and organizing.</p>
+
+    <p>“We would prefer, for example, for us to win universal rent
+    control in New York through organizing millions of New
+    Yorkers,” Ms. Svart said. “We believe that it’s through the
+    process of pushing for these changes that people empower
+    themselves.”</p>
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c3">
+    <p><strong>You disagree with democratic socialists.</strong>
+    This is a common point of misunderstanding for people who
+    conflate democratic socialism with communism. Democratic
+    socialists don’t support a revolution to overthrow
+    capitalism; they believe change should happen, well,
+    democratically. “Any possible transition to socialism would
+    necessitate mass mobilization and the democratic legitimacy
+    garnered by having demonstrated majority support,”
+    Mr. Schwartz and Mr. Schulman wrote.</p>
+
+    <p>Democratic socialists support and participate in the
+    electoral process, but they believe that ideally, workers
+    should achieve changes for themselves — for instance,
+    through unions and tenant organizations — rather than
+    relying on people in traditional positions of authority.</p>
+
+    <p>“We would prefer, for example, for us to win universal rent
+    control in New York through organizing millions of New
+    Yorkers,” Ms. Svart said. “We believe that it’s through the
+    process of pushing for these changes that people empower
+    themselves.”</p>
+  </modalFeedback>
+
+  <responseProcessing template="rptemplate.xml" />
+</assessmentItem>

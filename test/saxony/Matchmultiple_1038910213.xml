@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was created using: Onyx Editor, Version 3.4.3 (Full, licensed version), (c)2012 BPS Bildungsportal Sachsen GmbH-->
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2p2.xsd"
+	identifier="Matchmultiple_1038910213" title="match (multiple)" adaptive="false"
+	timeDependent="false">
+	<responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="directedPair">
+		<correctResponse>
+			<value>Match10102103 Match29006155</value>
+			<value>Match10268373 Match29006155</value>
+			<value>Match25691226 Match14014848</value>
+			<value>Match25775772 Match10555042</value>
+			<value>Match622431 Match27675497</value>
+		</correctResponse>
+	</responseDeclaration>
+	<outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+		<defaultValue>
+			<value>1.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier">
+		<defaultValue>
+			<value>empty</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration identifier="FEEDBACKMODAL" cardinality="multiple" baseType="identifier"
+		view="testConstructor"/>
+	<itemBody>
+		<div>Das Bundesland Sachsen besitzt viele kulturelle und historische Sehenswürdigkeiten.
+			<br/>Welche Sehenswürdigkeit gehört zu welcher Stadt?</div>
+		<matchInteraction responseIdentifier="RESPONSE" shuffle="true" maxAssociations="0">
+			<simpleMatchSet>
+				<simpleAssociableChoice identifier="Match10268373" fixed="false" matchMax="1">
+					<img src="media/ffe337505ef74334a0cecb33310f99c1.jpg" alt=""/>
+				</simpleAssociableChoice>
+				<simpleAssociableChoice identifier="Match10102103" fixed="false" matchMax="1">
+					<img src="media/a439b702d5034ca38f6df26a12835db3.jpg" alt=""/>
+				</simpleAssociableChoice>
+				<simpleAssociableChoice identifier="Match622431" fixed="false" matchMax="1">
+					<img src="media/2f44366716474a5d8e2a2e32346cbc05.jpg" alt=""/>
+				</simpleAssociableChoice>
+				<simpleAssociableChoice identifier="Match25775772" fixed="false" matchMax="1">
+					<img src="media/b660fc9f268c4ef688d8606116c70160.jpg" alt=""/>
+				</simpleAssociableChoice>
+				<simpleAssociableChoice identifier="Match25691226" fixed="false" matchMax="1">
+					<img src="media/0563e67fb1bb48ad882e0a5abf2a2686.jpg" alt=""/>
+				</simpleAssociableChoice>
+			</simpleMatchSet>
+			<simpleMatchSet>
+				<simpleAssociableChoice identifier="Match14014848" fixed="false" matchMax="0"
+					>Chemnitz</simpleAssociableChoice>
+				<simpleAssociableChoice identifier="Match29006155" fixed="false" matchMax="0"
+					>Dresden</simpleAssociableChoice>
+				<simpleAssociableChoice identifier="Match27675497" fixed="false" matchMax="0"
+					>Leipzig</simpleAssociableChoice>
+				<simpleAssociableChoice identifier="Match10555042" fixed="false" matchMax="0"
+					>Freiberg</simpleAssociableChoice>
+			</simpleMatchSet>
+		</matchInteraction>
+	</itemBody>
+	<responseProcessing>
+		<responseCondition>
+			<responseIf>
+				<isNull>
+					<variable identifier="RESPONSE"/>
+				</isNull>
+				<setOutcomeValue identifier="FEEDBACKBASIC">
+					<baseValue baseType="identifier">empty</baseValue>
+				</setOutcomeValue>
+			</responseIf>
+			<responseElseIf>
+				<match>
+					<variable identifier="RESPONSE"/>
+					<correct identifier="RESPONSE"/>
+				</match>
+				<setOutcomeValue identifier="SCORE">
+					<sum>
+						<variable identifier="SCORE"/>
+						<variable identifier="MAXSCORE"/>
+					</sum>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="FEEDBACKBASIC">
+					<baseValue baseType="identifier">correct</baseValue>
+				</setOutcomeValue>
+			</responseElseIf>
+			<responseElse>
+				<setOutcomeValue identifier="FEEDBACKBASIC">
+					<baseValue baseType="identifier">incorrect</baseValue>
+				</setOutcomeValue>
+			</responseElse>
+		</responseCondition>
+		<responseCondition>
+			<responseIf>
+				<and>
+					<match>
+						<baseValue baseType="identifier">correct</baseValue>
+						<variable identifier="FEEDBACKBASIC"/>
+					</match>
+				</and>
+				<setOutcomeValue identifier="FEEDBACKMODAL">
+					<multiple>
+						<variable identifier="FEEDBACKMODAL"/>
+						<baseValue baseType="identifier">FEEDBACK_9491398</baseValue>
+					</multiple>
+				</setOutcomeValue>
+			</responseIf>
+		</responseCondition>
+		<responseCondition>
+			<responseIf>
+				<and>
+					<match>
+						<baseValue baseType="identifier">incorrect</baseValue>
+						<variable identifier="FEEDBACKBASIC"/>
+					</match>
+				</and>
+				<setOutcomeValue identifier="FEEDBACKMODAL">
+					<multiple>
+						<variable identifier="FEEDBACKMODAL"/>
+						<baseValue baseType="identifier">FEEDBACK_4165723</baseValue>
+					</multiple>
+				</setOutcomeValue>
+			</responseIf>
+		</responseCondition>
+	</responseProcessing>
+	<modalFeedback identifier="FEEDBACK_9491398" outcomeIdentifier="FEEDBACKMODAL" showHide="show"
+		title="Richtig!">Abgebildet sind die Frauenkirche (Dresden), die Semperoper (Dresden), das
+		Völkerschlachtdenkmal (Leipzig), der Dom St.Marien (Freiberg) und das Karl-Marx-Monument
+		(Chemnitz).</modalFeedback>
+	<modalFeedback identifier="FEEDBACK_4165723" outcomeIdentifier="FEEDBACKMODAL" showHide="show"
+		title="Leider Falsch!">Abgebildet sind die Frauenkirche (Dresden), die Semperoper (Dresden),
+		das Völkerschlachtdenkmal (Leipzig), der Dom St.Marien (Freiberg) und das Karl-Marx-Monument
+		(Chemnitz).</modalFeedback>
+</assessmentItem>

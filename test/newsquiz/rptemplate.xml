@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<responseProcessing xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2">
+  <responseCondition>
+    <responseIf>
+      <variable identifier="c1"/>
+      <setOutcomeValue identifier="FEEDBACK">
+        <baseValue baseType="identifier">c1</baseValue>
+      </setOutcomeValue>
+    </responseIf>
+    <responseElseIf>
+      <variable identifier="c2"/>
+      <setOutcomeValue identifier="FEEDBACK">
+        <baseValue baseType="identifier">c2</baseValue>
+      </setOutcomeValue>
+    </responseElseIf>
+    <responseElseIf>
+      <variable identifier="c3"/>
+      <setOutcomeValue identifier="FEEDBACK">
+        <baseValue baseType="identifier">c3</baseValue>
+      </setOutcomeValue>
+    </responseElseIf>
+    <responseElseIf>
+      <variable identifier="c4"/>
+      <setOutcomeValue identifier="FEEDBACK">
+        <baseValue baseType="identifier">c4</baseValue>
+      </setOutcomeValue>      
+    </responseElseIf>
+  </responseCondition>
+</responseProcessing>

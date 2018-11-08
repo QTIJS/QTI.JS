@@ -1,0 +1,29 @@
+.numbered  {
+  position: relative;  
+  padding: 1em 2em;
+  counter-reset: para;
+}
+.numbered p {
+  margin: 1em .5em 1em .5em;
+  text-align: left;  
+  position: relative;
+  counter-increment: para;
+}
+.numbered p:before {
+  display: block;
+  position: absolute;
+  content: counter(para);
+  left: -2em;
+  border: solid rgba(87,66,97) 1px;
+  border-radius: 50%;
+  padding:.25em;
+  height: 1em;
+  width: 1em;
+  text-align: center;
+  line-height:1rem;
+  font-size: .9rem;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(87,66,97);
+}

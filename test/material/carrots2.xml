@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  identifier="carrots2"
+  title="Carrots 2"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>false</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <templateDeclaration identifier="PROMPT"  cardinality="single" baseType="string">
+    <defaultValue>
+      <value>A high carrot diet improves night vision.</value>
+    </defaultValue>
+  </templateDeclaration>
+  
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE">
+      <prompt><printedVariable identifier="PROMPT"/></prompt>
+      <simpleChoice identifier="true">True</simpleChoice>
+      <simpleChoice identifier="false">False</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+  
+</assessmentItem>

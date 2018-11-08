@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="rudemsoc"
+  title="News Quiz" >
+
+  <testPart identifier="testpart1" navigationMode="nonlinear" submissionMode="individual">
+    <assessmentSection identifier="section" visible="false">
+      <rubricBlock view="candidate">
+        <hgroup>
+          <h1>Politics</h1>
+          <!-- <h2>Are You a Democratic Socialist?</h2> -->
+          <h2>News Quiz</h2>
+          <p class="byline">
+            By <span class="reporter">MAGGIE ASTOR</span>
+            <span class="date">Sept. 22 2018</span>
+          </p>
+        </hgroup>
+        
+        <p class="headline">
+          Democratic socialists have been one of the breakout groups
+          of the 2018 election season, but many voters don't know what
+          exactly they stand for. Do you? <a rel="related">RELATED ARTICLE</a>
+        </p>
+
+        <figure>
+          <img src="https://static01.nyt.com/images/2018/08/18/nyregion/18xp-ocasiocortez1/18xp-ocasiocortez1-articleLarge.jpg?quality=75&amp;auto=webp&amp;disable=upscale" />
+          <figcaption>
+            Alexandria Ocasio-Cortez campaigning in the Bronx this month. Ms. Ocasio-Cortez, a Democratic Socialist, is a rising star among progressive voters.
+            <span class="photographer">Mike Segar/Reuters</span>
+          </figcaption>
+        </figure>
+        
+        <!--
+        <figure>
+          <img src="https://static01.nyt.com/images/2018/09/19/us/politics/00dsaquiz/merlin_135213891_2ee124c6-3531-46bd-9d2f-db95f04391bc-superJumbo.jpg"  />
+          <figcaption>
+            Demonstrators with the Democratic Socialists of America
+            took part in a rally on International Women’s Day in
+            Manhattan in March.
+            <span class="photographer">Lucas Jackson/Reuters</span>
+          </figcaption>
+        </figure>
+        -->
+        
+        <p>Democratic socialists have been one of the breakout groups
+          of the 2018 midterm elections, springing to national
+          attention in June with Alexandria Ocasio-Cortez’s upset of a
+          10-term incumbent, the chairman of the House Democratic
+          Caucus.</p>
+        
+        <p>But for all their electoral triumphs so far, democratic
+          socialism remains poorly understood and is frequently
+          conflated, incorrectly, with communism — or, on the flip
+          side, with European-style social democracy. So we built a
+          quiz to help you understand what it is, and how your own
+          political views compare with it.</p>
+
+        <p>A word of caution before we start: Just like “liberal” or
+          “conservative,” the term “democratic socialist” can mean
+          different things to different people. For the purposes of
+          this quiz, we are using the definition promoted by the
+          Democratic Socialists of America, the largest socialist
+          organization in the United States.</p>
+
+        <p>Forty D.S.A.-affiliated candidates have won primaries this
+          year, the organization says, and eight others were nominated
+          after running unopposed. If you hear a 2018 candidate
+          describe her- or himself as a democratic socialist, it is a
+          safe bet that they mean this kind.</p>
+      </rubricBlock>
+      
+      <assessmentItemRef identifier="Q1" href="Q1.xml" />
+      <assessmentItemRef identifier="Q2" href="Q2.xml" />
+      <assessmentItemRef identifier="Q3" href="Q3.xml" />
+      <assessmentItemRef identifier="Q4" href="Q4.xml" />
+      <assessmentItemRef identifier="Q5" href="Q5.xml" />
+      <assessmentItemRef identifier="Q6" href="Q6.xml" />
+    </assessmentSection>
+  </testPart>
+</assessmentTest>

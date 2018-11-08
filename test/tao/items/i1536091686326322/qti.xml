@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2.xsd" identifier="inlineChoice" title="Richard III" label="Richard III " xml:lang="en-US" adaptive="false" timeDependent="false" toolName="TAO" toolVersion="3.2.0-RC2">
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value><![CDATA[Y]]></value>
+    </correctResponse>
+  </responseDeclaration>
+  <responseDeclaration identifier="RESPONSE_1" cardinality="multiple" baseType="pair"/>
+  <responseDeclaration identifier="RESPONSE_2" cardinality="ordered" baseType="identifier"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float" normalMaximum="1"/>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>1</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <stylesheet href="style/custom/tao-user-styles.css" type="text/css" media="all" title=""/>
+  <itemBody>
+    <div class="grid-row">
+      <div class="col-12">
+        <p>
+            Identify the missing word in this famous quote from Shakespeare's Richard III.
+        </p>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <blockquote>
+          <p>
+                Now is the winter of our discontent<br/> Made glorious summer by this sun of
+                <inlineChoiceInteraction responseIdentifier="RESPONSE" shuffle="false" required="false"><inlineChoice identifier="G" fixed="false" showHide="show">Gloucester</inlineChoice><inlineChoice identifier="L" fixed="false" showHide="show">Lancaster</inlineChoice><inlineChoice identifier="Y" fixed="false" showHide="show">York</inlineChoice></inlineChoiceInteraction>;<br/> And all the clouds that lour'd upon our house<br/>
+                In the deep bosom of the ocean buried.
+            </p>
+        </blockquote>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <associateInteraction responseIdentifier="RESPONSE_1" shuffle="false" maxAssociations="0" minAssociations="0">
+          <simpleAssociableChoice identifier="choice_1" fixed="false" showHide="show" matchMax="0" matchMin="0">choice #1</simpleAssociableChoice>
+          <simpleAssociableChoice identifier="choice_2" fixed="false" showHide="show" matchMax="0" matchMin="0">choice #2</simpleAssociableChoice>
+        </associateInteraction>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-12">
+        <orderInteraction responseIdentifier="RESPONSE_2" shuffle="false" orientation="vertical">
+          <simpleChoice identifier="choice_3" fixed="false" showHide="show">choice #1</simpleChoice>
+          <simpleChoice identifier="choice_4" fixed="false" showHide="show">choice #2</simpleChoice>
+          <simpleChoice identifier="choice_5" fixed="false" showHide="show">choice #3</simpleChoice>
+        </orderInteraction>
+      </div>
+    </div>
+  </itemBody>
+  <responseProcessing>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE"/>
+          <correct identifier="RESPONSE"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE_1"/>
+          <correct identifier="RESPONSE_1"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE_2"/>
+          <correct identifier="RESPONSE_2"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <sum>
+            <variable identifier="SCORE"/>
+            <baseValue baseType="integer">1</baseValue>
+          </sum>
+        </setOutcomeValue>
+      </responseIf>
+    </responseCondition>
+  </responseProcessing>
+</assessmentItem>

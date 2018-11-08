@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 imsqti_v2p1.xsd" identifier="astronomy" title="Planets and moons" label="Planets and moons" xml:lang="en-US" adaptive="false" timeDependent="false" toolName="TAO" toolVersion="3.2.0-RC2">
+  <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="pair">
+    <correctResponse>
+      <value><![CDATA[Ea Mo]]></value>
+      <value><![CDATA[Ju Ga]]></value>
+      <value><![CDATA[Ne Tr]]></value>
+    </correctResponse>
+    <mapping defaultValue="0">
+      <mapEntry mapKey="Ea Mo" mappedValue="2"/>
+      <mapEntry mapKey="Ju Ga" mappedValue="1"/>
+      <mapEntry mapKey="Ne Tr" mappedValue="1"/>
+    </mapping>
+  </responseDeclaration>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+  <itemBody>
+    <div>
+      <associateInteraction responseIdentifier="RESPONSE" shuffle="true" maxAssociations="3" minAssociations="0">
+        <prompt><b>Make pairs.</b><br/>Each pair is composed of a planet of the Solar System and one of it's moon.<br/><br/></prompt>
+        <simpleAssociableChoice identifier="Ea" fixed="false" matchMax="1" matchMin="0"><img src="img/earth.png" alt="Earth"/><br/>Earth
+                </simpleAssociableChoice>
+        <simpleAssociableChoice identifier="Mo" fixed="false" matchMax="1" matchMin="0"><img src="img/moon.png" alt="Moon"/><br/>Moon
+                </simpleAssociableChoice>
+        <simpleAssociableChoice identifier="Ju" fixed="false" matchMax="1" matchMin="0"><img src="img/jupiter.png" alt="Jupiter"/><br/>Jupiter
+                </simpleAssociableChoice>
+        <simpleAssociableChoice identifier="Ga" fixed="false" matchMax="1" matchMin="0"><img src="img/ganymede.png" alt="Ganymede"/><br/>Ganymede
+		        </simpleAssociableChoice>
+        <simpleAssociableChoice identifier="Ne" fixed="false" matchMax="1" matchMin="0"><img src="img/neptune.png" alt="Neptune"/><br/>Neptune
+		        </simpleAssociableChoice>
+        <simpleAssociableChoice identifier="Tr" fixed="false" matchMax="1" matchMin="0"><img src="img/triton.png" alt="triton"/><br/>Triton
+                </simpleAssociableChoice>
+      </associateInteraction>
+    </div>
+  </itemBody>
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/map_response"/>
+</assessmentItem>

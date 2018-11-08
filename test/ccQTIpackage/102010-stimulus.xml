@@ -1,0 +1,9 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<assessmentStimulus
+  xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="102010-stimulus"
+  title="Stimulus Test">
+  <stimulusBody>
+    <p>This is stimulus for item 102010.</p>
+  </stimulusBody>
+</assessmentStimulus>

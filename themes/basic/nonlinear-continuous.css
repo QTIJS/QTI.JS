@@ -1,0 +1,36 @@
+/*
+** NON-LINEAR
+** Provides a scrolling style for non-linear.
+** All items in the current testPart are visible in 
+** a single scrolled column.
+*/
+
+[data-qtijs-navigation-mode=nonlinear]
+[data-qtijs-tag=assessmentSection][data-qtijs-visible=false] {
+  margin: 4em 0 1.5em 0;
+}
+[data-qtijs-tag=testPart][data-qtijs-navigation-mode=nonlinear] {
+  padding-top: 0;
+}
+[data-qtijs-navigation-mode=nonlinear] [data-qtijs-tag=assessmentItem]:first-child {
+  margin-top: 2em;
+}
+[data-qtijs-navigation-mode=nonlinear] [data-qtijs-tag=assessmentItem] + [data-qtijs-tag=assessmentItem] {
+  margin-top: 1.5em;
+}
+[data-qtijs-navigation-mode=nonlinear] .qtijs-no-review,
+[data-qtijs-navigation-mode=nonlinear] .qtijs-no-review::before {
+  position:absolute;
+  left: -110vw;
+}
+[data-qtijs-tag=testPart][data-qtijs-navigation-mode=nonlinear]
+[data-qtijs-tag=assessmentSection][data-qtijs-visible=true] + [data-qtijs-tag=assessmentSection][data-qtijs-visible=true]::before  {
+  content: "-\02666 -\0A \0A " attr(title);
+}
+[data-qtijs-navigation-mode=nonlinear] [data-qtijs-tag=testFeedback] {
+  margin-top: 2em;
+}
+[data-qtijs-navigation-mode=nonlinear] + [data-qtijs-tag=testFeedback] {
+  position: static;
+}
+

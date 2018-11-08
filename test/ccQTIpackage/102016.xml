@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="I102016"
+  title="I102016"
+  adaptive="false"
+  timeDependent="false">
+  
+  <responseDeclaration identifier="response_1" cardinality="single" baseType="string" />
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="multiple" baseType="identifier"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"
+                      externalScored="human" />
+
+  <itemBody>
+    <extendedTextInteraction responseIdentifier="response_1" expectedLength="600">
+      <prompt>
+        Studies of people with brain damage show that people will
+        rationalize their behavior after it has occurred; making up
+        reasons that they claim 'caused' the behavior. This has
+        profound impllications for the concept of free will and the
+        mind-body problem. Do we have any control over our actions or
+        are we simply responding to stimuli and justifying our
+        responses?
+      </prompt>
+    </extendedTextInteraction>
+
+    <infoControl title="Hint">
+      This is a hint
+    </infoControl>
+  </itemBody>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="general_fb">
+    general feedback
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="solution">
+    <div class="solution">
+      here is the sample solution
+    </div>
+  </modalFeedback>
+</assessmentItem>

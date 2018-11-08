@@ -1,0 +1,19 @@
+.numbered  {
+  margin-left: 3em;
+  border-left: solid 1px black;
+  padding: 1em;
+  counter-reset: para;
+}
+.numbered p {
+  position: relative;
+  counter-increment: para;
+}
+.numbered p:before {
+  content: "\00b6\0020" counter(para);
+  display: block;
+  position: absolute;
+  left: -3.5em;
+}
+blockquote {
+  text-align: left;
+}

@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  toolVersion="0.5.1"
+  toolName="Mathqurate"
+  title="Find side, directly or sine rule - with solution"
+  timeDependent="false"
+  identifier="Example04-feedbackBlock-templateBlock"
+  adaptive="true">
+
+  <responseDeclaration identifier="RESPONSE1" cardinality="single" baseType="float"/>
+  <responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+  <responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+
+  <outcomeDeclaration  identifier="SCORE" baseType="float" cardinality="single"
+                      normalMaximum="10.0" normalMinimum="0.0">
+    <defaultValue>
+      <value>0.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+  <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+  <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+    <defaultValue>
+      <value>false</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+    <defaultValue>
+      <value>false</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+    <defaultValue>
+      <value>askhint</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+    <defaultValue>
+      <value>asksolution</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="oMult" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>1.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="oPower" cardinality="single" baseType="float"/>
+
+  <templateDeclaration identifier="iA" cardinality="single" baseType="integer"
+                       paramVariable="false" mathVariable="true">
+    <defaultValue>
+      <value>90</value>
+    </defaultValue>
+  </templateDeclaration>
+  <templateDeclaration identifier="iB" cardinality="single" baseType="integer"
+                       paramVariable="false" mathVariable="true">
+    <defaultValue>
+      <value>65</value>
+    </defaultValue>
+  </templateDeclaration>
+  <templateDeclaration identifier="ia" cardinality="single" baseType="integer"
+                       paramVariable="false" mathVariable="true"/>
+  <templateDeclaration identifier="sinA" cardinality="single" baseType="float"
+                       paramVariable="false" mathVariable="true"/>
+  <templateDeclaration identifier="sinB" cardinality="single" baseType="float"
+                       paramVariable="false" mathVariable="true"/>
+  <templateDeclaration identifier="fAns" cardinality="single" baseType="float"
+                       paramVariable="false" mathVariable="true"/>
+  <templateDeclaration identifier="fPiOver180" cardinality="single" baseType="float"
+                       paramVariable="false" mathVariable="true"/>
+  <templateDeclaration identifier="sType" cardinality="single" baseType="string"
+                       paramVariable="false" mathVariable="false"/>
+  <templateDeclaration baseType="identifier" cardinality="single" identifier="tSol"/>
+  <templateDeclaration baseType="identifier" cardinality="single" identifier="tSoli"/>
+
+  <templateProcessing>
+    <setTemplateValue identifier="iA">
+      <random>
+        <multiple>
+          <baseValue baseType="integer">45</baseValue>
+          <baseValue baseType="integer">60</baseValue>
+          <baseValue baseType="integer">75</baseValue>
+          <baseValue baseType="integer">90</baseValue>
+          <baseValue baseType="integer">90</baseValue>
+          <baseValue baseType="integer">90</baseValue>
+        </multiple>
+      </random>
+    </setTemplateValue>
+    <setTemplateValue identifier="iB">
+      <randomInteger min="50" max="85" step="5"/>
+    </setTemplateValue>
+    <templateConstraint>
+      <not>
+        <equal toleranceMode="exact">
+          <variable identifier="iA"/>
+          <variable identifier="iB"/>
+        </equal>
+      </not>
+    </templateConstraint>
+    <setTemplateValue identifier="ia">
+      <randomInteger min="5" max="50"/>
+    </setTemplateValue>
+    <setTemplateValue identifier="fPiOver180">
+      <divide>
+        <mathConstant name="pi"/>
+        <baseValue baseType="integer">180</baseValue>
+      </divide>
+    </setTemplateValue>
+    <setTemplateValue identifier="sinA">
+      <mathOperator name="sin">
+        <product>
+          <variable identifier="iA"/>
+          <variable identifier="fPiOver180"/>
+        </product>
+      </mathOperator>
+    </setTemplateValue>
+    <setTemplateValue identifier="sinB">
+      <mathOperator name="sin">
+        <product>
+          <variable identifier="iB"/>
+          <variable identifier="fPiOver180"/>
+        </product>
+      </mathOperator>
+    </setTemplateValue>
+    <setTemplateValue identifier="sinA">
+      <roundTo roundingMode="significantFigures" figures="5">
+        <variable identifier="sinA"/>
+      </roundTo>
+    </setTemplateValue>
+    <setTemplateValue identifier="sinB">
+      <roundTo roundingMode="significantFigures" figures="5">
+        <variable identifier="sinB"/>
+      </roundTo>
+    </setTemplateValue>
+    <setTemplateValue identifier="fAns">
+      <divide>
+        <product>
+          <variable identifier="ia"/>
+          <variable identifier="sinB"/>
+        </product>
+        <variable identifier="sinA"/>
+      </divide>
+    </setTemplateValue>
+    <setTemplateValue identifier="fAns">
+      <roundTo roundingMode="significantFigures" figures="3">
+        <variable identifier="fAns"/>
+      </roundTo>
+    </setTemplateValue>
+    <templateCondition>
+      <templateIf>
+        <equal toleranceMode="exact">
+          <variable identifier="iA"/>
+          <baseValue baseType="integer">90</baseValue>
+        </equal>
+        <setTemplateValue identifier="sType">
+          <baseValue baseType="string">right angle</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="tSol">
+          <baseValue baseType="identifier">SolRightAngle</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="tSoli">
+          <baseValue baseType="identifier">SolRightAnglei</baseValue>
+        </setTemplateValue>
+      </templateIf>
+      <templateElse>
+        <setTemplateValue identifier="sType">
+          <baseValue baseType="string">scalene</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="tSol">
+          <baseValue baseType="identifier">SolScalene</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="tSoli">
+          <baseValue baseType="identifier">SolScalenei</baseValue>
+        </setTemplateValue>
+      </templateElse>
+    </templateCondition>
+  </templateProcessing>
+
+  <itemBody>
+    <p>In triangle ABC,
+      side a=<printedVariable identifier="ia"/>,
+      angle A=<printedVariable identifier="iA"/>&#xb0;
+      and angle B=<printedVariable identifier="iB"/>&#xb0;.
+      Find the length of side b.</p>
+
+    <div>
+      <p>Enter your answer to 3 significant figures.</p>
+      <textEntryInteraction responseIdentifier="RESPONSE1" expectedLength="20"/>
+    </div>
+
+    <div>
+      <feedbackInline id="feedbackInline3" showHide="show" outcomeIdentifier="FEEDBACK" identifier="Correct">
+        OK
+      </feedbackInline>
+    </div>
+    <div>
+      <feedbackInline id="feedbackInline2" showHide="show" outcomeIdentifier="FEEDBACK" identifier="Partial">
+        Not far off - check your rounding...
+      </feedbackInline>
+    </div>
+    <div>
+      <feedbackInline id="feedbackInline1" showHide="show" outcomeIdentifier="FEEDBACK"  identifier="Incorrect">
+        Incorrect
+      </feedbackInline>
+    </div>
+    <div>
+      <feedbackBlock id="feedbackBlock11" identifier="THREETRIES" outcomeIdentifier="FEEDBACK" showHide="show">
+        <p>
+          You have had three attempts at answering this question, so
+          here is the solution:
+        </p>
+      </feedbackBlock>
+
+      <feedbackBlock identifier="SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+        <p>This is a <printedVariable identifier="sType"/> triangle, so
+          <templateInline templateIdentifier="tSoli" identifier="SolRightAnglei" showHide="show">
+            <span> we can use sin(B) to find b directly</span>
+          </templateInline>
+          <templateInline templateIdentifier="tSoli" identifier="SolScalenei" showHide="show">
+            <span> we apply the Sine Rule</span>
+          </templateInline>:
+        </p>
+        <templateBlock templateIdentifier="tSol" identifier="SolRightAngle" showHide="show">
+          <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+            <semantics>
+              <mtable>
+                <mtr>
+                  <mtd columnalign="right">
+                    <mrow>
+                      <mi>sin</mi>
+                      <mfenced close=")" open="(">
+                        <mi>B</mi>
+                      </mfenced>
+                    </mrow>
+                  </mtd>
+                  <mtd columnalign="center">
+                    <mo>=</mo>
+                  </mtd>
+                  <mtd columnalign="left">
+                    <mfrac>
+                      <mi>b</mi>
+                      <mi>a</mi>
+                    </mfrac>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd columnalign="right">
+                    <mi>b</mi>
+                  </mtd>
+                  <mtd columnalign="center">
+                    <mo>=</mo>
+                  </mtd>
+                  <mtd columnalign="left">
+                    <mi>a</mi>
+                    <mrow>
+                      <mi>sin</mi>
+                      <mfenced close=")" open="(">
+                        <mi>B</mi>
+                      </mfenced>
+                    </mrow>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd columnalign="right">
+                    <mi>b</mi>
+                  </mtd>
+                  <mtd columnalign="center">
+                    <mo>=</mo>
+                  </mtd>
+                  <mtd columnalign="left">
+                    <mrow>
+                      <mi>ia</mi>
+                      <mo>&#xd7;</mo>
+                      <mi>sin</mi>
+                      <mfenced close=")" open="(">
+                        <mi>iB</mi>
+                      </mfenced>
+                    </mrow>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd columnalign="right"/>
+                  <mtd columnalign="center">
+                    <mo>=</mo>
+                  </mtd>
+                  <mtd columnalign="left">
+                    <mi>fAns</mi>
+                  </mtd>
+                </mtr>
+              </mtable>
+            </semantics>
+          </math>
+        </templateBlock>
+
+        <templateBlock
+          templateIdentifier="tSol" identifier="SolScalene" showHide="show">
+          <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+            <semantics>
+              <mtable>
+                <mtr>
+                  <mtd columnalign="right">
+                    <mfrac>
+                      <mi>a</mi>
+                      <mrow>
+                        <mi>sin</mi>
+                        <mfenced close=")" open="(">
+                          <mi>A</mi>
+                        </mfenced>
+                      </mrow>
+                    </mfrac>
+                  </mtd>
+                  <mtd columnalign="center">
+                    <mo>=</mo>
+                  </mtd>
+                  <mtd columnalign="left">
+                    <mfrac>
+                      <mi>b</mi>
+                      <mrow>
+                        <mi>sin</mi>
+                        <mfenced close=")" open="(">
+                          <mi>B</mi>
+                        </mfenced>
+                      </mrow>
+                    </mfrac>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd columnalign="right">
+                    <mfrac>
+                      <mi>ia</mi>
+                      <mrow>
+                        <mi>sin</mi>
+                        <mfenced close=")" open="(">
+                          <mi>iA</mi>
+                        </mfenced>
+                      </mrow>
+                    </mfrac>
+                  </mtd>
+                  <mtd columnalign="center">
+                    <mo>=</mo>
+                  </mtd>
+                  <mtd columnalign="left">
+                    <mfrac>
+                      <mi>b</mi>
+                      <mrow>
+                        <mi>sin</mi>
+                        <mfenced close=")" open="(">
+                          <mi>iB</mi>
+                        </mfenced>
+                      </mrow>
+                    </mfrac>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd columnalign="right">
+                    <mi>b</mi>
+                  </mtd>
+                  <mtd columnalign="center">
+                    <mo>=</mo>
+                  </mtd>
+                  <mtd columnalign="left">
+                    <mfrac>
+                      <mrow>
+                        <mi>ia</mi>
+                        <mo>&#xd7;</mo>
+                        <mi>sin</mi>
+                        <mfenced close=")" open="(">
+                          <mi>iB</mi>
+                        </mfenced>
+                      </mrow>
+                      <mrow>
+                        <mi>sin</mi>
+                        <mfenced close=")" open="(">
+                          <mi>iA</mi>
+                        </mfenced>
+                      </mrow>
+                    </mfrac>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd columnalign="right"/>
+                  <mtd columnalign="center">
+                    <mo>=</mo>
+                  </mtd>
+                  <mtd columnalign="left">
+                    <mfrac>
+                      <mrow>
+                        <mi>ia</mi>
+                        <mo>&#xd7;</mo>
+                        <mi>sinB</mi>
+                      </mrow>
+                      <mrow>
+                        <mi>sinA</mi>
+                      </mrow>
+                    </mfrac>
+                  </mtd>
+                </mtr>
+                <mtr>
+                  <mtd columnalign="right"/>
+                  <mtd columnalign="center">
+                    <mo>=</mo>
+                  </mtd>
+                  <mtd columnalign="left">
+                    <mi>fAns</mi>
+                  </mtd>
+                </mtr>
+              </mtable>
+            </semantics>
+          </math>
+        </templateBlock>
+        <p>So the expected answer is <printedVariable identifier="fAns"/>.</p>
+      </feedbackBlock>
+    </div>
+    
+    <feedbackBlock identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+      <p>
+        Since you have viewed the solution,
+        your score for this question will be 0.
+      </p>
+    </feedbackBlock>
+    
+    <feedbackBlock identifier="asksolution" outcomeIdentifier="ASKSOLUTION" showHide="show">
+      <div class="center">
+        <endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST" title="Show Solution"/>
+      </div>
+    </feedbackBlock>
+  </itemBody>
+
+  <responseProcessing>
+    <setOutcomeValue identifier="FEEDBACK">
+      <multiple>
+        <variable identifier="EMPTY"/>
+      </multiple>
+    </setOutcomeValue>
+    <responseCondition>
+      <responseIf>
+        <variable identifier="SOLREQUEST"/>
+        <setOutcomeValue identifier="FEEDBACK">
+          <multiple>
+            <baseValue baseType="identifier">SOLUTION</baseValue>
+          </multiple>
+        </setOutcomeValue>
+        <setOutcomeValue identifier="seenSolution">
+          <baseValue baseType="boolean">true</baseValue>
+        </setOutcomeValue>
+        <setOutcomeValue identifier="completionStatus">
+          <baseValue baseType="identifier">completed</baseValue>
+        </setOutcomeValue>
+        <setOutcomeValue identifier="ASKSOLUTION">
+          <baseValue baseType="identifier">null</baseValue>
+        </setOutcomeValue>
+      </responseIf>
+      <responseElse>
+        <responseCondition>
+          <responseIf>
+            <isNull>
+              <variable identifier="RESPONSE1"/>
+            </isNull>
+            <setOutcomeValue identifier="SCORE">
+              <baseValue baseType="float">0</baseValue>
+            </setOutcomeValue>
+          </responseIf>
+          <responseElse>
+            <responseCondition>
+              <responseIf>
+                <equalRounded roundingMode="significantFigures" figures="3">
+                  <variable identifier="fAns"/>
+                  <variable identifier="RESPONSE1"/>
+                </equalRounded>
+                <setOutcomeValue identifier="FEEDBACK">
+                  <multiple>
+                    <baseValue baseType="identifier">Correct</baseValue>
+                  </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="SCORE">
+                  <baseValue baseType="float">10.0</baseValue>
+                </setOutcomeValue>
+              </responseIf>
+              <responseElseIf>
+                <equalRounded roundingMode="significantFigures" figures="2">
+                  <variable identifier="RESPONSE1"/>
+                  <variable identifier="fAns"/>
+                </equalRounded>
+                <setOutcomeValue identifier="FEEDBACK">
+                  <multiple>
+                    <baseValue baseType="identifier">Partial</baseValue>
+                  </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="SCORE">
+                  <baseValue baseType="float">5.0</baseValue>
+                </setOutcomeValue>
+              </responseElseIf>
+              <responseElse>
+                <setOutcomeValue identifier="FEEDBACK">
+                  <multiple>
+                    <baseValue baseType="identifier">Incorrect</baseValue>
+                  </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="SCORE">
+                  <baseValue baseType="float">0.0</baseValue>
+                </setOutcomeValue>
+              </responseElse>
+            </responseCondition>
+            <responseCondition>
+              <responseIf>
+                <gt>
+                  <variable identifier="numAttempts"/>
+                  <baseValue baseType="integer">3</baseValue>
+                </gt>
+                <setOutcomeValue identifier="FEEDBACK">
+                  <multiple>
+                    <baseValue baseType="identifier">
+                      THREETRIES
+                    </baseValue>
+                    <baseValue baseType="identifier">
+                      SOLUTION
+                    </baseValue>
+                  </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                  <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                  <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+              </responseIf>
+            </responseCondition>
+            <responseCondition>
+              <responseIf>
+                <variable identifier="seenSolution"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                  <multiple>
+                    <variable identifier="FEEDBACK"/>
+                    <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                  </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="SCORE">
+                  <baseValue baseType="float">0.0</baseValue>
+                </setOutcomeValue>
+              </responseIf>
+            </responseCondition>
+          </responseElse>
+        </responseCondition>
+      </responseElse>
+    </responseCondition>
+  </responseProcessing>
+</assessmentItem>

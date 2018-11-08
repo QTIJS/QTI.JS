@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="like_chard"
+  title="Do you like Swiss Chard?"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <mapping>
+      <mapEntry mapKey="L1" mappedValue="1"/>
+      <mapEntry mapKey="L2" mappedValue="2"/>
+      <mapEntry mapKey="L3" mappedValue="3"/>
+      <mapEntry mapKey="L4" mappedValue="4"/>
+      <mapEntry mapKey="L5" mappedValue="5"/>
+    </mapping>
+  </responseDeclaration>
+  
+  <outcomeDeclaration identifier="LIKE" cardinality="single" baseType="boolean">
+    <defaultValue>
+      <value><baseValue baseType="boolean">false</baseValue></value>
+    </defaultValue>
+  </outcomeDeclaration>
+  
+  <templateDeclaration identifier="PROMPT"  cardinality="single" baseType="string">
+    <defaultValue>
+      <value><baseValue baseType="string">How much do you like <br/>swiss chard?</baseValue></value>
+    </defaultValue>
+  </templateDeclaration>
+  
+  <itemBody class="hearts">
+    <choiceInteraction responseIdentifier="RESPONSE">
+      <prompt><printedVariable identifier="PROMPT"/></prompt>
+      <simpleChoice identifier="L1">1</simpleChoice>
+      <simpleChoice identifier="L2">2</simpleChoice>
+      <simpleChoice identifier="L3">3</simpleChoice>
+      <simpleChoice identifier="L4">4</simpleChoice>
+      <simpleChoice identifier="L5">5</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing>
+    <setOutcomeValue identifier="LIKE">
+      <gt>
+        <mapResponse identifier="RESPONSE"/>
+        <baseValue baseType="integer">3</baseValue>
+      </gt>
+    </setOutcomeValue>
+  </responseProcessing>
+</assessmentItem>

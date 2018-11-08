@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentSection visible="true" title="Advanced Items" identifier="advanced_examples">
+  <assessmentSection visible="true" title="Composite" identifier="composite_examples">
+    <assessmentItemRef identifier="i201" href="multi-input.xml" />
+    <assessmentItemRef identifier="i202" href="upload_composite.xml" /> 
+  </assessmentSection>
+  
+  <assessmentSection visible="true" title="Response Processing" identifier="rp_examples">
+    <assessmentItemRef identifier="i203" href="order_partial_scoring.xml" />
+    <assessmentItemRef identifier="i204" href="essay.xml" />
+  </assessmentSection>
+  
+  <assessmentSection visible="true" title="Feedback" identifier="feedback_examples">
+    <assessmentItemRef identifier="i205" href="Example01-modalFeedback.xml" />
+    <assessmentItemRef identifier="i206" href="Example02-feedbackInline.xml" />
+    <assessmentItemRef identifier="i207" href="towns.xml" />
+  </assessmentSection>
+  
+  <assessmentSection visible="true" title="Adaptive" identifier="adaptive_examples">
+    <assessmentItemRef identifier="i208" href="Example03-feedbackBlock-solution.xml" />
+    <assessmentItemRef identifier="i209" href="Example03-feedbackBlock-solution-random.xml" /> 
+    <assessmentItemRef identifier="i210" href="Example04-feedbackBlock-templateBlock.xml" />
+    <assessmentItemRef identifier="i211" href="Example05-feedbackBlock-adaptive.xml" />
+    <assessmentItemRef identifier="i212" href="adaptive.xml" />
+    <assessmentItemRef identifier="i213" href="feedback_adaptive.xml" />
+    <assessmentItemRef identifier="i214" href="hint.xml" />
+  </assessmentSection>
+  
+  <assessmentSection visible="true" title="Templates" identifier="template_examples">
+    <assessmentItemRef identifier="i215" href="template.xml" />
+    <assessmentItemRef identifier="i216" href="template_image.xml" />
+    <assessmentItemRef identifier="i217" href="adaptive_template.xml" />
+    <assessmentItemRef identifier="i218" href="mc_calc3.xml" />
+    <assessmentItemRef identifier="i219" href="mc_stat2.xml" />
+    <assessmentItemRef identifier="i220" href="mc_calc5.xml" />
+  </assessmentSection>
+  
+  <assessmentSection visible="true" title="Content" identifier="content_examples">
+    <assessmentItemRef identifier="i221" href="audio_video.xml" />
+    <assessmentItemRef identifier="i222" href="orkney1.xml" />
+    <assessmentItemRef identifier="i223" href="orkney2.xml" />
+    <assessmentItemRef identifier="i224" href="nested_object.xml" />
+    <assessmentItemRef identifier="i225" href="likert.xml" />
+    <assessmentItemRef identifier="i226" href="math.xml" /> 
+    <assessmentItemRef identifier="i227" href="figures.xml" />
+    <assessmentItemRef identifier="i228" href="choice_multiple_rtl.xml" />
+    <assessmentItemRef identifier="i229" href="order_rtl.xml" /> 
+    <assessmentItemRef identifier="i230" href="choice_ruby.xml" />
+    <assessmentItemRef identifier="i231" href="choice_aria.xml" />
+    <assessmentItemRef identifier="i232" href="svg.xml" />
+    <assessmentItemRef identifier="i233" href="choice_fixed.xml" />
+    <assessmentItemRef identifier="i234" href="media_coords.xml" />
+    <assessmentItemRef identifier="i235" href="graphic_gap_match_text.xml" />
+  </assessmentSection>
+</assessmentSection>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest
+  xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Test_258641331"
+  title="English exercises">
+
+  <outcomeDeclaration
+    identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration
+    identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>24.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <testPart identifier="testpartID"
+            navigationMode="nonlinear" submissionMode="simultaneous">
+    <assessmentSection
+      identifier="A_2021644561" fixed="false"
+      title="A. Bilde aus den Verbformen die dazugehörigen Passivformen."
+      visible="true">
+      <selection select="4"/>
+      <ordering shuffle="true"/>
+      <rubricBlock view="candidate">
+	<p>
+	  <b>A. Bilde aus den Verbformen die dazugehörigen Passivformen. Beachte die
+	    Zeitform.</b>
+	</p>
+	<p> Beispiel:<br/>the car - to produce (Simple Present)<br/>the car is produced </p>
+      </rubricBlock>
+      <assessmentItemRef identifier="A_403910368" href="A_403910368.xml" fixed="false"/>
+      <assessmentItemRef identifier="A_2140438487" href="A_2140438487.xml" fixed="false"/>
+      <assessmentItemRef identifier="A_2121083126" href="A_2121083126.xml" fixed="false"/>
+      <assessmentItemRef identifier="A_1925743812" href="A_1925743812.xml" fixed="false"/>
+      <assessmentItemRef identifier="A_79197713" href="A_79197713.xml" fixed="false"/>
+      <assessmentItemRef identifier="A_265237402" href="A_265237402.xml" fixed="false"/>
+      <assessmentItemRef identifier="A_1845621905" href="A_1845621905.xml" fixed="false"/>
+      <assessmentItemRef identifier="A_603808326" href="A_603808326.xml" fixed="false"/>
+      <assessmentItemRef identifier="A_104374830" href="A_104374830.xml" fixed="false"/>
+      <assessmentItemRef identifier="A_1724166344" href="A_1724166344.xml" fixed="false"/>
+    </assessmentSection>
+
+    <assessmentSection
+      identifier="B_454983175" fixed="false"
+      title="B. Schreibe die Aktivsätze ins Passiv."
+      visible="true">
+      <selection select="4"/>
+      <ordering shuffle="true"/>
+      <rubricBlock view="candidate">
+	<p>
+	  <b>B. Schreibe die Aktivsätze ins Passiv.</b>
+	</p>
+	<p> Beispiel:<br/>The students wrote letters.<br/>Letters were written by the
+	  students. </p>
+      </rubricBlock>
+      <assessmentItemRef identifier="B_1312708806" href="B_1312708806.xml" fixed="false"/>
+      <assessmentItemRef identifier="B_568428036" href="B_568428036.xml" fixed="false"/>
+      <assessmentItemRef identifier="B_2082409940" href="B_2082409940.xml" fixed="false"/>
+      <assessmentItemRef identifier="B_1553271053" href="B_1553271053.xml" fixed="false"/>
+      <assessmentItemRef identifier="B_426321584" href="B_426321584.xml" fixed="false"/>
+      <assessmentItemRef identifier="B_790429330" href="B_790429330.xml" fixed="false"/>
+      <assessmentItemRef identifier="B_110728156" href="B_110728156.xml" fixed="false"/>
+      <assessmentItemRef identifier="B_1992117307" href="B_1992117307.xml" fixed="false"/>
+      <assessmentItemRef identifier="B_1541841167" href="B_1541841167.xml" fixed="false"/>
+    </assessmentSection>
+
+    <assessmentSection
+      identifier="C_829028995" fixed="false"
+      title="C. Steht der Satz im Aktiv oder im Passiv?"
+      visible="true">
+      <selection select="4"/>
+      <ordering shuffle="true"/>
+      <rubricBlock view="candidate">
+	<p>
+	  <b>C. Steht der Satz im Aktiv oder im Passiv?</b>
+	</p>
+      </rubricBlock>
+      <assessmentItemRef identifier="C_1990748733" href="C_1990748733.xml" fixed="false"/>
+      <assessmentItemRef identifier="C_748642656" href="C_748642656.xml" fixed="false"/>
+      <assessmentItemRef identifier="C_2059910905" href="C_2059910905.xml" fixed="false"/>
+      <assessmentItemRef identifier="C_1040094513" href="C_1040094513.xml" fixed="false"/>
+      <assessmentItemRef identifier="C_1759289459" href="C_1759289459.xml" fixed="false"/>
+      <assessmentItemRef identifier="C_1523210801" href="C_1523210801.xml" fixed="false"/>
+      <assessmentItemRef identifier="C_1403975437" href="C_1403975437.xml" fixed="false"/>
+      <assessmentItemRef identifier="C_837739994" href="C_837739994.xml" fixed="false"/>
+      <assessmentItemRef identifier="C_125080616" href="C_125080616.xml" fixed="false"/>
+    </assessmentSection>
+
+    <assessmentSection
+      identifier="D_85157334" fixed="false"
+      title="D. Schreibe die Passivsätze ins Aktiv."
+      visible="true">
+      <selection select="4"/>
+      <ordering shuffle="true"/>
+      <rubricBlock view="candidate">
+	<p>
+	  <b>D. Schreibe die Passivsätze ins Aktiv.</b>
+	</p>
+	<p>Beispiel: <br/>Letters were written by the students. <br/>The students wrote
+	  letters.</p>
+      </rubricBlock>
+      <assessmentItemRef identifier="D_1010823154" href="D_1010823154.xml" fixed="false"/>
+      <assessmentItemRef identifier="D_1141014364" href="D_1141014364.xml" fixed="false"/>
+      <assessmentItemRef identifier="D_235732284" href="D_235732284.xml" fixed="false"/>
+      <assessmentItemRef identifier="D_898920432" href="D_898920432.xml" fixed="false"/>
+      <assessmentItemRef identifier="D_525465264" href="D_525465264.xml" fixed="false"/>
+      <assessmentItemRef identifier="D_1973054364" href="D_1973054364.xml" fixed="false"/>
+      <assessmentItemRef identifier="D_514842512" href="D_514842512.xml" fixed="false"/>
+      <assessmentItemRef identifier="D_1279631403" href="D_1279631403.xml" fixed="false"/>
+      <assessmentItemRef identifier="D_479465969" href="D_479465969.xml" fixed="false"/>
+      <assessmentItemRef identifier="D_2051452460" href="D_2051452460.xml" fixed="false"/>
+    </assessmentSection>
+
+    <assessmentSection
+      identifier="E_264452489" fixed="false"
+      title="E. In welcher Zeitform stehen die folgenden Passivsätze?" visible="true">
+      <selection select="4"/>
+      <ordering shuffle="true"/>
+      <rubricBlock view="candidate">
+	<p>
+	  <b>E. In welcher Zeitform stehen die folgenden Passivsätze?</b>
+	</p>
+      </rubricBlock>
+      <assessmentItemRef identifier="E_1171606219" href="E_1171606219.xml" fixed="false"/>
+      <assessmentItemRef identifier="E_134048013" href="E_134048013.xml" fixed="false"/>
+      <assessmentItemRef identifier="E_1399904697" href="E_1399904697.xml" fixed="false"/>
+      <assessmentItemRef identifier="E_889853140" href="E_889853140.xml" fixed="false"/>
+      <assessmentItemRef identifier="E_1884870891" href="E_1884870891.xml" fixed="false"/>
+      <assessmentItemRef identifier="E_1493092933" href="E_1493092933.xml" fixed="false"/>
+      <assessmentItemRef identifier="E_1477168682" href="E_1477168682.xml" fixed="false"/>
+      <assessmentItemRef identifier="E_1570830319" href="E_1570830319.xml" fixed="false"/>
+      <assessmentItemRef identifier="E_1362075109" href="E_1362075109.xml" fixed="false"/>
+      <assessmentItemRef identifier="E_835678250" href="E_835678250.xml" fixed="false"/>
+    </assessmentSection>
+
+    <assessmentSection
+      identifier="F_481695138" fixed="false"
+      title="F. Present Perfect - Welche Antworten sind richtig?" visible="true">
+      <ordering shuffle="true"/>
+      <rubricBlock view="candidate">
+	<p>
+	  <b>F. Present Perfect - Welche Antworten sine richtig?</b>
+	</p>
+      </rubricBlock>
+      <assessmentItemRef identifier="F_1344365064" href="F_1344365064.xml" fixed="false"/>
+      <assessmentItemRef identifier="F_521041065" href="F_521041065.xml" fixed="false"/>
+      <assessmentItemRef identifier="F_837664539" href="F_837664539.xml" fixed="false"/>
+      <assessmentItemRef identifier="F_1564647515" href="F_1564647515.xml" fixed="false"/>
+    </assessmentSection>
+  </testPart>
+
+  <outcomeProcessing>
+    <setOutcomeValue identifier="SCORE">
+      <sum>
+	<testVariables variableIdentifier="SCORE"/>
+      </sum>
+    </setOutcomeValue>
+  </outcomeProcessing>
+</assessmentTest>

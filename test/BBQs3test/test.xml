@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assessmentTest xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  toolVersion="0.1"
+  title="BBQs test package"
+  toolName="Spectatus"
+  identifier="SPECTATUS-GENERATED-TEST">
+
+  <outcomeDeclaration baseType="float" cardinality="single" identifier="TEST_TOTAL">
+    <defaultValue>
+      <value>0.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <outcomeDeclaration baseType="float" cardinality="single" identifier="SECTION_1_TOTAL">
+    <defaultValue>
+      <value>0.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <outcomeDeclaration baseType="float" cardinality="single" identifier="SECTION_2_TOTAL">
+    <defaultValue>
+      <value>0.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="TEST_FEEDBACK"/>
+
+  <testPart submissionMode="individual" navigationMode="nonlinear" identifier="TP">
+    <assessmentSection title="Section 1 - BBQ items a-m" visible="true" identifier="id-610522a81c5f">
+      <assessmentItemRef href="either-or.xml" identifier="id-5c1b1e2d56bd"/>
+      <assessmentItemRef href="essay-vacation.xml" identifier="id-75bd778a3504"/>
+      <assessmentItemRef href="hotspot-maximum.xml" identifier="id-992e8bd3c9ac"/>
+      <assessmentItemRef href="jumble-gapMatch.xml" identifier="id-f8e13982226c"/>
+      <assessmentItemRef href="jumble-inlineChoice.xml" identifier="id-377d71221b04"/>
+      <assessmentItemRef href="Likert-choice-questionSet.xml" identifier="id-7e4520cd463f"/>
+      <assessmentItemRef href="Likert-match-questionSet.xml" identifier="id-2a2cfb9f4dde"/>
+      <assessmentItemRef href="matching-associate-trigDeriv.xml" identifier="id-200e2c3f7d76"/>
+      <assessmentItemRef href="matching-match-trigDeriv.xml" identifier="id-7f35b6c393d5"/>
+      <assessmentItemRef href="MultipleAnswer-choice-materials.xml" identifier="id-3cd82285401e"/>
+      <assessmentItemRef href="MultipleChoice-choice-polynomials.xml" identifier="id-371b0f88774a"/>
+    </assessmentSection>
+    <assessmentSection title="Section 2 - BBQ items n-z" visible="true" identifier="id-637f1e66940f">
+      <assessmentItemRef href="upload-file.xml" identifier="id-90b59b73c8e4"/>
+      <assessmentItemRef href="order-maths.xml" identifier="id-e475c3c922f6"/>
+      <assessmentItemRef href="order-mountains.xml" identifier="id-be3cd3bdd3d4"/>
+      <assessmentItemRef href="QuizBowl-multi-geometry.xml" identifier="id-8167235c360b"/>
+      <assessmentItemRef href="ShortAnswer-extText-postcard.xml" identifier="id-1ccd6e04685f"/>
+      <assessmentItemRef href="SineRule-002-maths.xml" identifier="id-13b92f311fc0"/>
+      <assessmentItemRef href="text_entry-calculus.xml" identifier="id-c0bdd9a130c7"/>
+      <assessmentItemRef href="text_entry-Lycidas.xml" identifier="id-d565dbe89933"/>
+      <assessmentItemRef href="TF-choice.xml" identifier="id-83210b60ed8f"/>
+      <assessmentItemRef href="TheAnswer-001.xml" identifier="id-f9f3153e2ba4"/>
+    </assessmentSection>
+  </testPart>
+
+  <outcomeProcessing>
+    <setOutcomeValue identifier="SECTION_1_TOTAL">
+      <sum>
+        <testVariables baseType="float" sectionIdentifier="id-610522a81c5f" variableIdentifier="SCORE"/>
+      </sum>
+    </setOutcomeValue>
+    <setOutcomeValue identifier="SECTION_2_TOTAL">
+      <sum>
+        <testVariables baseType="float" sectionIdentifier="id-637f1e66940f" variableIdentifier="SCORE"/>
+      </sum>
+    </setOutcomeValue>
+    <setOutcomeValue identifier="TEST_TOTAL">
+      <sum>
+        <testVariables baseType="float" variableIdentifier="SCORE"/>
+      </sum>
+    </setOutcomeValue>
+    <setOutcomeValue identifier="TEST_FEEDBACK">
+      <multiple>
+        <baseValue baseType="identifier">S1_END_FB</baseValue>
+        <baseValue baseType="identifier">S2_END_FB</baseValue>
+        <baseValue baseType="identifier">TEST_FB</baseValue>
+      </multiple>
+    </setOutcomeValue>
+  </outcomeProcessing>
+
+  <testFeedback outcomeIdentifier="TEST_FEEDBACK" access="atEnd" showHide="show" identifier="TEST_FB">
+    <div>
+      You have reached the end of the test.
+    </div>
+    <div>
+      Section 1 score:
+      <printedVariable identifier="SECTION_1_TOTAL" format="%.1f"/>
+      (from a  maximum of 39.0)
+    </div>
+    <div>
+      Section 2 score: <printedVariable identifier="SECTION_2_TOTAL" format="%.1f"/>
+      (from a maximum of 66.0)
+    </div>
+    <div>
+      Total score: <printedVariable identifier="TEST_TOTAL" format="%.1f"/>
+      (from a maximum of 105.0)
+    </div>
+  </testFeedback>
+</assessmentTest>

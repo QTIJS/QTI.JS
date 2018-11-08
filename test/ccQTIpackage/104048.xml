@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="I104048"
+  title="I104048"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>I104048_A1</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  <outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>100</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="1">
+      <prompt>
+        The early psychologists were interested in studying which of
+        the following?
+      </prompt>
+
+      <simpleChoice identifier="I104048_A1" fixed="true">
+        conscious experience
+        <feedbackInline outcomeIdentifier="FEEDBACK" showHide="show" identifier="I104048_A1">
+          <span class="correct">Correct</span>
+        </feedbackInline>
+      </simpleChoice>
+
+      <simpleChoice identifier="I104048_A2" fixed="true">
+        human and animal behavior
+        <feedbackInline outcomeIdentifier="FEEDBACK" showHide="show" identifier="I104048_A2">
+          <span class="incorrect">Incorrect</span>
+        </feedbackInline>
+      </simpleChoice>
+
+      <simpleChoice identifier="I104048_A3" fixed="true">
+        early experience and its effects on
+        personality development
+        <feedbackInline outcomeIdentifier="FEEDBACK" showHide="show" identifier="I104048_A3">
+          <span class="incorrect">Incorrect</span>
+        </feedbackInline>
+      </simpleChoice>
+
+      <simpleChoice identifier="I104048_A4" fixed="true">
+        mental and emotional disorder
+        <feedbackInline outcomeIdentifier="FEEDBACK" showHide="show" identifier="I104048_A4">
+          <span class="incorrect">Incorrect</span>
+        </feedbackInline>
+      </simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/CC2_match.xml"/>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="general">
+    This is some general feedback
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACKBASIC" showHide="show" identifier="correct">
+    Congratulations! you got it right.
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACKBASIC" showHide="show" identifier="incorrect">
+    I am sorry, that is not correct.
+  </modalFeedback>
+</assessmentItem>

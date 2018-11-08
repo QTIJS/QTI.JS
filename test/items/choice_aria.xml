@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="choice_aria"
+  title="Surveyors"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>ChoiceA</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <stylesheet href="choice_aria.css" type="text/css" />
+  
+  <itemBody>
+    <p>Examine the following survey map.</p>
+
+    <p>
+      <img src="images/survey.jpg" alt="Survey map with angles" aria-describedBy="imgdesc1"/>
+    </p>
+
+    <div id="imgdesc1">
+      Two surveyors, A and P, stand some distance
+      apart on the south bank of a river, looking at a tree, T, that is
+      on the north bank of the river. Points A, P, and T form a
+      triangle. At points A and P, there are two parallel sight lines
+      pointing north and forming angles outside of the triangle. At
+      point P, angle <span aria-label="T P A">TPA</span> is 53
+      degrees. The adjacent angle between PT and the northern sight line
+      is 37 degrees. At point A, angle TAP is not labeled, and the
+      adjacent angle formed between AT and that northern sight line is
+      32 degrees.
+    </div>
+
+    <div role="note">
+      <table role="presentation">
+        <tbody>
+          <tr>
+            <td>The angles of a triangle add up to 180
+            degrees. <span role="math">a+b+c=180</span></td>
+            <td>Knowing any two angles, you can calculate the missing
+            angle.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <choiceInteraction
+      responseIdentifier="RESPONSE" shuffle="true">
+      <prompt>
+        What is the value of angle <span aria-label="T A P">TAP</span>
+        in degrees?
+      </prompt>
+      <simpleChoice identifier="ChoiceA">90</simpleChoice>
+      <simpleChoice identifier="ChoiceB">37</simpleChoice>
+      <simpleChoice identifier="ChoiceC">58</simpleChoice>
+      <simpleChoice identifier="ChoiceD" fixed="true">None of the above.</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>
+

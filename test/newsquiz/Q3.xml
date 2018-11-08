@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Q3"
+  title="3 of 6"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="c1" cardinality="single" baseType="boolean"/>
+  <responseDeclaration identifier="c2" cardinality="single" baseType="boolean"/> 
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  
+  <itemBody>
+    <p>
+      Do you believe that everyone is entitled to a certain minimum
+      standard of living?
+    </p>
+    <endAttemptInteraction responseIdentifier="c1" title="Yes"/>
+    <endAttemptInteraction responseIdentifier="c2" title="No"/>
+  </itemBody>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c1">
+    <p><strong>You agree with democratic socialists.</strong> They
+      believe that no one should lack basic necessities because of the
+      “accident,” as Ms. Svart put it, of where or to whom they were
+      born.</p>
+
+    <p>“A democratic community committed to the equal moral worth of
+      each citizen will socially provide the cultural and economic
+      necessities — food, housing, quality education, health care,
+      child care — for the development of human individuality,” Joseph
+      Schwartz and Jason Schulman wrote in a D.S.A. paper outlining
+      the principles of democratic socialism.</p>
+  </modalFeedback>
+  
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="c2">
+    <p><strong>You disagree with democratic socialists.</strong> They
+      believe that no one should lack basic necessities because of the
+      “accident,” as Ms. Svart put it, of where or to whom they were
+      born.</p>
+
+    <p>“A democratic community committed to the equal moral worth of
+      each citizen will socially provide the cultural and economic
+      necessities — food, housing, quality education, health care,
+      child care — for the development of human individuality,” Joseph
+      Schwartz and Jason Schulman wrote in a D.S.A. paper outlining
+      the principles of democratic socialism.</p>
+  </modalFeedback>
+
+  <responseProcessing template="rptemplate.xml" />  
+</assessmentItem>
+

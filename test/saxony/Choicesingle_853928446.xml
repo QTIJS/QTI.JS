@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was created using: Onyx Editor, Version 3.4.3 (Full, licensed version), (c)2012 BPS Bildungsportal Sachsen GmbH-->
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2p2.xsd" identifier="Choicesingle_853928446" title="choice (single)" adaptive="false" timeDependent="false">
+	<responseDeclaration identifier="RESPONSE_30705996" cardinality="single" baseType="identifier">
+		<correctResponse>
+			<value>choice_685440446</value>
+		</correctResponse>
+	</responseDeclaration>
+	<outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+		<defaultValue>
+			<value>1.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier">
+		<defaultValue>
+			<value>empty</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration identifier="FEEDBACKMODAL" cardinality="multiple" baseType="identifier" view="testConstructor" />
+	<itemBody>
+		<div>Das Bundesland Sachsen hat die folgende Flagge...</div>
+		<choiceInteraction responseIdentifier="RESPONSE_30705996" shuffle="true" maxChoices="1">
+			<simpleChoice identifier="choice_685440446">
+				<img src="media/c2f541343b9b4bfdba9fc90c7a18403e.jpg" alt="" />
+			</simpleChoice>
+			<simpleChoice identifier="choice_1542121788">
+				<img src="media/71a299b50b5e4b1492f8ee51ce25be7d.jpg" alt="" />
+			</simpleChoice>
+			<simpleChoice identifier="choice_313388598">
+				<img src="media/03c5e2f774db49598deb3ac7d05b53f9.jpg" alt="" />
+			</simpleChoice>
+			<simpleChoice identifier="choice_2057964872">
+				<img src="media/e18b5a2eb8104d0994a182ee0176a05c.jpg" alt="" />
+			</simpleChoice>
+		</choiceInteraction>
+	</itemBody>
+	<responseProcessing>
+		<responseCondition>
+			<responseIf>
+				<isNull>
+					<variable identifier="RESPONSE_30705996" />
+				</isNull>
+				<setOutcomeValue identifier="FEEDBACKBASIC">
+					<baseValue baseType="identifier">empty</baseValue>
+				</setOutcomeValue>
+			</responseIf>
+			<responseElseIf>
+				<match>
+					<variable identifier="RESPONSE_30705996" />
+					<correct identifier="RESPONSE_30705996" />
+				</match>
+				<setOutcomeValue identifier="SCORE">
+					<sum>
+						<variable identifier="SCORE" />
+						<variable identifier="MAXSCORE" />
+					</sum>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="FEEDBACKBASIC">
+					<baseValue baseType="identifier">correct</baseValue>
+				</setOutcomeValue>
+			</responseElseIf>
+			<responseElse>
+				<setOutcomeValue identifier="FEEDBACKBASIC">
+					<baseValue baseType="identifier">incorrect</baseValue>
+				</setOutcomeValue>
+			</responseElse>
+		</responseCondition>
+		<responseCondition>
+			<responseIf>
+				<and>
+					<match>
+						<baseValue baseType="identifier">correct</baseValue>
+						<variable identifier="FEEDBACKBASIC" />
+					</match>
+				</and>
+				<setOutcomeValue identifier="FEEDBACKMODAL">
+					<multiple>
+						<variable identifier="FEEDBACKMODAL" />
+						<baseValue baseType="identifier">FEEDBACK_19070485</baseValue>
+					</multiple>
+				</setOutcomeValue>
+			</responseIf>
+		</responseCondition>
+		<responseCondition>
+			<responseIf>
+				<and>
+					<match>
+						<baseValue baseType="identifier">incorrect</baseValue>
+						<variable identifier="FEEDBACKBASIC" />
+					</match>
+				</and>
+				<setOutcomeValue identifier="FEEDBACKMODAL">
+					<multiple>
+						<variable identifier="FEEDBACKMODAL" />
+						<baseValue baseType="identifier">FEEDBACK_5709968</baseValue>
+					</multiple>
+				</setOutcomeValue>
+			</responseIf>
+		</responseCondition>
+		<responseCondition>
+			<responseIf>
+				<and>
+					<match>
+						<baseValue baseType="identifier">choice_1542121788</baseValue>
+						<variable identifier="RESPONSE_30705996" />
+					</match>
+				</and>
+				<setOutcomeValue identifier="FEEDBACKMODAL">
+					<multiple>
+						<variable identifier="FEEDBACKMODAL" />
+						<baseValue baseType="identifier">FEEDBACK_1772719</baseValue>
+					</multiple>
+				</setOutcomeValue>
+			</responseIf>
+		</responseCondition>
+		<responseCondition>
+			<responseIf>
+				<and>
+					<match>
+						<baseValue baseType="identifier">choice_313388598</baseValue>
+						<variable identifier="RESPONSE_30705996" />
+					</match>
+				</and>
+				<setOutcomeValue identifier="FEEDBACKMODAL">
+					<multiple>
+						<variable identifier="FEEDBACKMODAL" />
+						<baseValue baseType="identifier">FEEDBACK_31321506</baseValue>
+					</multiple>
+				</setOutcomeValue>
+			</responseIf>
+		</responseCondition>
+		<responseCondition>
+			<responseIf>
+				<and>
+					<match>
+						<baseValue baseType="identifier">choice_2057964872</baseValue>
+						<variable identifier="RESPONSE_30705996" />
+					</match>
+				</and>
+				<setOutcomeValue identifier="FEEDBACKMODAL">
+					<multiple>
+						<variable identifier="FEEDBACKMODAL" />
+						<baseValue baseType="identifier">FEEDBACK_18628673</baseValue>
+					</multiple>
+				</setOutcomeValue>
+			</responseIf>
+		</responseCondition>
+	</responseProcessing>
+	<modalFeedback identifier="FEEDBACK_19070485" outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="Richtig!">Die sächsischen Landesfarben sind weiß-grün.</modalFeedback>
+	<modalFeedback identifier="FEEDBACK_5709968" outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="Leider Falsch!">Die sächsischen Landesfarben sind weiß-grün.</modalFeedback>
+	<modalFeedback identifier="FEEDBACK_1772719" outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="">Deine Auswahl zeigt die Flagge vom Land Thüringen.</modalFeedback>
+	<modalFeedback identifier="FEEDBACK_31321506" outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="">Deine Auswahl zeigt die Flagge vom Land Baden-Württemberg.</modalFeedback>
+	<modalFeedback identifier="FEEDBACK_18628673" outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="">Deine Auswahl zeigt die Flagge vom Land Sachsen-Anhalt.</modalFeedback>
+</assessmentItem>

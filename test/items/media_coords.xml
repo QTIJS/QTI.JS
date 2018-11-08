@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="media_coords"
+  title="Counting Squirrels"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="directedPair">
+    <correctResponse>
+      <value>C1 squirrel</value>
+      <value>C1 squirrel</value>
+      <value>C1 squirrel</value>
+    </correctResponse>
+  </responseDeclaration>
+  <responseDeclaration cardinality="single" baseType="integer" identifier="MP3ab1Audio"/>
+  <responseDeclaration cardinality="single" baseType="integer" identifier="OGGab1Audio"/>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <itemBody>
+    <mediaInteraction label="audioButton" autostart="false" loop="true"
+                      responseIdentifier="MP3ab1Audio" coords="275,315,31,31">
+      <object label="ab1" type="audio/mpeg" data="images/tree.mp3"/>
+    </mediaInteraction>
+
+    <mediaInteraction label="audioButton" autostart="false" loop="true" 
+                      responseIdentifier="OGGab1Audio" coords="275,315,31,31">
+      <object label="ab1" type="audio/ogg" data="images/tree.ogg"/> 
+    </mediaInteraction>
+
+    <graphicGapMatchInteraction responseIdentifier="RESPONSE">
+      <prompt>Put 3 squirrels in the tree. </prompt>
+      <object type="image/jpg"  data="images/tree.jpg" width="399" height="350"></object>
+      <gapImg identifier="squirrel" matchMax="10" data-type="clickPop" data-target-container="C1">
+        <object type="image/jpg" data="images/squirrel.png" width="75" height="76"></object>
+      </gapImg>
+      <associableHotspot matchMax="10" shape="rect" identifier="C1" coords="0,100,400,220"/>
+    </graphicGapMatchInteraction>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>

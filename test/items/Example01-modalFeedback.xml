@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Example01-modalFeedback"
+  title="Modal Feedback"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>true</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single"  baseType="identifier"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float" normalMaximum="10.0">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>10.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE">
+      <prompt>
+        Sigmund Freud and Carl Jung both belong to the
+        psychoanalytic school of psychology.
+      </prompt>
+      <simpleChoice identifier="true" fixed="true">
+        True
+      </simpleChoice>
+      <simpleChoice identifier="false" fixed="true">
+        False
+      </simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing>
+    <responseCondition>
+      <responseIf>
+        <match>
+          <variable identifier="RESPONSE"/>
+          <correct identifier="RESPONSE"/>
+        </match>
+        <setOutcomeValue identifier="SCORE">
+          <variable identifier="MAXSCORE"/>
+        </setOutcomeValue>
+        <setOutcomeValue identifier="FEEDBACK">
+          <baseValue baseType="identifier">correct</baseValue>
+        </setOutcomeValue>
+      </responseIf>
+      <responseElse>
+        <setOutcomeValue identifier="FEEDBACK">
+          <baseValue baseType="identifier">incorrect</baseValue>
+        </setOutcomeValue>
+      </responseElse>
+    </responseCondition>
+  </responseProcessing>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="correct" >
+    correct
+  </modalFeedback>
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="incorrect" >
+    incorrect
+  </modalFeedback>
+</assessmentItem>

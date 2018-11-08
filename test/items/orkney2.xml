@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="orkney2"
+  title="Orkney 2"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>F</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <stylesheet href="shared/orkney.css" type="text/css"/>
+
+  <itemBody class="twocols">
+    <div class="leftpane">
+      <p>
+        Read the text about the Orkney Islands and then decide if the
+        following sentence is correct or incorrect.
+      </p>
+      <choiceInteraction
+        responseIdentifier="RESPONSE">
+        <prompt>
+          You can fly direct from London Heathrow to Kirkwall.
+        </prompt>
+        <simpleChoice identifier="T">Correct</simpleChoice>
+        <simpleChoice identifier="F">Incorrect</simpleChoice>
+      </choiceInteraction>
+    </div>
+    <div class="rightpane">
+      <object data="shared/orkney.html" type="text/html"/>
+    </div>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>

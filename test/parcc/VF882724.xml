@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="VF882724"
+  title="Essay"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string"/>
+  <assessmentStimulusRef identifier="freddy1" href="freddy_in_peril_pt1.xml" />
+  <assessmentStimulusRef identifier="freddy2" href="freddy_in_peril_pt2.xml" />
+  
+  <!-- PCR -->
+  <itemBody>
+    <extendedTextInteraction responseIdentifier="RESPONSE" format="xhtml">
+      <prompt>
+        <p>
+          You have read passages from Part 1 and Part 2
+          of <em>Freddy in Peril</em>. Explain how Freddy’s point
+          of view influences how the events in the passages are
+          described. Be sure to use details to support your answer
+          from both <em>Freddy in Peril,</em> Part 1 and Part 2.
+        </p>
+      </prompt>
+    </extendedTextInteraction>
+  </itemBody>
+</assessmentItem>

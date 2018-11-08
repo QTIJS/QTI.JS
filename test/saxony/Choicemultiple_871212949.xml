@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+    xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+    identifier="Choicemultiple_871212949"
+    title="choice (multiple, point per answer)"
+    adaptive="false"
+    timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE_27966883" cardinality="multiple" baseType="identifier">
+	<correctResponse>
+	  <value>choice_934383202</value>
+	  <value>choice_2022864592</value>
+	  <value>choice_1534527094</value>
+	</correctResponse>
+	<mapping defaultValue="0.0">
+	  <mapEntry mapKey="choice_934383202" mappedValue="1.0" />
+	  <mapEntry mapKey="choice_2022864592" mappedValue="1.0" />
+	  <mapEntry mapKey="choice_1534527094" mappedValue="1.0" />
+	  <mapEntry mapKey="choice_921260236" mappedValue="-1.0" />
+	  <mapEntry mapKey="choice_1757121272" mappedValue="-2.0" />
+	</mapping>
+  </responseDeclaration>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>0.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>3.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier" view="testConstructor">
+	<defaultValue>
+	  <value>empty</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="FEEDBACKMODAL" cardinality="multiple" baseType="identifier" view="testConstructor" />
+  <itemBody>
+	<div>Welche Naturräume finden sich im Freistaat Sachsen?</div>
+	<choiceInteraction responseIdentifier="RESPONSE_27966883" shuffle="true" maxChoices="0">
+	  <simpleChoice identifier="choice_934383202">Erzgebirge</simpleChoice>
+	  <simpleChoice identifier="choice_2022864592">Lausitz</simpleChoice>
+	  <simpleChoice identifier="choice_1534527094">Vogtland</simpleChoice>
+	  <simpleChoice identifier="choice_921260236">Harz</simpleChoice>
+	  <simpleChoice identifier="choice_1757121272">Alpen</simpleChoice>
+	</choiceInteraction>
+  </itemBody>
+  <responseProcessing>
+	<responseCondition>
+	  <responseIf>
+		<not>
+		  <isNull>
+			<variable identifier="RESPONSE_27966883" />
+		  </isNull>
+		</not>
+		<setOutcomeValue identifier="SCORE">
+		  <sum>
+			<variable identifier="SCORE" />
+			<mapResponse identifier="RESPONSE_27966883" />
+		  </sum>
+		</setOutcomeValue>
+		<setOutcomeValue identifier="FEEDBACKBASIC">
+		  <baseValue baseType="identifier">incorrect</baseValue>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <not>
+			<match>
+			  <variable identifier="FEEDBACKBASIC" />
+			  <baseValue baseType="identifier">empty</baseValue>
+			</match>
+		  </not>
+		  <equal toleranceMode="exact">
+			<variable identifier="SCORE" />
+			<variable identifier="MAXSCORE" />
+		  </equal>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKBASIC">
+		  <baseValue baseType="identifier">correct</baseValue>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <match>
+			<baseValue baseType="identifier">correct</baseValue>
+			<variable identifier="FEEDBACKBASIC" />
+		  </match>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL" />
+			<baseValue baseType="identifier">FEEDBACK_20198043</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <match>
+			<baseValue baseType="identifier">incorrect</baseValue>
+			<variable identifier="FEEDBACKBASIC" />
+		  </match>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL" />
+			<baseValue baseType="identifier">FEEDBACK_31886564</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <not>
+			<member>
+			  <baseValue baseType="identifier">choice_2022864592</baseValue>
+			  <variable identifier="RESPONSE_27966883" />
+			</member>
+		  </not>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL" />
+			<baseValue baseType="identifier">FEEDBACK_16125728</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <not>
+			<member>
+			  <baseValue baseType="identifier">choice_934383202</baseValue>
+			  <variable identifier="RESPONSE_27966883" />
+			</member>
+		  </not>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL" />
+			<baseValue baseType="identifier">FEEDBACK_5978326</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <not>
+			<member>
+			  <baseValue baseType="identifier">choice_1534527094</baseValue>
+			  <variable identifier="RESPONSE_27966883" />
+			</member>
+		  </not>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL" />
+			<baseValue baseType="identifier">FEEDBACK_15771477</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <member>
+			<baseValue baseType="identifier">choice_921260236</baseValue>
+			<variable identifier="RESPONSE_27966883" />
+		  </member>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL" />
+			<baseValue baseType="identifier">FEEDBACK_24761471</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+	<responseCondition>
+	  <responseIf>
+		<and>
+		  <member>
+			<baseValue baseType="identifier">choice_1757121272</baseValue>
+			<variable identifier="RESPONSE_27966883" />
+		  </member>
+		</and>
+		<setOutcomeValue identifier="FEEDBACKMODAL">
+		  <multiple>
+			<variable identifier="FEEDBACKMODAL" />
+			<baseValue baseType="identifier">FEEDBACK_23991545</baseValue>
+		  </multiple>
+		</setOutcomeValue>
+	  </responseIf>
+	</responseCondition>
+  </responseProcessing>
+  <modalFeedback identifier="FEEDBACK_20198043"
+                 outcomeIdentifier="FEEDBACKMODAL" showHide="show"
+                 title="">Richtig!
+  </modalFeedback>
+  <modalFeedback identifier="FEEDBACK_31886564"
+  outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="">Leider
+    Falsch!
+  </modalFeedback>
+  <modalFeedback identifier="FEEDBACK_16125728"
+  outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="In deiner
+  Auswahl fehlt die Region Lausitz">Die Lausitz ist eine Region in
+  Deutschland und Polen. Sie umfasst den Süden Brandenburgs und den
+    Osten des Freistaates Sachsen.
+  </modalFeedback>
+  <modalFeedback identifier="FEEDBACK_5978326"
+                 outcomeIdentifier="FEEDBACKMODAL" showHide="show"
+                 title="In deiner Auswahl fehlt das Erzgebirge">
+    Das Erzgebirge ist ein Mittelgebirge
+    und bildet die natürliche Grenze zwischen Sachsen und
+    Böhmen.
+  </modalFeedback>
+  <modalFeedback identifier="FEEDBACK_15771477"
+  outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="In deiner
+  Auswahl fehlt das Vogtland">Das Vogtland ist eine Region im
+  Grenzgebiet der drei deutschen Bundesländer Bayern, Sachsen und
+  Thüringen.</modalFeedback>
+  <modalFeedback identifier="FEEDBACK_24761471"
+  outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="Die Auswahl
+  Harz war leider falsch">Der Harz ist ein Mittelgebirge in
+  Deutschland. Er stellt das höchste Gebirge Norddeutschlands dar und
+  liegt am Schnittpunkt von Niedersachsen, Sachsen-Anhalt und
+  Thüringen.</modalFeedback>
+  <modalFeedback identifier="FEEDBACK_23991545"
+  outcomeIdentifier="FEEDBACKMODAL" showHide="show" title="Die Auswahl
+  Alpen war leider falsch">Die Alpen sind das höchste Gebirge im
+  Inneren Europas. Sie erstrecken sich von Italien und der Schweiz bis
+  in den Süden Deutschlands. Das Alpenvorland zieht sich durch die
+  Bundesländer Bayern und Baden-Württemberg.</modalFeedback>
+</assessmentItem>

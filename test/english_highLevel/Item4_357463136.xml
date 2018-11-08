@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Item4_357463136"
+  adaptive="false"
+  title="Short Answer"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>0.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>10.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+	<p>
+      What do statistics reveal about the problems of Latino youths
+	  in comparison with their black and white peers?
+    </p>
+	<extendedTextInteraction responseIdentifier="RESPONSE"/>
+  </itemBody>
+</assessmentItem>

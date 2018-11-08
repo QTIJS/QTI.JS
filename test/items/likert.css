@@ -1,0 +1,9 @@
+/* styling for likert.xml */
+.likert .qtijs-input-wrap {
+  display: inline-block;
+  border: none;
+  margin: 0 !important;
+}
+.likert input {
+  float: none !important;
+}

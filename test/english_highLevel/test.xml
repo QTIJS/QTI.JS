@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest
+  xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Test_976288596"
+  title="English exercises II">
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>160.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <timeLimits maxTime="10800.0"/>
+
+  <testPart identifier="testpartID" navigationMode="nonlinear" submissionMode="simultaneous">
+    <stylesheet href="numbered.css" type="text/css" />
+    <assessmentSection identifier="LOSTINAMERICA_408859890" fixed="false" title="I. Questions on the text" visible="true">
+      <rubricBlock view="candidate">
+        <div class="numbered">
+          <h1>LOST IN AMERICA</h1>
+
+          <p>
+            Elsa Flores fled El Salvador´s civil war in 1980, moved to
+            Los Angeles and cleaned offices until she had saved enough
+            money to open a small clothing store.
+          </p>
+          
+          <p>
+            But her American dream fell apart in 1992 when racial
+            tensions, videotape and a controversial court verdict
+            erupted into the Rodney King riots<sup>1</sup>.  Flores
+            huddled with her four children in a back bedroom. They could
+            hear gunfire and shouting outside. Watching the news on TV,
+            they saw flames dance from the window of her clothing
+            store. Flores assumed the rioters who destroyed her business
+            were black. But then she caught a glimpse of them on
+            camera. They were like her: Latinos. Now she says: "They are
+            not bad people, but they become frustrated here." The
+            ambiguous role that Latinos played in those events
+            underscores a much-ignored phenomenon: the vast new wave of
+            low-skilled immigrants has yet to find its place in the
+            United States. Like Flores, who scrimped and borrowed and
+            rebuilt, most Latino immigrants bring enough ambition with
+            them to compensate for a lack of education. About two thirds
+            achieve at least a working-class income. But many others,
+            though equally determined, fail. And more significantly,
+            their children often fail. Latinos are in danger of becoming
+            locked into the same distinctly American form of poverty
+            that has been perpetuated through generations of inner-city
+            blacks. In fact, if current trends persist, in another
+            decade, Latinos will replace blacks as the United States´
+            biggest underclass. More than 30 percent of Latinos who
+            arrived in the 1980s live below the poverty line.
+          </p>
+          
+          <p>
+            For many immigrants, the journey north is an attempt to
+            overcome centuries-old barriers of race and class. What they
+            find is new barriers of class and race. The immigrants who
+            have the strongest memories of home do best in the States;
+            however bad, it is still an improvement. But for their
+            children, who often have no memory of home, America seems
+            like a raw deal. They watch their parents and see only toil
+            and poverty. They watch American TV and see only
+            affluence. Public-school systems on the brink of collapse
+            fail to give them the tools they need. "I can tell by
+            looking in their eyes how long they´ve been here, " says the
+            Rev. Vergil Elizondo, of San Antonio, Texas. "They come
+            sparkling with hope, and the first gener- ation finds that
+            hope rewarded. Their children´s eyes no longer sparkle. They
+            have learned only to want jobs and money they can´t have."
+          </p>
+          
+          <p>
+            Take the case of Mexican newcomers. Last year the National
+            Research Council, America´s most distinguished society of
+            scholars, found that Mexican immigrants start out with the
+            lowest wages of any nationality and that the wage gap grows
+            the longer they live in the United States.
+          </p>
+          
+          <p>
+            The statistics for their children are even more troubling.
+            Nationally, teenage births are declining. But not so for
+            girls of Mexican descent, for whom the rate has risen by a
+            third during the 1990s. Last year nearly 11 percent of
+            Latino teenage girls gave birth double the rate for whites,
+            and for the first time surpasseing the rate for
+            blacks. School-dropout rates are also gloomy.  The
+            U.S. Department of Education estimates that 44 percent of
+            foreignborn Latino youths between the ages of 16 and 24 are
+            dropouts. That number for American-born children of
+            immigrants is 17 percent; for blacks it is 13 percent, for
+            whites, 17 percent. Because secondgeneration Latinos are the
+            fastest-growing source of new American workers,their lack of
+            basic skills could put a brake on the national economy.
+          </p>
+          
+          <p>
+            In the search for solutions to America´s growing Latino
+            underclass, the simplest proposal has been to reduce the
+            flow of lowskilled immigrants. That may be politically
+            expedient, but it won´t work. The truth is that the United
+            States needs these people. In a decade, when the bulk of the
+            baby-boom generation<sup>2</sup> hits retirement age, there
+            will be a tremendous shortage of young workers. More than a
+            third of the Latino population is under the age of 18. The
+            vast majority are native-born U.S. citizens, and they are
+            not going anywhere. They are the nation´s future. Unless new
+            avenues of opportunity open up for Latino immigrants and
+            their children, the nation as a whole will suffer. Remedies
+            are still possible.  A generation of young people is still
+            in school waiting to be taught, and expectations are still
+            alive. But the opportunities are rapidly disappearing.
+          </p>
+          
+          <p>From: <em>Newsweek</em>, 15 July 1998</p>
+          
+          <p>Annotations:</p>
+	  
+          <p>
+            <sup>1</sup>Rodney King riots: reference to the riots that
+            broke out in ethic neighbourhoods, especially black areas,
+            of Los Angeles in 1992, when a court acquitted several white
+            policemen accused of beating up a black driver, Rodney King;
+            the incident had been filmed on videotape.
+          </p>
+          
+          <p>
+            <sup>2</sup>baby-boom generation: the generation born
+            between the late 1940s an the early 1960s, when the birth
+            rate after the war was high.
+          </p>
+        </div>
+
+        <p>
+          <strong>
+            Read all the questions first, then answer them in the
+            given order.  Use your own words as far as is
+            appropriate.
+          </strong>
+        </p>
+      </rubricBlock>
+
+      <assessmentItemRef identifier="Item1_619462302" href="Item1_619462302.xml" fixed="false"/>
+      <assessmentItemRef identifier="Item2_205541527" href="Item2_205541527.xml" fixed="false"/>
+      <assessmentItemRef identifier="Item3_837431413" href="Item3_837431413.xml" fixed="false"/>
+      <assessmentItemRef identifier="Item4_357463136" href="Item4_357463136.xml" fixed="false"/>
+      <assessmentItemRef identifier="Item5_154730035" href="Item5_154730035.xml" fixed="false"/>
+      <assessmentItemRef identifier="Item6_1645506707" href="Item6_1645506707.xml" fixed="false"/>
+    </assessmentSection>
+
+    <assessmentSection identifier="IIComposition_437292360" fixed="false" title="II. Composition" visible="true">
+      <rubricBlock view="candidate">
+	<p>
+          Choose <b>one</b> of the following topics. Write about 120 to 150 words.
+        </p>
+      </rubricBlock>
+      <assessmentItemRef identifier="Item1_1792983784" href="Item1_1792983784.xml" fixed="false"/>
+      <assessmentItemRef identifier="Item2_863783866" href="Item2_863783866.xml" fixed="false" />
+    </assessmentSection>
+
+    <assessmentSection identifier="IIITranslation_214716776" fixed="false" title="III. Translation" visible="true">
+      <assessmentItemRef identifier="Item1_410949756" href="Item1_410949756.xml" fixed="false" />
+    </assessmentSection>
+  </testPart>
+
+  <outcomeProcessing>
+    <setOutcomeValue identifier="SCORE">
+      <sum>
+	<testVariables variableIdentifier="SCORE"/>
+      </sum>
+    </setOutcomeValue>
+  </outcomeProcessing>
+</assessmentTest>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  xmlns:m="http://www.w3.org/2010/Math/MathML"
+  identifier="inline_choice_math"
+  title="Inline Math"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>choice2</value>
+    </correctResponse>
+  </responseDeclaration>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <itemBody>
+    <p>Answer the question.</p>
+    <blockquote>
+      <p>If 
+        <m:math>
+          <m:mrow>
+            <m:mi>a</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>b</m:mi>
+          </m:mrow>
+        </m:math>
+        and 
+        <m:math>
+          <m:mrow>
+            <m:mi>b</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>c</m:mi>
+          </m:mrow>
+        </m:math>
+        then 
+        <inlineChoiceInteraction responseIdentifier="RESPONSE">
+          <inlineChoice identifier="choice1">
+            <m:math>
+              <m:mrow>
+                <m:mi>x</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>y</m:mi>
+              </m:mrow>
+            </m:math>
+          </inlineChoice>
+          <inlineChoice identifier="choice2">
+            <m:math>
+              <m:mrow>
+                <m:mi>a</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>c</m:mi>
+              </m:mrow>
+            </m:math>
+          </inlineChoice>
+          <inlineChoice identifier="choice3">
+            <m:math>
+              <m:mrow>
+                <m:mi>b</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>d</m:mi>
+              </m:mrow>
+            </m:math>
+          </inlineChoice>
+        </inlineChoiceInteraction>
+        .
+      </p>
+    </blockquote>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>
+

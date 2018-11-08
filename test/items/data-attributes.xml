@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="data_attributes"
+  title="Charting Data"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="directedPair">
+    <correctResponse>
+      <value>C1 circle</value>
+      <value>C1 circle</value>
+      <value>C1 circle</value>
+      <value>C2 triangle</value>
+      <value>C2 triangle</value>
+      <value>C3 star</value>
+      <value>C3 star</value>
+      <value>C3 star</value>
+      <value>C3 star</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <stylesheet href="data-attributes.css" type="text/css" />
+
+  <!-- 
+   This item uses data-* attributes to drive custom code (which is not
+   provided) to fill the gaps in a gapMatchInteraction.  Usually the task
+   is to match the gap fills with the gaps.  The idea in this item seems
+   to be that clicking on the gapTexts adds them immediately to the
+   corresponding gap, and the candidates' task in the interaction is to
+   show they can count by clicking each gap fill ("circle", "triangle",
+   and "star") the right number of times. This is a re-purposing of
+   gapMatchInteraction, and isn't how a gapMatchInteraction would
+   normally work.
+
+   We are excluding this item from the qti.js tests because
+   it is too non-conformant: 
+
+   (1) It seems to require that the gapMatchInteraction gaps be filled
+   by multiple instances of the gap fills. This conflicts with the spec,
+   which states "each gap can have at most one choice associated with
+   it". The spec also mentions that graphicGapMatchInteraction is
+   different from "simple" gapMatchInteraction because gGMI does allow
+   multiple fills per gap.  Special qti.js code would be required 
+   to allow multiple fills for this one item.
+
+   (2) The gaps have matchGroup attributes, a list of two identifiers,
+   "max-5" and "min-0". Yet there are no matchGroup attributes on the gap
+   fills.  The purpose of matchGroup is normally to restrict which fills
+   can go in which gaps: if a gap has matchGroups, then only fills with
+   one of those matchGroups can go into that gap. It seems that in
+   conjunction with the custom code the matchGroups on the gaps in this
+   item are serving a purpose similar to matchMax and matchMin, which
+   normally aren't valid on gaps (since matchMax=1 and matchMin=0 by
+   definition). Why this couldn't have been achieved by using more data-*
+   attributes isn't clear.  In any case, using matchGroup for this purpose
+   would require more special casing for just this one item.
+
+   There is nothing in the spec to state that data-* attributes on an
+   interaction turns off normal features of the interaction. qti.js,
+   like any delivery system, needs to treat a gapMatchInteraction as 
+   a gapMatchInteraction, notwithstanding any custom code which may be 
+   providing special behaviour guided by data-* attributes.  The mechanism 
+   provided  by the spec for custom interactions is ... customInteraction.
+  -->
+  
+  <itemBody>
+    <gapMatchInteraction responseIdentifier="RESPONSE" >
+      <prompt>
+        Jaiden and his friends made a chart of their favorite
+        shapes. There were 3 circles, 2 triangles and 4 stars. Click
+        the shapes to complete the chart below.
+      </prompt>
+
+      <gapText identifier="circle" matchMax="5" data-type="clickPop" data-target-container="C1">
+        <img src="images/redCircle.png" width="75" height="75" alt=""/>
+      </gapText>
+      <gapText identifier="triangle" matchMax="5" data-type="clickPop" data-target-container="C2">
+        <img src="images/greenTriangle.png" width="75" height="75" alt=""/>
+      </gapText>
+      <gapText identifier="star" matchMax="5" data-type="clickPop" data-target-container="C3">
+        <img src="images/blueStar.png" width="75" height="75" alt=""/>
+      </gapText>
+
+      <table class="chart">
+        <tbody>
+          <tr>
+            <th>Circles</th>
+            <td><gap identifier="C1" matchGroup="max-5 min-0"
+                     data-type="gridContainer" data-centerpoint="left" /></td>
+          </tr>
+          <tr>
+            <th>Triangles</th>
+            <td><gap identifier="C2" matchGroup="max-5 min-0"
+                     data-type="gridContainer" data-centerpoint="left" /></td>
+          </tr>
+          <tr>
+            <th>Stars</th>
+            <td><gap identifier="C3" matchGroup="max-5 min-0"
+                     data-type="gridContainer" data-centerpoint="left" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </gapMatchInteraction>
+  </itemBody>
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>
+

@@ -1,0 +1,74 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="I104047"
+  title="I104047"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>I104047_A3</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  <outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>100</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="1">
+      <prompt>
+        Which of the following is important in conducting survey
+        research?
+      </prompt>
+
+      <simpleChoice identifier="I104047_A1" fixed="true">
+        the dependent variable
+        <feedbackInline outcomeIdentifier="FEEDBACK" showHide="show" identifier="I104047_A1">
+          <span class="incorrect">Incorrect</span>
+        </feedbackInline>
+      </simpleChoice>
+
+      <simpleChoice identifier="I104047_A2" fixed="true">
+        ensuring random assignment
+        <feedbackInline outcomeIdentifier="FEEDBACK" showHide="show" identifier="I104047_A2">
+          <span class="incorrect">Incorrect</span>
+        </feedbackInline>
+      </simpleChoice>
+
+      <simpleChoice identifier="I104047_A3" fixed="true">
+        using a representative sample
+        <feedbackInline outcomeIdentifier="FEEDBACK" showHide="show" identifier="I104047_A3">
+          <span class="correct">Correct</span>
+        </feedbackInline>
+      </simpleChoice>
+
+      <simpleChoice identifier="I104047_A4" fixed="true">
+        a control group
+        <feedbackInline outcomeIdentifier="FEEDBACK" showHide="show" identifier="I104047_A4">
+          <span class="incorrect">Incorrect</span>
+        </feedbackInline>
+      </simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/CC2_match.xml"/>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="general">
+    This is some general feedback
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACKBASIC" showHide="show" identifier="correct">
+    Congratulations! you got it right.
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACKBASIC" showHide="show" identifier="incorrect">
+    I am sorry, that is not correct.
+  </modalFeedback>
+</assessmentItem>

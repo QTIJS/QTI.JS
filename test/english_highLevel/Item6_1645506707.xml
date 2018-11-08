@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+    xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+	identifier="Item6_1645506707"
+    title="Short Answer"
+    adaptive="false"
+    timeDependent="false">
+
+  <responseDeclaration
+      identifier="RESPONSE" cardinality="single" baseType="string"/>
+  <outcomeDeclaration
+      identifier="SCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>0.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration
+      identifier="MAXSCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>10.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+	<p>
+      Show three different ways in which the writer tries to arouse
+      the reader's interest in his topic.
+    </p>
+	<extendedTextInteraction responseIdentifier="RESPONSE"/>
+	</itemBody>
+</assessmentItem>

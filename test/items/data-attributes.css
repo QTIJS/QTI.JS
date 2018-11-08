@@ -1,0 +1,16 @@
+/* data-attributes.xml */
+/* Styles the table containing the circle/triangle/star "gaps" */
+
+table.chart {
+  border: solid 1px;
+  border-collapse: collapse;  
+}
+table.chart td, table.chart th {
+  width: 2em;
+  height: 3em;
+  padding: .5em;
+  border: solid 1px;
+}
+table.chart [data-qtijs-tag=gap] {
+  color: transparent;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="Item1_1792983784"
+  title="Short Answer"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>40.0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+    <p>
+      Everybody should be allowed to settle freely in the country of their
+      choice. Discuss.
+    </p>
+    <extendedTextInteraction responseIdentifier="RESPONSE" maxStrings="150"/>
+  </itemBody>
+</assessmentItem>

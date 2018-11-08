@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+  identifier="VF880367"
+  title="Wringing"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSEA" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>D</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <responseDeclaration identifier="RESPONSEB" cardinality="multiple" baseType="identifier">
+    <correctResponse>
+      <value>B</value>
+    </correctResponse>
+  </responseDeclaration>
+  
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>  
+
+  <assessmentStimulusRef identifier="freddy2" href="freddy_in_peril_pt2.xml" />
+  
+  <!-- EBSR -->
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSEA" maxChoices="1">
+      <prompt>
+        <h2>Part A</h2>
+        <p>
+          What does the word <strong>wringing</strong> mean as it is used in
+          paragraph 14 of the passage from Freddy in Peril, Part
+          2?
+        </p>
+      </prompt>
+
+      <simpleChoice identifier="A">A. wiping to make clean</simpleChoice>
+      <simpleChoice identifier="B">B. squeezing to make dry</simpleChoice>
+      <simpleChoice identifier="C">C. staring intently to cause fear</simpleChoice>
+      <simpleChoice identifier="D">D. rubbing together to relieve pain</simpleChoice>
+    </choiceInteraction>
+
+    <choiceInteraction responseIdentifier="RESPONSEB" maxChoices="1">
+      <prompt>
+        <h2>Part B</h2>
+        <p>
+          Which detail from the passage best helps the reader
+          understand the meaning of wringing in Part A?
+        </p>
+      </prompt>
+      
+      <simpleChoice identifier="A">A. “... I climbed down. ...” (paragraph 5)</simpleChoice>
+      <simpleChoice identifier="B">B. “I bit his paw. ...” (paragraph 13)</simpleChoice>
+      <simpleChoice identifier="C">C. “... the disgusting shampoo.” (paragraph 17)</simpleChoice>
+      <simpleChoice identifier="D">D. “... focused his ice-cold gaze ...” (paragraph 27)</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing template="match_ab_correct.xml"/>
+</assessmentItem>

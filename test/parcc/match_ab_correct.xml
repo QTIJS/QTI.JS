@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<responseProcessing xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2">
+  <setOutcomeValue identifier="SCORE">
+    <baseValue baseType="float">0</baseValue>
+  </setOutcomeValue>
+  <responseCondition>
+    <responseIf>
+      <match>
+        <variable identifier="RESPONSEA"/>
+        <correct identifier="RESPONSEA"/>
+      </match>
+      <setOutcomeValue identifier="SCORE">
+        <sum>
+          <baseValue baseType="float">1</baseValue>
+          <variable identifier="SCORE" />
+        </sum>
+      </setOutcomeValue>
+    </responseIf>
+  </responseCondition>
+  <responseCondition>
+    <responseIf>
+      <match>
+        <variable identifier="RESPONSEB"/>
+        <correct identifier="RESPONSEB"/>
+      </match>
+      <setOutcomeValue identifier="SCORE">
+        <sum>
+          <baseValue baseType="float">1</baseValue>
+          <variable identifier="SCORE" />
+        </sum>
+      </setOutcomeValue>
+    </responseIf>
+  </responseCondition>
+</responseProcessing>

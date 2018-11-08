@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 18px;
+      }
+      table {
+        border-collapse: collapse;
+        border: solid 1px black;
+      }
+      td, th {
+        padding: 1em;
+        text-align: left;
+        border: solid 1px black;
+      }
+      a, a:visited {
+        text-decoration: none;
+        font-weight: bold;          
+      }
+      h1 {
+        font-size: 18px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>QTI.JS Sample Tests</h1>
+    
+    <p>This site contains sample assessments, and is intended to
+      let you preview the QTI.JS Delivery Engine for IMS Question
+      & Test Interoperability. (QTI)</p>
+
+    <p>For best results, use a recent version of Google Chrome, since
+      other browsers have not been tested much, as of yet.</p>
+    
+    <table>
+      <tr>
+        <th>Test</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <th><a href="items">items (nonlinear)</a></th>
+        <td>Includes all the example items from the QTI v2.2
+          Implementation Guide, distributed by IMS, plus a few we
+          added. Sixty items in all.  Uses a "non-linear"
+          scrolling-based navigation mode.  Shows all interaction
+          types, templates, adaptive items, MathML support, rubrics,
+          all types of feedback, and many other QTI features.  Uses
+          the "qtijs" theme, which adds a few color and font tweaks to
+          the "basic" (default) theme.</td>
+      </tr>
+      <tr>
+        <th><a href="items?root=test.linear.individual.xml">items (linear)</a></th>
+        <td>The same items as above, but using a "linear" slideshow-style
+          navigation mode.</td>
+      </tr>
+      <tr>
+        <th><a href="BBQs3test">BBQs3test</th>
+        <td>Another IMS distributed test. Includes more MathML examples,
+          a variety of basic interaction and feedback types, and
+          custom response and outcome processing. Non-linear.</td>
+      </tr>
+      <tr>
+        <th><a href="saxony">saxony</th>
+        <td>The "Saxony Interaction Mix" distributed by IMS.
+          In German, it shows the most frequently used QTI interactions
+          according to the Saxony Department of Education, as well as
+          feedback and rubricBlocks. Non-linear.</td>
+      </tr>
+      <tr>
+        <th><a href="english_basicLevel">english_basicLevel</th>
+        <td>A test with questions in German for students of English.
+          Interesting mainly because it tests the selection and ordering
+          features of QTI. Non-linear.</td>
+      </tr>
+      <tr>
+        <th><a href="english_highLevel">english_highLevel</th>
+        <td>Another German test, this time for more advanced students
+          of English. Demonstrates the use of rubricBlocks to display
+          stimulus content. Non-linear.</td>
+      </tr>
+      <tr>
+        <th><a href="tao">tao</th>
+        <td>A test exported as a QTI content package from TAO, with
+          several of the out-of-the-box TAO sample items, simply
+          unzipped without any modification. Demonstrates
+          interoperability of TAO and QTI.JS, and support by QTI.JS
+          of the somewhat complex QTI content packaging structures
+          used by TAO. Shows the QTI.JS "basic" (default) theme without
+          any tweaks. Linear.</td>
+      </tr>
+      <tr>
+        <th><a href="ccQTIpackage">ccQTIpackage</a></th>
+        <td>The items distributed by IMS to show the features of a
+          minimalistic profile of QTI, containing multiple choice and
+          text-entry interactions, standard response processing
+          templates, and various types of feedback.  Non-linear
+          navigation.  Our QTI.JS demo adds a responsive theme, with
+          two columns, falling back to one column on narrow
+          devices.</td>
+      </tr>
+      <tr>
+        <th><a href="material">material</th>
+        <td>A test with a custom theme designed for mobile devices,
+          using Google's Material Design idioms. Demonstrates use of QTI
+          preConditions. Linear slideshow-style navigation.</td>
+      </tr>
+      <tr>
+        <th><a href="newsquiz">newsquiz</th>
+        <td>A QTI.JS implementation of a New York Times "News Quiz",
+          featuring a custom theme to emulate the original Times
+          styling and branding. Features endAttemptInteractions
+          and modalFeedback. Non-linear.</td>
+      </tr>
+      <tr>
+        <th><a href="parcc">parcc</th>
+        <td>One set of PARCC released items from 2017.  Features a
+          custom theme, which provides a PARCC identity and emulates
+          the navigation style of the Pearson TestNav8 practice tests
+          for PARCC: non-linear navigation, but slideshow-style. Shows
+          choiceInteraction, extendedTextInteraction, and
+          GapMatchInteraction.  Also demonstrates QTI.JS support of
+          multiple assessmentStimulus elements.</td>
+      </tr>
+    </table>
+  </body>
+</html>

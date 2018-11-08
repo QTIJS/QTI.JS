@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest identifier="ccQTIpackage" title="ccQTIpackage">
+  <outcomeDeclaration identifier="TF" cardinality="single" baseType="identifier" />
+  <outcomeDeclaration identifier="ALL_IDS" cardinality="multiple" baseType="identifier" />
+  <outcomeDeclaration identifier="ALL_RESPONSES" cardinality="multiple" baseType="string" />
+  <outcomeDeclaration identifier="ALL_SCORING" cardinality="multiple" baseType="string" />
+  <outcomeDeclaration identifier="ALL_SCORES" cardinality="multiple" baseType="float" />
+  <outcomeDeclaration identifier="SUM_SCORES" cardinality="single" baseType="float" />
+
+  <timeLimits maxTime="1200" allowLateSubmission="true"/>
+
+  <testPart identifier="testpart1" navigationMode="nonlinear" submissionMode="individual">
+    <itemSessionControl maxAttempts="2"/>
+    <assessmentSection identifier="section1" title="Section 1" visible="false">
+      <assessmentItemRef identifier="i1"  href="102010.xml"/>
+      <assessmentItemRef identifier="i2"  href="102011.xml"/>
+      <assessmentItemRef identifier="i3"  href="102012.xml"/>
+      <assessmentItemRef identifier="i4"  href="102013.xml"/>
+      <assessmentItemRef identifier="i5"  href="102015.xml"/>
+      <assessmentItemRef identifier="i6"  href="102016.xml">
+        <weight identifier="W1" value="25"/>
+        <variableMapping sourceIdentifier="response_1" targetIdentifier="RESPONSE" />
+      </assessmentItemRef>
+      <assessmentItemRef identifier="i7"  href="104045.xml"/>
+      <assessmentItemRef identifier="i8"  href="104047.xml"/>
+      <assessmentItemRef identifier="i9"  href="104048.xml"/>
+      <assessmentItemRef identifier="i10" href="104049.xml"/>
+      <assessmentItemRef identifier="i11" href="104051.xml"/>
+    </assessmentSection>
+  </testPart>
+
+  <outcomeProcessing>
+    <setOutcomeValue identifier="ALL_IDS">
+      <debugOperator name="itemIdentifiers" />
+    </setOutcomeValue>
+    <setOutcomeValue identifier="ALL_SCORES">
+      <testVariables variableIdentifier="SCORE"/>
+    </setOutcomeValue>
+    <setOutcomeValue identifier="SUM_SCORES">
+      <sum>
+        <variable identifier="ALL_SCORES"/>
+      </sum>
+    </setOutcomeValue>
+    <setOutcomeValue identifier="ALL_SCORING">
+      <debugOperator name="testAttributes" outcomeIdentifier="SCORE"
+                     attribute="externalScored" includeNulls="true"/>
+    </setOutcomeValue>
+    <setOutcomeValue identifier="ALL_RESPONSES">
+      <testVariables variableIdentifier="RESPONSE" includeNulls="true"/>
+    </setOutcomeValue>
+    <setOutcomeValue identifier="TF">
+      <baseValue baseType="identifier">true</baseValue>
+    </setOutcomeValue>
+  </outcomeProcessing>
+
+  <testFeedback outcomeIdentifier="TF" identifier="true" showHide="show" access="during">
+    <h3>Results</h3>
+    <table class="qtijs-pivotable" data-qtijs-pivot-target="results-table-body" >
+      <printedVariable identifier="ALL_IDS" data-qtijs-tag="tr" 
+                       data-qtijs-prefix="&lt;td&gt;identifier&lt;/td&gt;&lt;td&gt;"
+                       data-qtijs-suffix="&lt;/tr&gt;"
+                       data-qtijs-delimiter="&lt;/td&gt;&lt;td&gt;"/>
+      <printedVariable identifier="ALL_RESPONSES" data-qtijs-tag="tr" 
+                       data-qtijs-prefix="&lt;td&gt;RESPONSE&lt;/td&gt;&lt;td&gt;"
+                       data-qtijs-suffix="&lt;/tr&gt;"
+                       data-qtijs-delimiter="&lt;/td&gt;&lt;td&gt;"/>
+      <printedVariable identifier="ALL_SCORING" data-qtijs-tag="tr" 
+                       data-qtijs-prefix="&lt;td&gt;externalScored&lt;/td&gt;&lt;td&gt;"
+                       data-qtijs-suffix="&lt;/tr&gt;"
+                       data-qtijs-delimiter="&lt;/td&gt;&lt;td&gt;"/>
+      <printedVariable identifier="ALL_SCORES" data-qtijs-tag="tr"
+                       data-qtijs-prefix="&lt;td&gt;SCORE&lt;/td&gt;&lt;td&gt;"
+                       data-qtijs-suffix="&lt;/tr&gt;"
+                       data-qtijs-delimiter="&lt;/td&gt;&lt;td&gt;"
+                       />
+    </table>
+    <table id="results-table">
+      <tbody id="results-table-body"></tbody>
+      <tfoot>
+        <tr><th>Total</th><td></td><td></td><td><printedVariable identifier="SUM_SCORES"/></td></tr>
+      </tfoot>
+    </table>
+    <stylesheet href="theme/results-table.css" type="text/css" />
+  </testFeedback>
+</assessmentTest>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentSection xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  visible="true"
+  title="Basic Interactions"
+  identifier="section-basic">
+
+  <itemSessionControl maxAttempts="0" allowSkipping="true" allowReview="false" />
+  <assessmentItemRef identifier="i1"  href="choice.xml" />
+  <assessmentItemRef identifier="i2"  href="choice_multiple.xml" />
+  <assessmentItemRef identifier="i3"  href="order.xml" />
+  <assessmentItemRef identifier="i4"  href="associate.xml" />
+  <assessmentItemRef identifier="i5"  href="match.xml" />
+  <assessmentItemRef identifier="i6"  href="gap_match.xml" />
+  <assessmentItemRef identifier="i7"  href="inline_choice.xml" />
+  <assessmentItemRef identifier="i8"  href="text_entry.xml" />
+  <assessmentItemRef identifier="i9"  href="extended_text.xml" />
+  <assessmentItemRef identifier="i10" href="hottext.xml" />
+  <assessmentItemRef identifier="i11" href="slider.xml" />
+</assessmentSection> 

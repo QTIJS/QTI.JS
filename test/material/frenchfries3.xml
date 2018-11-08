@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="frenchfries1"
+  title="French Fries 1"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>false</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <templateDeclaration identifier="PROMPT"  cardinality="single" baseType="string">
+    <defaultValue>
+      <value>
+        French fries were actually invented in England, where they
+        are called "chips" and served with fried fish.
+      </value>
+    </defaultValue>
+  </templateDeclaration>
+
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE">
+      <prompt><printedVariable identifier="PROMPT"/></prompt>
+      <simpleChoice identifier="true">True</simpleChoice>
+      <simpleChoice identifier="false">False</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>

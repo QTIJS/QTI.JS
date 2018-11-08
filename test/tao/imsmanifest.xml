@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<manifest
+  xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/qti/qtiv2p2/qtiv2p2_imscpv1p2_v1p0.xsd"
+  identifier="QTI-TEST-MANIFEST-tao5b9d3d8473bc72-69398624">
+  <metadata>
+    <schema>QTIv2.2 Package</schema>
+    <schemaversion>1.0.0</schemaversion>
+  </metadata>
+  <organizations/>
+  <resources>
+    <resource identifier="i153609168936237" type="imsqti_item_xmlv2p2" href="items/i153609168936237/qti.xml">
+      <file href="items/i153609168936237/qti.xml"/>
+      <file href="items/i153609168936237/intro.png"/>
+      <file href="items/i153609168936237/style/custom/tao-user-styles.css"/>
+    </resource>
+    <resource identifier="i1536091689975240" type="imsqti_item_xmlv2p2" href="items/i1536091689975240/qti.xml">
+      <file href="items/i1536091689975240/qti.xml"/>
+      <file href="items/i1536091689975240/tao_logo_big.png"/>
+      <file href="items/i1536091689975240/education-schooling.jpg"/>
+      <file href="items/i1536091689975240/style/custom/tao-user-styles.css"/>
+    </resource>
+    <resource identifier="i153609169040443" type="imsqti_item_xmlv2p2" href="items/i153609169040443/qti.xml">
+      <file href="items/i153609169040443/qti.xml"/>
+      <file href="items/i153609169040443/numbers-sand.jpg"/>
+      <file href="items/i153609169040443/789-sand.jpg"/>
+      <file href="items/i153609169040443/456-sand.jpg"/>
+      <file href="items/i153609169040443/style/custom/tao-user-styles.css"/>
+    </resource>
+    <resource identifier="i1536091690906946" type="imsqti_item_xmlv2p2" href="items/i1536091690906946/qti.xml">
+      <file href="items/i1536091690906946/qti.xml"/>
+      <file href="items/i1536091690906946/1024px-Gustave_Courbet_033.jpg"/>
+      <file href="items/i1536091690906946/style/custom/tao-user-styles.css"/>
+    </resource>
+    <resource identifier="i1536091691462949" type="imsqti_item_xmlv2p2" href="items/i1536091691462949/qti.xml">
+      <file href="items/i1536091691462949/qti.xml"/>
+    </resource>
+    <resource identifier="i1536091691546652" type="imsqti_item_xmlv2p2" href="items/i1536091691546652/qti.xml">
+      <file href="items/i1536091691546652/qti.xml"/>
+      <file href="items/i1536091691546652/PicassoGuernica.jpg"/>
+      <file href="items/i1536091691546652/Les_Demoiselles_d'Avignon.jpg"/>
+    </resource>
+    <resource identifier="i1536091691235955" type="imsqti_item_xmlv2p2" href="items/i1536091691235955/qti.xml">
+      <file href="items/i1536091691235955/qti.xml"/>
+      <file href="items/i1536091691235955/Europe_satellite_globe.jpg"/>
+      <file href="items/i1536091691235955/style/custom/tao-user-styles.css"/>
+    </resource>
+    <resource identifier="i1536091692115258" type="imsqti_item_xmlv2p2" href="items/i1536091692115258/qti.xml">
+      <file href="items/i1536091692115258/qti.xml"/>
+      <file href="items/i1536091692115258/Map_of_USA_highlighting_states_with_no_income_tax.svg.png"/>
+      <file href="items/i1536091692115258/style/custom/tao-user-styles.css"/>
+    </resource>
+    <resource identifier="i1536091692849761" type="imsqti_item_xmlv2p2" href="items/i1536091692849761/qti.xml">
+      <file href="items/i1536091692849761/qti.xml"/>
+      <file href="items/i1536091692849761/700px-Europe_polar_stereographic_Caucasus_Urals_boundary.svg.png"/>
+    </resource>
+    <resource identifier="i153609168351" type="imsqti_item_xmlv2p2" href="items/i153609168351/qti.xml">
+      <file href="items/i153609168351/qti.xml"/>
+      <file href="items/i153609168351/img/earth.png"/>
+      <file href="items/i153609168351/img/moon.png"/>
+      <file href="items/i153609168351/img/jupiter.png"/>
+      <file href="items/i153609168351/img/ganymede.png"/>
+      <file href="items/i153609168351/img/neptune.png"/>
+      <file href="items/i153609168351/img/triton.png"/>
+    </resource>
+    <resource identifier="i153609168439674" type="imsqti_item_xmlv2p2" href="items/i153609168439674/qti.xml">
+      <file href="items/i153609168439674/qti.xml"/>
+      <file href="items/i153609168439674/img/map.jpg"/>
+    </resource>
+    <resource identifier="i153609168472257" type="imsqti_item_xmlv2p2" href="items/i153609168472257/qti.xml">
+      <file href="items/i153609168472257/qti.xml"/>
+    </resource>
+    <resource identifier="i153609168593110" type="imsqti_item_xmlv2p2" href="items/i153609168593110/qti.xml">
+      <file href="items/i153609168593110/qti.xml"/>
+    </resource>
+    <resource identifier="i1536091686326322" type="imsqti_item_xmlv2p2" href="items/i1536091686326322/qti.xml">
+      <file href="items/i1536091686326322/qti.xml"/>
+      <file href="items/i1536091686326322/style/custom/tao-user-styles.css"/>
+    </resource>
+    <resource identifier="i153609168654016" type="imsqti_item_xmlv2p2" href="items/i153609168654016/qti.xml">
+      <file href="items/i153609168654016/qti.xml"/>
+    </resource>
+    <resource identifier="i1536091688293434" type="imsqti_test_xmlv2p2" href="tests/i1536091688293434/tests/i14077455096477398/test.xml">
+      <file href="tests/i1536091688293434/tests/i14077455096477398/test.xml"/>
+      <dependency identifierref="i153609168936237"/>
+      <dependency identifierref="i1536091689975240"/>
+      <dependency identifierref="i153609169040443"/>
+      <dependency identifierref="i1536091690906946"/>
+      <dependency identifierref="i1536091691462949"/>
+      <dependency identifierref="i1536091691546652"/>
+      <dependency identifierref="i1536091691235955"/>
+      <dependency identifierref="i1536091692115258"/>
+      <dependency identifierref="i1536091692849761"/>
+      <dependency identifierref="i153609168351"/>
+      <dependency identifierref="i153609168439674"/>
+      <dependency identifierref="i153609168472257"/>
+      <dependency identifierref="i153609168593110"/>
+      <dependency identifierref="i1536091686326322"/>
+      <dependency identifierref="i153609168654016"/>
+    </resource>
+  </resources>
+</manifest>

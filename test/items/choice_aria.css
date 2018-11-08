@@ -1,0 +1,15 @@
+/* choice_aria.xml */
+/* styles the two column table and the image */
+table[role="presentation"] {
+  border: solid 1px;
+  margin: 1.5em;
+  border-collapse: collapse;
+}
+table[role="presentation"] td {  
+  border-collapse: collapse;
+  border: solid 1px;
+  padding: 3px;
+}
+img[aria-describedBy="imgdesc1"] {
+  max-width: calc(100% - 4px);
+}

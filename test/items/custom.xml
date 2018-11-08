@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="custom"
+  title="Don't Panic (Custom Interaction)"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="integer" />
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+  
+  <itemBody>
+    <customInteraction identifier="dont_panic" responseIdentifier="RESPONSE">
+      <prompt>
+        <p>Click the red button a few times, and relax.</p>
+      </prompt>
+      <img src="images/dont-panic.jpg" type="image/jpg" width="100" height="100"/>
+      <output id="dont_panic_click_count"></output>
+
+      <style>
+        output#dont_panic_click_count {
+          display:block;
+          background: red;
+          color: white;
+          padding: .3em;
+          margin: auto;
+          width: 2em;
+          text-align: center;
+          font-family: sans-serif;
+          font-weight: bold;
+       }
+       output#dont_panic_click_count:empty {
+         display: none;
+      }
+      </style>
+
+      <script>
+        QTI.CUSTOM_INTERACTIONS["dont_panic"] = {
+          setupInteraction: function(htmlElem, qtiElem) {
+            let count=0;
+            let button = htmlElem.querySelector("img");
+            let output = htmlElem.querySelector("output");
+            button.onclick = function(evt) {
+              output.innerHTML = ++count;
+              QTI.postResponseVariable(htmlElem, count);
+            }
+          }
+        };
+      </script>
+    </customInteraction>
+  </itemBody>
+
+  <responseProcessing>
+    <setOutcomeValue identifier="SCORE">
+      <variable identifier="RESPONSE"/>
+    </setOutcomeValue>
+  </responseProcessing>
+</assessmentItem>

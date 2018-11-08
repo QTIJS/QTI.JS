@@ -1,0 +1,47 @@
+/* format results table in testFeedback */
+table#results-table {
+  width:100%;
+  text-align: left;
+  background: white;
+  border-collapse: collapse;
+  border: solid 1px;
+  counter-reset: result;
+}
+table#results-table td, table#results-table th {
+  border-right: solid 1px;
+  padding: .1em;  
+}
+table#results-table tr:first-child {
+  border-bottom: solid 1px;
+  text-transform: capitalize;
+  font-weight:bold;
+  font-style: italic;
+}
+table#results-table td:first-child {
+  font-style: italic;
+  padding-left:1em;
+}
+table#results-table tr:nth-child(n+2) td:first-child:before {
+  display: inline-block;
+  counter-increment: result;  
+  content: counter(result);
+  width: 2em;
+  height: 2em;
+  box-sizing: border-box;
+  margin-right: .5em;
+  padding: .5em;
+  background: var(--qtijs-bluegreen-item-border-left);
+  color: white;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+}
+table#results-table td:nth-child(2){
+  text-align: left;
+}
+table#results-table th:nth-child(2) {
+  text-align: center;
+}
+table#results-table tbody {
+  border-bottom: solid 1px black;
+}

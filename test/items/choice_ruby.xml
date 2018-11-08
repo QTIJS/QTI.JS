@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="choice_ruby"
+  title="出身地"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>ChoiceHK</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="integer">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+    <p>村田<ruby><rb>真</rb><rt>まこと</rt></ruby>
+      の出身地はどこですか</p>  
+    <choiceInteraction
+      responseIdentifier="RESPONSE" shuffle="true">
+      <prompt>選びなさい</prompt>
+      <simpleChoice identifier="ChoiceHK">
+        <ruby><rb>北海 道</rb><rt>ほっかいどう</rt></ruby>
+      </simpleChoice>
+      <simpleChoice identifier="ChoiceTH">東北</simpleChoice>
+      <simpleChoice identifier="ChoiceHR">北陸</simpleChoice>
+      <simpleChoice identifier="ChoiceKT">関東</simpleChoice>
+      <simpleChoice identifier="ChoiceKST">甲信越</simpleChoice>
+      <simpleChoice identifier="ChoiceKK">近畿</simpleChoice>
+      <simpleChoice identifier="ChoiceKS">関西</simpleChoice>
+      <simpleChoice identifier="ChoiceSK">四国</simpleChoice>
+      <simpleChoice identifier="ChoiceTC">中国</simpleChoice>
+      <simpleChoice identifier="ChoiceKY">九州</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>

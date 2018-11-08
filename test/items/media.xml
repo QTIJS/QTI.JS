@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="media"
+  title="Bubble"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="integer" />
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float" />
+
+  <itemBody>
+    <mediaInteraction autostart="false" loop="true" responseIdentifier="RESPONSE">
+      <prompt>Play this video.</prompt>
+      <object type="video/mp4" data="images/bubble.mp4"/>
+    </mediaInteraction>
+  </itemBody>
+  
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest
+  identifier="LAT-Freddy_1_17_18"
+  title="PARCC Grade 5 Literary Analysis Task, 2017">
+  
+  <outcomeDeclaration identifier="TF" cardinality="single" baseType="identifier" />
+  <outcomeDeclaration identifier="STATUS" cardinality="single" baseType="string" >
+    <defaultValue>
+      <value>Questions answered: 0 of 7</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  
+  <testPart identifier="testpart1" navigationMode="nonlinear" submissionMode="simultaneous">
+    <itemSessionControl maxAttempts="0"/>
+    <assessmentSection identifier="section1" visible="false" title="All Questions">
+      <rubricBlock view="candidate">
+        <p>
+          <strong>
+            Today you will analyze a passage from
+            <em>Freddy in Peril,</em> Part 1 and a passage
+            from <em>Freddy in Peril,</em> Part 2.
+            As you read these texts, you will gather information and
+            answer questions about the influence of the narrator’s
+            point of view so you can write an essay.
+          </strong>
+        </p>
+      </rubricBlock>
+
+      <assessmentSection identifier="section1A" visible="false" title="Part 1 Questions">
+        <rubricBlock view="candidate">
+          <p>
+            Read the passage from <em>Freddy in Peril,</em> Part 1.
+            Then answer the questions.
+          </p>
+        </rubricBlock>
+        <assessmentItemRef identifier="VF880342" href="VF880342.xml"/>
+        <assessmentItemRef identifier="VF880346" href="VF880346.xml"/>
+        <assessmentItemRef identifier="VF880349" href="VF880349.xml"/>
+      </assessmentSection>
+
+      <assessmentSection identifier="section1B" visible="false" title="Part 2 Questions">
+        <rubricBlock view="candidate">
+          <p>
+            Read the passage from <em>Freddy in Peril,</em> Part 2.
+            Then answer the questions.
+          </p>
+        </rubricBlock>
+        <assessmentItemRef identifier="VF880351" href="VF880351.xml"/>
+        <assessmentItemRef identifier="VF880353" href="VF880353.xml"/>
+        <assessmentItemRef identifier="VF880367" href="VF880367.xml"/>
+      </assessmentSection>
+
+      <assessmentSection identifier="section1C" visible="false" title="Essay">
+        <assessmentItemRef identifier="VF882724" href="VF882724.xml"/>
+      </assessmentSection>
+    </assessmentSection>    
+  </testPart>
+
+  <testFeedback outcomeIdentifier="duringFeedback" showHide="hide" access="during" label="Status">
+    <printedVariable identifier="STATUS"/>
+  </testFeedback>
+
+  <testFeedback outcomeIdentifier="atEndFeedback" showHide="hide" access="atEnd">
+    <p>You have reached the end of the test.  You can still go back and change
+    answers or answer questions you skipped.</p>
+  </testFeedback>
+
+  <outcomeProcessing>
+    <setOutcomeValue identifier="STATUS">
+      <multiple>
+        <baseValue baseType="string"><strong>Responded: </strong></baseValue>
+        <numberResponded/>
+        <baseValue baseType="string"> of </baseValue>
+        <numberSelected/>
+        <baseValue baseType="string"><br/><strong>Presented: </strong></baseValue>
+        <numberPresented/>
+        <baseValue baseType="string"><br/><strong>Correct: </strong></baseValue>
+        <numberCorrect/>
+        <baseValue baseType="string"><br/><strong>Incorrect: </strong></baseValue>
+        <numberIncorrect/>
+      </multiple>
+    </setOutcomeValue>
+  </outcomeProcessing>
+</assessmentTest>

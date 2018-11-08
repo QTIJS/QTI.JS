@@ -1,0 +1,82 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<assessmentItem
+  xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="I102010"
+  title="I102010"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>true</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>100</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <assessmentStimulusRef identifier="102010-stimulus" href="102010-stimulus.xml" />
+  
+  <itemBody>
+    <choiceInteraction responseIdentifier="RESPONSE" shuffle="false" maxChoices="1">
+      <prompt>
+        <p>Sigmund Freud and Carl Jung both belong to the
+        <em>psychoanalytic</em> school of psychology.</p>
+      </prompt>
+
+      <simpleChoice identifier="true" fixed="true">
+        True
+        <feedbackInline outcomeIdentifier="FEEDBACK" identifier="true" showHide="show">
+          <span class="correct">Correct</span>
+        </feedbackInline>
+      </simpleChoice>
+
+      <simpleChoice identifier="false" fixed="true">
+        False 
+        <feedbackInline outcomeIdentifier="FEEDBACK" identifier="false" showHide="show">
+          <span class="incorrect">Incorrect</span>
+        </feedbackInline>
+      </simpleChoice>
+    </choiceInteraction>
+    
+    <infoControl title="Hint">
+      <p>Who was Carl Jung's teacher?</p>
+    </infoControl>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/CC2_match.xml"/>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="general" showHide="show">
+    <p>Psychoanalysis is a set of theories and therapeutic
+    techniques related to the study of the unconscious
+    mind, which together form a method of treatment for
+    mental-health disorders.</p>
+
+    <p>Freud first used the term <em>psychoanalysis</em>
+    in the 1890s and is considered the founder of the "school".
+    His students, such as Carl Jung and Alfred Adler, later
+    developed it in different directions but are also
+    considered to be adherents of the school.</p>
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="true" showHide="show">
+    <p>Yes, both Freud and Jung are members of the Psychoanalytic School.</p>
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" identifier="false" showHide="show">
+    <p>No, both Freud and Jung are members of the Psychoanalytic
+      School. Jung went in a different direction than Freud, his
+    teacher, but is regarded as an important member of the school.</p>
+  </modalFeedback>        
+</assessmentItem>

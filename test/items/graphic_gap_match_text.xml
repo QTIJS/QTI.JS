@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="graphic_gap_match_text"
+  title="Airport Tags Using Text"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="directedPair">
+    <correctResponse>
+      <value>GLA A</value>
+      <value>EDI B</value>
+      <value>MAN C</value>
+    </correctResponse>
+    <mapping lowerBound="0" defaultValue="-1">
+      <mapEntry mapKey="GLA A" mappedValue="1"/>
+      <mapEntry mapKey="EDI B" mappedValue="1"/>
+      <mapEntry mapKey="MAN C" mappedValue="1"/>
+    </mapping>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <itemBody>
+    <p>
+      The International Air Transport Association assigns
+      three-letter codes to identify airports worldwide. For example, London
+      Heathrow has code LHR.
+    </p>
+
+    <graphicGapMatchInteraction responseIdentifier="RESPONSE">
+      <prompt>
+        Some of the labels on the following diagram are missing: can
+        you identify the correct three-letter codes for the unlabelled
+        airports?
+      </prompt>
+
+      <object type="image/png" data="images/ukairtags.png"
+              width="206" height="280">x</object><br/>
+
+      <gapText identifier="CBG" matchMax="1">
+        <strong>CBG</strong>
+      </gapText>
+      <gapText identifier="EBG" matchMax="1">
+        <strong>EBG</strong>
+      </gapText>
+      <gapText identifier="EDI" matchMax="1">
+        <strong>EDI</strong>
+      </gapText>
+      <gapText identifier="GLA" matchMax="1">
+        <strong>GLA</strong>
+      </gapText>
+      <gapText identifier="MAN" matchMax="1">
+        <strong>MAN</strong>
+      </gapText>
+      <gapText identifier="MCH" matchMax="1">
+        <strong>MCH</strong>
+      </gapText>
+
+      <associableHotspot identifier="A" matchMax="1" shape="rect" coords="28,93,42,99"/>
+      <associableHotspot identifier="B" matchMax="1" shape="rect" coords="123,87,138,93"/>
+      <associableHotspot identifier="C" matchMax="1" shape="rect" coords="78,164,93,170"/>
+    </graphicGapMatchInteraction>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/map_response.xml"/>
+</assessmentItem>

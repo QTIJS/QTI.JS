@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was created using: Onyx Editor, Version 3.4 (Unregistered demo version), (c)2011 BPS Bildungsportal Sachsen GmbH-->
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2p2.xsd"
+	identifier="F_521041065" title="Welche Verbformen kennzeichnen das Present Perfect?"
+	adaptive="false" timeDependent="false">
+	<responseDeclaration identifier="RESPONSE_22812666" cardinality="multiple" baseType="identifier">
+		<correctResponse>
+			<value>choice_354031753</value>
+			<value>choice_1689439667</value>
+			<value>choice_901046833</value>
+		</correctResponse>
+	</responseDeclaration>
+	<outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+		<defaultValue>
+			<value>1.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier">
+		<defaultValue>
+			<value>empty</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<itemBody>
+		<div><b>Welche Verbformen kennzeichnen das Present Perfect?</b></div>
+		<choiceInteraction responseIdentifier="RESPONSE_22812666" shuffle="true" maxChoices="0">
+			<simpleChoice identifier="choice_1626655168">Infinitiv + -ed</simpleChoice>
+			<simpleChoice identifier="choice_1072192990">had + Infinitiv + -ed </simpleChoice>
+			<simpleChoice identifier="choice_376509775">had + past participle </simpleChoice>
+			<simpleChoice identifier="choice_354031753">has + past participle</simpleChoice>
+			<simpleChoice identifier="choice_1689439667">have + Infinitiv + -ed </simpleChoice>
+			<simpleChoice identifier="choice_901046833">have + past participle </simpleChoice>
+		</choiceInteraction>
+	</itemBody>
+	<responseProcessing>
+		<responseCondition>
+			<responseIf>
+				<isNull>
+					<variable identifier="RESPONSE_22812666"/>
+				</isNull>
+				<setOutcomeValue identifier="FEEDBACKBASIC">
+					<baseValue baseType="identifier">empty</baseValue>
+				</setOutcomeValue>
+			</responseIf>
+			<responseElseIf>
+				<match>
+					<variable identifier="RESPONSE_22812666"/>
+					<correct identifier="RESPONSE_22812666"/>
+				</match>
+				<setOutcomeValue identifier="SCORE">
+					<sum>
+						<variable identifier="SCORE"/>
+						<variable identifier="MAXSCORE"/>
+					</sum>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="FEEDBACKBASIC">
+					<baseValue baseType="identifier">correct</baseValue>
+				</setOutcomeValue>
+			</responseElseIf>
+			<responseElse>
+				<setOutcomeValue identifier="FEEDBACKBASIC">
+					<baseValue baseType="identifier">incorrect</baseValue>
+				</setOutcomeValue>
+			</responseElse>
+		</responseCondition>
+	</responseProcessing>
+</assessmentItem>

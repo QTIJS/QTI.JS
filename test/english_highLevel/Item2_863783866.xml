@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+	identifier="Item2_863783866"
+    adaptive="false"
+    title="Short Answer"
+    timeDependent="false">
+	<responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string"/>
+	<outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+	  <defaultValue>
+		<value>0.0</value>
+	  </defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+	  <defaultValue>
+		<value>40.0</value>
+	  </defaultValue>
+	</outcomeDeclaration>
+
+	<itemBody>
+	  <p>
+        "Variety is the spice of life." Discuss this proverb in terms
+        of cultural diversity.
+      </p>
+	  <extendedTextInteraction responseIdentifier="RESPONSE" maxStrings="150"/>
+	</itemBody>
+</assessmentItem>

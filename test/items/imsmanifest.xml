@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" identifier="examples_items">
+  <metadata>
+    <schema>QTIv2.2 Package</schema>
+    <schemaversion>1.0.0</schemaversion>
+  </metadata>
+
+  <organizations/>
+
+  <resources>
+    <!-- Assessment -->
+    <resource identifier="test1" type="imsqti_test_xmlv2p2" href="test.xml">
+      <file href="test.xml" />
+    </resource>
+    <resource identifier="section1" type="imsqti_section_xmlv2p2" href="section.xml">
+      <file href="section.xml" />
+    </resource>
+
+    <!-- Items -->
+    <resource identifier="adaptive_template" type="imsqti_item_xmlv2p2" href="adaptive_template.xml">
+      <file href="adaptive_template.xml"/>
+      <file href="images/red_door.png"/>
+      <file href="images/open_goat.png"/>
+      <file href="images/open_car.png"/>
+      <file href="images/green_door.png"/>
+      <file href="images/blue_door.png"/>
+      <file href="images/open_car.png"/>
+    </resource>
+    <resource identifier="adaptive" type="imsqti_item_xmlv2p2" href="adaptive.xml">
+      <file href="adaptive.xml"/>			
+      <file href="images/red_door.png"/>
+      <file href="images/open_goat.png"/>
+      <file href="images/open_car.png"/>
+      <file href="images/green_door.png"/>
+      <file href="images/blue_door.png"/>
+      <file href="images/open_car.png"/>
+    </resource>
+    <resource identifier="associate" type="imsqti_item_xmlv2p2" href="associate.xml">
+      <file href="associate.xml"/>
+    </resource>
+    <resource identifier="audio_video" type="imsqti_item_xmlv2p2" href="audio_video.xml">
+      <file href="audio_video.xml"/>
+    </resource>
+    <resource identifier="choice_aria" type="imsqti_item_xmlv2p2" href="choice_aria.xml">
+      <file href="choice_aria.xml"/>
+      <file href="images/survey.jpg"/>
+      <file href="choice_aria.css"/>
+    </resource>
+    <resource identifier="choice_fixed" type="imsqti_item_xmlv2p2" href="choice_fixed.xml">
+      <file href="choice_fixed.xml"/>
+      <file href="images/sign.png"/>
+    </resource>
+    <resource identifier="choice_multiple_chocolade" type="imsqti_item_xmlv2p2" href="choice_multiple_chocolade.xml">
+      <file href="choice_multiple_chocolade.xml"/>
+    </resource>
+    <resource identifier="choice_multiple_rtl" type="imsqti_item_xmlv2p2" href="choice_multiple_rtl.xml">
+      <file href="choice_multiple_rtl.xml"/>
+    </resource>
+    <resource identifier="choice_multiple" type="imsqti_item_xmlv2p2" href="choice_multiple.xml">
+      <file href="choice_multiple.xml"/>
+    </resource>
+    <resource identifier="choice_ruby" type="imsqti_item_xmlv2p2" href="choice_ruby.xml">
+      <file href="choice_ruby.xml"/>
+    </resource>
+    <resource identifier="choice" type="imsqti_item_xmlv2p2" href="choice.xml">
+      <file href="choice.xml"/>
+      <file href="images/sign.png"/>
+    </resource>
+    <resource identifier="data-attributes" type="imsqti_item_xmlv2p2" href="data-attributes.xml">
+      <file href="data-attributes.xml"/>
+      <file href="images/redCircle.png"/>
+      <file href="images/greenTriangle.png"/>
+      <file href="images/blueStar.png"/>
+    </resource>
+    <resource identifier="drawing" type="imsqti_item_xmlv2p2" href="drawing.xml">
+      <file href="drawing.xml"/>
+      <file href="images/house.png"/>
+    </resource>
+    <resource identifier="essay" type="imsqti_item_xmlv2p2" href="essay.xml">
+      <file href="essay.xml"/>
+    </resource>
+    <resource identifier="Example01-modalFeedback" type="imsqti_item_xmlv2p2" href="Example01-modalFeedback.xml">
+      <file href="Example01-modalFeedback.xml"/>
+    </resource>
+    <resource identifier="Example02-feedbackInline" type="imsqti_item_xmlv2p2" href="Example02-feedbackInline.xml">
+      <file href="Example02-feedbackInline.xml"/>
+    </resource>
+    <resource identifier="Example03-feedbackBlock-solution-random" type="imsqti_item_xmlv2p2" href="Example03-feedbackBlock-solution-random.xml">
+      <file href="Example03-feedbackBlock-solution-random.xml"/>
+    </resource>
+    <resource identifier="Example03-feedbackBlock-solution" type="imsqti_item_xmlv2p2" href="Example03-feedbackBlock-solution.xml">
+      <file href="Example03-feedbackBlock-solution.xml"/>
+    </resource>
+    <resource identifier="Example04-feedbackBlock-templateBlock" type="imsqti_item_xmlv2p2" href="Example04-feedbackBlock-templateBlock.xml">
+      <file href="Example04-feedbackBlock-templateBlock.xml"/>
+    </resource>
+    <resource identifier="Example05-feedbackBlock-adaptive" type="imsqti_item_xmlv2p2" href="Example05-feedbackBlock-adaptive.xml">
+      <file href="Example05-feedbackBlock-adaptive.xml"/>
+    </resource>
+    <resource identifier="extended_text_rubric" type="imsqti_item_xmlv2p2" href="extended_text_rubric.xml">
+      <file href="extended_text_rubric.xml"/>
+      <file href="images/postcard.png"/>
+    </resource>
+    <resource identifier="extended_text" type="imsqti_item_xmlv2p2" href="extended_text.xml">
+      <file href="extended_text.xml"/>
+      <file href="images/postcard.png"/>
+    </resource>
+    <resource identifier="feedback_adaptive" type="imsqti_item_xmlv2p2" href="feedback_adaptive.xml">
+      <file href="feedback_adaptive.xml"/>
+    </resource>
+    <resource identifier="figures" type="imsqti_item_xmlv2p2" href="figures.xml">
+      <file href="figures.xml"/>
+      <file href="images/castle.jpg"/>
+    </resource>
+    <resource identifier="gap_match" type="imsqti_item_xmlv2p2" href="gap_match.xml">
+      <file href="gap_match.xml"/>
+    </resource>
+    <resource identifier="graphic_associate" type="imsqti_item_xmlv2p2" href="graphic_associate.xml">
+      <file href="graphic_associate.xml"/>
+      <file href="images/ukair.png"/>
+    </resource>
+    <resource identifier="graphic_gap_match_text" type="imsqti_item_xmlv2p2" href="graphic_gap_match_text.xml">
+      <file href="graphic_gap_match_text.xml"/>
+      <file href="images/ukairtags.png"/>
+    </resource>
+    <resource identifier="graphic_gap_match" type="imsqti_item_xmlv2p2" href="graphic_gap_match.xml">
+      <file href="graphic_gap_match.xml"/>
+      <file href="images/CBG.png"/>
+      <file href="images/EBG.png"/>
+      <file href="images/EDI.png"/>
+      <file href="images/GLA.png"/>
+      <file href="images/MAN.png"/>
+      <file href="images/MCH.png"/>
+      <file href="images/ukairtags.png"/>
+    </resource>
+    <resource identifier="graphic_order" type="imsqti_item_xmlv2p2" href="graphic_order.xml">
+      <file href="graphic_order.xml"/>
+      <file href="images/ukair.png"/>
+    </resource>
+    <resource identifier="hint" type="imsqti_item_xmlv2p2" href="hint.xml">
+      <file href="hint.xml"/>
+    </resource>
+    <resource identifier="hotspot" type="imsqti_item_xmlv2p2" href="hotspot.xml">
+      <file href="hotspot.xml"/>
+      <file href="images/ukair.png"/>
+    </resource>
+    <resource identifier="hottext" type="imsqti_item_xmlv2p2" href="hottext.xml">
+      <file href="hottext.xml"/>
+    </resource>
+    <resource identifier="inline_choice_math" type="imsqti_item_xmlv2p2" href="inline_choice_math.xml">
+      <file href="inline_choice_math.xml"/>
+    </resource>
+    <resource identifier="inline_choice" type="imsqti_item_xmlv2p2" href="inline_choice.xml">
+      <file href="inline_choice.xml"/>
+    </resource>
+    <resource identifier="likert" type="imsqti_item_xmlv2p2" href="likert.xml">
+      <file href="likert.xml"/>
+      <file href="likert.css"/>
+    </resource>
+    <resource identifier="match" type="imsqti_item_xmlv2p2" href="match.xml">
+      <file href="match.xml"/>
+    </resource>
+    <resource identifier="math" type="imsqti_item_xmlv2p2" href="math.xml">
+      <file href="math.xml"/>
+    </resource>
+    <resource identifier="mc_calc3" type="imsqti_item_xmlv2p2" href="mc_calc3.xml">
+      <file href="mc_calc3.xml"/>
+    </resource>
+    <resource identifier="mc_calc5" type="imsqti_item_xmlv2p2" href="mc_calc5.xml">
+      <file href="mc_calc5.xml"/>
+    </resource>
+    <resource identifier="mc_stat2" type="imsqti_item_xmlv2p2" href="mc_stat2.xml">
+      <file href="mc_stat2.xml"/>
+    </resource>
+    <resource identifier="media_coords" type="imsqti_item_xmlv2p2" href="media_coords.xml">
+      <file href="media_coords.xml"/>
+      <file href="images/tree.mp3"/>
+      <file href="images/tree.ogg"/>
+      <file href="images/tree.jpg"/>
+      <file href="images/squirrel.png"/>
+    </resource>
+    <resource identifier="multi-input" type="imsqti_item_xmlv2p2" href="multi-input.xml">
+      <file href="multi-input.xml"/>
+    </resource>
+    <resource identifier="nested_object" type="imsqti_item_xmlv2p2" href="nested_object.xml">
+      <file href="nested_object.xml"/>
+      <file href="images/postcard.eps"/>
+      <file href="images/postcard.png"/>
+    </resource>
+    <resource identifier="order_partial_scoring" type="imsqti_item_xmlv2p2" href="order_partial_scoring.xml">
+      <file href="order_partial_scoring.xml"/>
+    </resource>
+    <resource identifier="order_rtl" type="imsqti_item_xmlv2p2" href="order_rtl.xml">
+      <file href="order_rtl.xml"/>
+    </resource>
+    <resource identifier="order" type="imsqti_item_xmlv2p2" href="order.xml">
+      <file href="order.xml"/>
+    </resource>
+    <resource identifier="orkney1" type="imsqti_item_xmlv2p2" href="orkney1.xml">
+      <file href="orkney1.xml"/>
+      <file href="shared/orkney.css"/>
+      <file href="shared/orkney.html"/>
+    </resource>
+    <resource identifier="orkney2" type="imsqti_item_xmlv2p2" href="orkney2.xml">
+      <file href="orkney2.xml"/>
+      <file href="shared/orkney.css"/>
+      <file href="shared/orkney.html"/>
+    </resource>
+    <resource identifier="position_object" type="imsqti_item_xmlv2p2" href="position_object.xml">
+      <file href="position_object.xml"/>
+      <file href="images/uk.png"/>
+      <file href="images/airplane.png"/>
+    </resource>
+    <resource identifier="select_point" type="imsqti_item_xmlv2p2" href="select_point.xml">
+      <file href="select_point.xml"/>
+      <file href="images/uk.png"/>
+    </resource>
+    <resource identifier="slider" type="imsqti_item_xmlv2p2" href="slider.xml">
+      <file href="slider.xml"/>
+    </resource>
+    <resource identifier="svg" type="imsqti_item_xmlv2p2" href="svg.xml">
+      <file href="svg.xml"/>
+      <file href="images/rectangle.svg"/>
+    </resource>
+    <resource identifier="template_image" type="imsqti_item_xmlv2p2" href="template_image.xml">
+      <file href="template_image.xml"/>
+      <file href="images/plane.png"/>
+      <file href="images/train.png"/>
+      <file href="images/bus.png"/>
+    </resource>
+    <resource identifier="template" type="imsqti_item_xmlv2p2" href="template.xml">
+      <file href="template.xml"/>
+    </resource>
+    <resource identifier="text_entry" type="imsqti_item_xmlv2p2" href="text_entry.xml">
+      <file href="text_entry.xml"/>
+    </resource>
+    <resource identifier="upload_composite" type="imsqti_item_xmlv2p2" href="upload_composite.xml">
+      <file href="upload_composite.xml"/>
+    </resource>
+    <resource identifier="upload" type="imsqti_item_xmlv2p2" href="upload.xml">
+      <file href="upload.xml"/>
+    </resource>
+  </resources>
+</manifest>

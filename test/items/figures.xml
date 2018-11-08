@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="figures"
+  title="Castles"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>ChoiceA</value>
+    </correctResponse>
+  </responseDeclaration>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+    <div>
+      <figure>
+        <img src="images/castle.jpg" alt="A castle" height="250" width="200"/>
+        <figcaption>Figure 1: A beautiful castle.</figcaption>
+      </figure>
+    </div>
+    <choiceInteraction responseIdentifier="RESPONSE" shuffle="true">
+      <prompt>What is the name of the castle above?</prompt>
+      <simpleChoice identifier="ChoiceA">Neuschwanstein Castle</simpleChoice>
+      <simpleChoice identifier="ChoiceB">Fortress of Knights</simpleChoice>
+      <simpleChoice identifier="ChoiceC">Edinburgh Castle</simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>

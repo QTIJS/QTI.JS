@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest identifier="IGUIDE_EXAMPLES_TEST"
+  title="Implementation Guide Examples"
+  class="debug" >
+
+  <testPart identifier="testpart1" navigationMode="linear" submissionMode="individual">
+    <timeLimits maxTime="7200" allowLateSubmission="true" />
+    <assessmentSectionRef identifier="section" href="section.xml" />
+  </testPart>
+
+  <testFeedback access="atEnd">
+    <em>Congratulations, you have reached the end of the test.</em>
+  </testFeedback>
+</assessmentTest>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p2 http://www.imsglobal.org/xsd/qti/qtiv2p2/imsqti_v2p2.xsd" identifier="i14075046665841385" title="Baudelaire" label="Baudelaire" xml:lang="en-US" adaptive="false" timeDependent="false" toolName="TAO" toolVersion="3.2.0-RC2">
+  <responseDeclaration identifier="RESPONSE" cardinality="multiple" baseType="directedPair"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float" normalMaximum="0"/>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+  <stylesheet href="style/custom/tao-user-styles.css" type="text/css" media="all" title=""/>
+  <itemBody>
+    <div class="grid-row">
+      <div class="col-12">
+        <h2>Do you know the french poet Charles Baudelaire ?</h2>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="col-6">
+        <gapMatchInteraction responseIdentifier="RESPONSE" shuffle="false">
+          <prompt> QTI Gap Match is very useful for language proficiency or for memory test</prompt>
+          <gapText identifier="choice_2" fixed="false" matchMax="1" matchMin="0">paresse</gapText>
+          <gapText identifier="choice_1" fixed="false" matchMax="1" matchMin="0">chasseresse</gapText>
+          <gapText identifier="choice_3" fixed="false" matchMax="1" matchMin="0">Loire</gapText>
+          <gapText identifier="choice_4" fixed="false" matchMax="1" matchMin="0">sonnets</gapText>
+          <gapText identifier="choice_5" fixed="false" matchMax="1" matchMin="0">gloire</gapText>
+          <p>  Au pays parfumé que le soleil caresse,<br/>
+  J’ai connu, sous un dais d’arbres tout empourprés<br/>
+  Et de palmiers d’où pleut sur les yeux la 
+
+<gap identifier="gap_1" fixed="false" required="false"/>
+
+
+
+
+
+ ,<br/>
+  Une dame créole aux charmes ignorés.</p>
+          <p>  Son teint est pâle et chaud; la brune enchanteresse<br/>
+  A dans le cou des airs noblement maniérés;<br/>
+  Grande et svelte en marchant comme une 
+
+<gap identifier="gap_2" fixed="false" required="false"/>
+
+
+
+
+
+,<br/>
+  Son sourire est tranquille et ses yeux assurés.</p>
+          <p>  Si vous alliez, Madame, au vrai pays de 
+
+<gap identifier="gap_5" fixed="false" required="false"/>
+
+
+
+
+
+,<br/>
+  Sur les bords de la Seine ou de la verte 
+
+<gap identifier="gap_3" fixed="false" required="false"/>
+
+
+
+
+
+,<br/>
+  Belle digne d’orner les antiques manoirs,</p>
+          <p>  Vous feriez, à l’abri des ombreuses retraites<br/>
+  Germer mille 
+
+<gap identifier="gap_4" fixed="false" required="false"/>
+
+
+
+
+
+ dans le coeur des poètes,<br/>
+  Que vos grands yeux rendraient plus soumis que vos noirs.</p>
+        </gapMatchInteraction>
+      </div>
+      <div class="col-6">
+        <img src="1024px-Gustave_Courbet_033.jpg" alt="1024px Gustave_Courbet_033" width="360" height="300"/>
+      </div>
+    </div>
+  </itemBody>
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct"/>
+</assessmentItem>

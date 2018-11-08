@@ -1,0 +1,13 @@
+.twocols  object {
+  width: 95%;
+  height: 500px;
+  margin: .25em;
+  padding: .25em;
+  border: solid 1px #AAA;
+}
+.twocols {
+  columns: 2;
+}
+.leftpane {
+  -webkit-column-break-after: always;
+}

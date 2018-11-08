@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="audio_video"
+  title="Gravity"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="identifier">
+    <correctResponse>
+      <value>choice5</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>0</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+    <p>Watch the video and answer the question below.</p>
+
+    <mediaInteraction>
+      <object width="427" height="240" data="https://www.youtube.com/watch?v=q8yXgM4a02E"
+              type="video/youtube" allow="encrypted-media"/>
+    </mediaInteraction>
+
+    <choiceInteraction shuffle="true" responseIdentifier="RESPONSE" maxChoices="1">
+      <prompt>
+        What was this video?
+      </prompt>
+      <simpleChoice identifier="choice1">
+        A slow motion video of falling fruit.
+      </simpleChoice>
+      <simpleChoice identifier="choice2">
+        A cooking video.
+      </simpleChoice>
+      <simpleChoice identifier="choice3">
+        An advertisement for a Manhattan apartment.
+      </simpleChoice>
+      <simpleChoice identifier="choice4">
+        A computer graphics animation illustrating gravity.
+      </simpleChoice>
+      <simpleChoice identifier="choice5">
+        An advertisement for Silestone kitchen stoves.
+      </simpleChoice>
+    </choiceInteraction>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml"/>
+</assessmentItem>

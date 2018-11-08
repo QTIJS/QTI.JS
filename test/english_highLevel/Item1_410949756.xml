@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem
+    xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+    identifier="Item1_410949756"
+    title="Translation"
+    adaptive="false"
+    timeDependent="false">
+
+  <responseDeclaration
+      identifier="RESPONSE" cardinality="single" baseType="string" />
+  <outcomeDeclaration
+      identifier="SCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>0.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+	<defaultValue>
+	  <value>40.0</value>
+	</defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+	<p>
+      <b>Translate the following text into German:</b>
+    </p>
+
+    <blockquote>
+	<p>
+      Europe is no longer the United States´ chief supplier of
+      immigrants. The lead passed to Asia and Latin America in the 1960s,
+      and by the next decade their arrivals were outnumbering those from the
+      Old World by four to one.  Nationwide they still comprise a small
+      minority, yet they also have changed the ethic mix of a half-dozen and
+      more major metropolitan centers.  Although an extreme case, Greater
+      Los Angeles exemplifies the forces at work.  Ist Hispanic presence has
+      increased threefold and ist Asian ten- fold over the last twenty-five
+      years.
+    </p>
+    
+	<p>
+      More immigrants, and more different kinds of immigrants, have
+      entered the United States than any other country in modern history.
+      The conditions that led them to leave their homelands varied:
+      overpopulation, contracting economic opportunities, famine, war,
+      religious persecution, political oppression.  Whatever the push that
+      set them in motion, the pull that lured them to America was the
+      promise of a fresh start.  Much the same reasons explain why newcomers
+      are still coming, close to four million in the last decade, not
+      counting an unknown but doubtlessly large number of illegal
+      entrants<sup>1</sup>.
+    </p>
+    </blockquote>
+    
+	<p>
+      From:  Arthur Mann,  "From Immigration to Acculturation",  in
+	  Luther S. Luedtke (ed), <em>Making America</em>, 1992
+    </p>
+
+	<p>
+	  <sup>1</sup> entrants: here: people entering a country
+    </p>
+	<extendedTextInteraction responseIdentifier="RESPONSE" />
+  </itemBody>
+</assessmentItem>

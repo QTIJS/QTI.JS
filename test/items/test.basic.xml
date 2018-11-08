@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentTest identifier="IGUIDE_EXAMPLES_TEST"
+  title="Implementation Guide Examples"
+  class="debug" >
+
+  <outcomeDeclaration identifier="TF" cardinality="single" baseType="identifier" />
+
+  <testPart identifier="testpart1" navigationMode="linear" submissionMode="individual">
+    <timeLimits maxTime="7200" allowLateSubmission="true" />
+    <assessmentSectionRef identifier="section" href="section.basic.xml" />
+  </testPart>
+
+  <testFeedback outcomeIdentifier="TF" showHide="hide" access="atEnd">
+    <em>Congratulations, you have reached the end of the test.
+    Your results have been submitted.</em>
+  </testFeedback>
+
+  <testFeedback outcomeIdentifier="TF" showHide="hide" access="atEnd">
+    <em>This is a second testFeedback block</em>
+  </testFeedback>
+</assessmentTest>

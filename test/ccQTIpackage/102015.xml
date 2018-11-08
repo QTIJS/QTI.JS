@@ -1,0 +1,48 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="I102015"
+  title="I102015"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="string">
+    <mapping defaultValue="0">
+      <mapEntry mapKey="hierarchy of needs" mappedValue="100" caseSensitive="false"/>
+    </mapping>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="FEEDBACK" cardinality="single" baseType="identifier"/>
+  <outcomeDeclaration identifier="FEEDBACKBASIC" cardinality="single" baseType="identifier"/>
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <outcomeDeclaration identifier="MAXSCORE" cardinality="single" baseType="float">
+    <defaultValue>
+      <value>100</value>
+    </defaultValue>
+  </outcomeDeclaration>
+
+  <itemBody>
+    <p>
+      Maslow's <textEntryInteraction responseIdentifier="RESPONSE" expectedLength="30"/>
+      theory states that as humans meet basic
+      needs, they seek to satisfy successively higher needs.
+    </p>
+    <infoControl title="Hint">
+      This is a hint
+    </infoControl>
+  </itemBody>
+
+  <responseProcessing template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/CC2_map_response.xml" />
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="general">
+    general feedback
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="incorrect">
+    incorrect
+  </modalFeedback>
+
+  <modalFeedback outcomeIdentifier="FEEDBACK" showHide="show" identifier="correct">
+    correct
+  </modalFeedback>
+</assessmentItem>

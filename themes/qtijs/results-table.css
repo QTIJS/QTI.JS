@@ -1,0 +1,33 @@
+/* test.nonlinear.individual.xml results table */
+table#results-table {
+  width:100%;
+  text-align: left;
+  background: white;
+  border-collapse: collapse;
+  border: solid 1px;
+  counter-reset: result;
+}
+table#results-table td, table.results-table th {
+  border-right: solid 1px;
+  padding: .1em;  
+}
+table#results-table tr:first-child {
+  border-bottom: solid 1px;
+  text-transform: capitalize;
+  font-weight:bold;
+  font-style: italic;
+}
+table#results-table td:first-child {
+  font-style: italic;
+  padding-left:1em;
+}
+table#results-table tr:nth-child(n+2) td:first-child:before {
+  display: inline-block;
+  counter-increment: result;  
+  content: counter(result) ". ";
+  white-space: pre;
+}
+table#results-table td:nth-child(2),
+table#results-table th:nth-child(2) {
+  text-align: center;
+}
