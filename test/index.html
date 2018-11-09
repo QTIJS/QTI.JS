@@ -8,6 +8,13 @@
         font-family: sans-serif;
         font-size: 18px;
       }
+      body::before {
+        content: '';
+        display: block;
+        height: 6em;
+        background: #116ea6 url(images/qtijs-logo.svg) no-repeat 1em 1em / 6em;
+        margin-bottom: 2em;
+      }          
       table {
         border-collapse: collapse;
         border: solid 1px black;
@@ -30,13 +37,47 @@
 
   <body>
     <h1>QTI.JS Sample Tests</h1>
-    
-    <p>This site contains sample assessments, and is intended to
-      let you preview the QTI.JS Delivery Engine for IMS Question
-      & Test Interoperability. (QTI)</p>
 
-    <p>For best results, use a recent version of Google Chrome, since
-      other browsers have not been tested much, as of yet.</p>
+    <p>QTI.JS is a Javascript-based, free and open-source, delivery
+      engine for tests and assessments, which almost fully implements Version
+      2.2 of the IMS Question & Test Interoperability (QTI)
+      <a href="https://www.imsglobal.org/question/index.html">
+        specification.</a></p>
+
+    <p>Quoting IMS, "QTI enables the exchange of item (question) and
+      test content and results data between authoring tools, test
+      construction tools, learning platforms, assessment delivery
+      systems, and scoring/analytics engines."  First released in
+      1999, QTI has become the primary standard for interoperable
+      assessment content within the education technology world, and is
+      supported by most popular Learning Management platforms,
+      Assessment and Question Authoring tools, and Assessment Delivery
+      Systems.</p>
+
+    <p>QTI.JS supports all 21 QTI question types, all processing
+      operators, templates, adaptive items, all feedback types,
+      rubrics, shared assessment stimulus blocks, conditional
+      questions, branching, selection and ordering, linear and
+      non-linear tests, individual and simultaneous submission,
+      results reporting, MathML and many other QTI Version 2.2
+      features.  It is serverless, requires no configuration, and is
+      fully themable. It is likely the most complete implementation of
+      QTI Version 2.2 delivery features yet to be released.</p>
+
+    <p>QTI.JS is currently in preview/beta release, and is aiming for
+      production release and certification by IMS in early 2019. The
+      source code of QTI.JS has been released on
+      <a href="https://github.com/QTIJS/QTI.JS">GitHub</a> under an
+      MIT license.</p>
+    
+    <p>This site provides sample QTI assessment tests delivered
+      by QTI.JS.  This site is entirely static, running from an Amazon
+      S3 bucket, underscoring that QTI.JS provides serverless delivery of
+      QTI content.</p>
+    
+    <p>For best results, use a recent version of Google
+      Chrome, since other browsers have not yet received much
+      attention.</p>
     
     <table>
       <tr>
@@ -45,29 +86,31 @@
       </tr>
       <tr>
         <th><a href="items">items (nonlinear)</a></th>
-        <td>Includes all the example items from the QTI v2.2
-          Implementation Guide, distributed by IMS, plus a few we
-          added. Sixty items in all.  Uses a "non-linear"
-          scrolling-based navigation mode.  Shows all interaction
-          types, templates, adaptive items, MathML support, rubrics,
-          all types of feedback, and many other QTI features.  Uses
-          the "qtijs" theme, which adds a few color and font tweaks to
-          the "basic" (default) theme.</td>
+        <td>Includes all the example QTI assessment items from the
+          <a href="http://www.imsglobal.org/question/qtiv2p2/imsqti_v2p2_impl.html">
+          <em>IMS QTI Implementation Guide Version 2.2</em></a>, plus
+          a few we added. Sixty items in all, which show all 21 QTI
+          interaction types, templates, adaptive items, composite
+          items, MathML support, rubrics, all types of feedback, and
+          many other QTI features.  Uses the "qtijs" theme, which adds
+          the QTI.JS logo and a few other tweaks to the "basic" (default)
+          theme. "Non-linear" scrolling-based navigation.  </td>
       </tr>
       <tr>
-        <th><a href="items?root=test.linear.individual.xml">items (linear)</a></th>
+        <th><a href="items/?root=test.linear.individual.xml">items (linear)</a></th>
         <td>The same items as above, but using a "linear" slideshow-style
-          navigation mode.</td>
+          navigation.</td>
       </tr>
       <tr>
         <th><a href="BBQs3test">BBQs3test</th>
-        <td>Another IMS distributed test. Includes more MathML examples,
-          a variety of basic interaction and feedback types, and
-          custom response and outcome processing. Non-linear.</td>
+        <td>Another IMS-distributed QTI assessment. Includes more
+          MathML examples, a variety of basic interaction and feedback
+          types, and custom response and outcome
+          processing. Non-linear.</td>
       </tr>
       <tr>
         <th><a href="saxony">saxony</th>
-        <td>The "Saxony Interaction Mix" distributed by IMS.
+        <td>The "Saxony Interaction Mix" test distributed by IMS.
           In German, it shows the most frequently used QTI interactions
           according to the Saxony Department of Education, as well as
           feedback and rubricBlocks. Non-linear.</td>
@@ -75,7 +118,7 @@
       <tr>
         <th><a href="english_basicLevel">english_basicLevel</th>
         <td>A test with questions in German for students of English.
-          Interesting mainly because it tests the selection and ordering
+          Interesting mainly because it tests the item selection and ordering
           features of QTI. Non-linear.</td>
       </tr>
       <tr>
@@ -87,7 +130,7 @@
       <tr>
         <th><a href="tao">tao</th>
         <td>A test exported as a QTI content package from TAO, with
-          several of the out-of-the-box TAO sample items, simply
+          fifteen of the out-of-the-box TAO sample items, simply
           unzipped without any modification. Demonstrates
           interoperability of TAO and QTI.JS, and support by QTI.JS
           of the somewhat complex QTI content packaging structures
@@ -96,36 +139,49 @@
       </tr>
       <tr>
         <th><a href="ccQTIpackage">ccQTIpackage</a></th>
-        <td>The items distributed by IMS to show the features of a
-          minimalistic profile of QTI, containing multiple choice and
-          text-entry interactions, standard response processing
-          templates, and various types of feedback.  Non-linear
-          navigation.  Our QTI.JS demo adds a responsive theme, with
-          two columns, falling back to one column on narrow
-          devices.</td>
-      </tr>
-      <tr>
-        <th><a href="material">material</th>
-        <td>A test with a custom theme designed for mobile devices,
-          using Google's Material Design idioms. Demonstrates use of QTI
-          preConditions. Linear slideshow-style navigation.</td>
+        <td>Items distributed by IMS to show a minimalistic profile of
+          QTI, containing multiple choice and text-entry interactions,
+          standard response processing templates, and inline and modal
+          feedback. The QTI.JS take on this package adds a custom
+          QTI.JS theme, responsive with two columns, falling back to
+          one column on narrow devices. Non-linear.</td>
       </tr>
       <tr>
         <th><a href="newsquiz">newsquiz</th>
-        <td>A QTI.JS implementation of a New York Times "News Quiz",
+        <td>A QTI implementation of a New York Times "News Quiz",
           featuring a custom theme to emulate the original Times
-          styling and branding. Features endAttemptInteractions
-          and modalFeedback. Non-linear.</td>
+          style and branding. Features multiple endAttemptInteractions
+          per item, and modalFeedback. Non-linear.</td>
+      </tr>
+      <tr>
+        <th><a href="material">material</th>
+        <td>A QTI test with a custom QTI.JS theme designed for mobile
+          devices, featuring Google's Material Design. Shows QTI
+          preConditions, selection/ordering and custom styling of
+          choiceInteractions. This example uses a qti.local.js script
+          to help with some of the Material Design
+          animations. Linear.</td>
       </tr>
       <tr>
         <th><a href="parcc">parcc</th>
-        <td>One set of PARCC released items from 2017.  Features a
-          custom theme, which provides a PARCC identity and emulates
-          the navigation style of the Pearson TestNav8 practice tests
-          for PARCC: non-linear navigation, but slideshow-style. Shows
-          choiceInteraction, extendedTextInteraction, and
-          GapMatchInteraction.  Also demonstrates QTI.JS support of
-          multiple assessmentStimulus elements.</td>
+        <td>A QTI test with a set of 2017 Released Items from PARCC;
+          specifically,
+          the <a href="https://parcc-assessment.org/wp-content/uploads/2018/01/ELAReleasedItems/LAT-Freddy_1_17_18.pdf">
+            <em>Grade 5 English Language Arts/Literacy - Literary
+            Analysis Task.</em>
+          </a> The QTI rendition of these items features
+          choiceInteraction, extendedTextInteraction,
+          gapMatchInteraction, and multiple assessmentStimulus
+          elements.  The QTI.JS theme is custom and features an imaginary
+          PARCC livery, showing how QTI tests can be presented using
+          QTI.JS in a manner which maintains institutional or
+          organizational identity. The theme also emulates the
+          navigation style of the Pearson TestNav8 practice tests for
+          PARCC: non-linear but slideshow-style.  (This is how most
+          QTI delivery engines, other than QTI.JS, interpret
+          non-linear navigation mode.)  Some of the features of the
+          custom theme require support from a qti.local.js
+          script.</td>
       </tr>
     </table>
   </body>

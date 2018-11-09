@@ -80,6 +80,6 @@
         <tr><th>Total</th><td></td><td></td><td><printedVariable identifier="SUM_SCORES"/></td></tr>
       </tfoot>
     </table>
-    <stylesheet href="theme/results-table.css" type="text/css" />
+    <stylesheet href="results-table.css" type="text/css" />
   </testFeedback>
 </assessmentTest>

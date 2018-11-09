@@ -11,7 +11,8 @@
 // Submits the variables of an item to a server, using
 // the QTI Results Reporting XML format.
 function submit(item) {
-  if (!QTI.RESULTS_ENDPOINT)
+  if (!QTI.RESULTS_ENDPOINT
+      || QTI.RESULTS_ENDPOINT.startsWith("https://example.com/"))
     return;
 
   DEBUG("submit: endpoint=",  QTI.RESULTS_ENDPOINT,
@@ -24,8 +25,10 @@ function submit(item) {
   let now = new Date().toISOString();
   
   sessionIdentifier.setAttribute("sourceId", window.location.origin);
-  sessionIdentifier.setAttribute("identifier", getUuidFromStorage(KEY_SESSIONID));
-  context.setAttribute("sourcedId", QTI.SOURCEDID||getUuidFromStorage(KEY_USERID));
+  sessionIdentifier.setAttribute("identifier",
+                                 getUuidFromStorage(KEY_SESSIONID));
+  context.setAttribute("sourcedId",
+                       QTI.SOURCEDID||getUuidFromStorage(KEY_USERID));
   context.appendChild(sessionIdentifier);
   assessmentResult.appendChild(context);
 

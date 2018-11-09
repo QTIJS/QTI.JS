@@ -91,7 +91,7 @@ function getDimensions(hotspot) {
 }
 
 // Converts "points" attribute to array of polygon points
-function getPolygonPoints(points) {
+function getPolygonPoints(elem) {
   let points = elem.getAttribute("points");
   points = points.split(" ");
   points = points.map(pt => {

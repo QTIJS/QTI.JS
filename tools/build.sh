@@ -8,13 +8,15 @@ mkdir -p $DOCROOT
 
 cd $DIR/..
 rm -rf package
-mkdir -p package 
-$DIR/bundle.sh > package/qti.js
+mkdir -p package/qtijs
+cp LICENSE package/qtijs/LICENSE
+cp src/VERSION package/qtijs/VERSION
 cp src/index.html package/
-cp src/qtijs-manifest.xml package/
-cp src/favicon.ico package/
+$DIR/bundle.sh > package/qti.js
 cp -a themes/basic package/theme
-(cd package; zip qtijs.zip -r -b /tmp ./ >/dev/null 2>&1)
+
+rm qtijs.package.zip -f
+(cd package; zip ../qtijs.package.zip -r ./ >/dev/null 2>&1)
 
 cd test
 touch dummy~; rm $(find . -name '*~')

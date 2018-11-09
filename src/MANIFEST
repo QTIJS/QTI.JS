@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" identifier="qtijs_manifest">
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" identifier="qtijs-manifest">
   <metadata>
     <schema>QTIv2.2 Package</schema>
     <schemaversion>1.0.0</schemaversion>
@@ -8,20 +8,21 @@
   <organizations/>
 
   <resources>
-    <!-- qti.JS Player -->
-    <resource identifier="qtiJS" type="webcontent">
-      <file href="favicon.ico" />
+    <!-- QTI.JS -- QTI Delivery Engine -->
+    <resource identifier="qtijs-package" type="webcontent">
       <file href="index.html" />
       <file href="qti.js" />
+      <file href="qtijs/LICENSE" />
+      <file href="qtijs/VERSION" />
+      <file href="theme/style.css" />
       <file href="theme/core.css" />
+      <file href="theme/nonlinear-continuous.css" />
+      <file href="theme/nonlinear-slideshow.css" />
       <file href="theme/images/arrow-left.svg" />
       <file href="theme/images/arrow-right.svg" />
       <file href="theme/images/bucket.png" />
       <file href="theme/images/pencil.png" />
       <file href="theme/images/warning-white.svg" />
-      <file href="theme/nonlinear-continuous.css" />
-      <file href="theme/nonlinear-slideshow.css" />
-      <file href="theme/style.css" />
     </resource>
   </resources>
 </manifest>

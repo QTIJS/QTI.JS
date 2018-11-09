@@ -1,16 +1,25 @@
 const TABS = `${PREFIX}-tabs`;
 const TAB = `${PREFIX}-tab`;
 const FOR = `data-${PREFIX}-for`;
+
 const RADIO_SEL = "input[type=radio]";
 const CHECKBOX_SEL = "input[type=checkbox]";
 const FEEDBACK_DURING_SEL
       = "[data-qtijs-tag=testFeedback][data-qtijs-access=during]";
+const QUILL_SEL
+      ="[data-qtijs-tag=extendedTextInteraction][data-qtijs-format=xhtml] textarea";
+
 const QUILL_SNOW_THEME_URI = "https://cdn.quilljs.com/1.3.6/quill.snow.css";
 const QUILL_JS_URI = "https://cdn.quilljs.com/1.3.6/quill.js";
 
 setTimeout(initializeParccExtensions, 1500);
 
 function initializeParccExtensions() {
+
+  /*
+  ** QUESTION Q OF N LABELS
+  */
+  
   // This loops through the itemBodies adding a 'Question q of n' label.
   let idx = 0;
   let itemBodies = document.querySelectorAll("[data-qtijs-tag=itemBody]");
@@ -18,10 +27,16 @@ function initializeParccExtensions() {
     itemBody.setAttribute("label",`Question ${++idx} of ${itemBodies.length}`);
   });
 
-  // This adds a label to the access=during testFeedback.
+  /*
+  ** STYLING OF ACCESS=DURING TESTFEEDBACK
+  */
+
+  // This adds a button to the HTML transform of access=during
+  // testFeedback.
   document.querySelectorAll(FEEDBACK_DURING_SEL).forEach(tf=>{
     let button = document.createElement("button");
-    let label = tf.getAttribute("label")||tf.getAttribute("title")||"Feedback";
+    let label = tf.getAttribute("label")
+        ||tf.getAttribute("title")||"Feedback";
     button.innerHTML=label;
     button.classList.add(HEADER);
     button.onclick = function(evt) {
@@ -29,6 +44,10 @@ function initializeParccExtensions() {
     }
     tf.appendChild(button);
   });
+
+  /*
+  ** ASSESSMENTSTIMULUS TAB BAR
+  */
   
   // This generates the tab bar to switch between multiple
   // assessmentStimuluses.
@@ -71,10 +90,6 @@ function initializeParccExtensions() {
     };
   });
 
-  linkStylesheet(document.body, QUILL_SNOW_THEME_URI);                    
-  addScript(document.body, QUILL_JS_URI);                
-  setTimeout(decorateExtendedTextInteractions, 2000);
-
   // Handler for clicks on the assessmentStimulus tabs.
   function handleTabBarClick(evt) {
     [...document.querySelectorAll(CLICKED_SEL)]
@@ -84,11 +99,18 @@ function initializeParccExtensions() {
     stim.classList.add(CLICKED);
     return true;
   }
+
+  /*
+  ** QUILL.JS ON EXTENDEDTEXTINTERACTION
+  */
   
+  linkStylesheet(document.body, QUILL_SNOW_THEME_URI);                    
+  addScript(document.body, QUILL_JS_URI);                
+  setTimeout(decorateExtendedTextInteractions, 2000);
+
   // Adds Quill to textareas in extendedTextInteractions with format=xhtml
   function decorateExtendedTextInteractions() {
-    let sel="[data-qtijs-tag=extendedTextInteraction][format=xhtml] textarea";
-    document.querySelectorAll(sel).forEach((textarea)=>{
+    document.querySelectorAll(QUILL_SEL).forEach((textarea)=>{
       let div = document.createElement("div");
       textarea.parentElement.appendChild(div);
       new Quill(div,{theme:"snow"});
