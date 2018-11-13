@@ -279,6 +279,7 @@ function transform(elem) {
         case "identifier":
         case "matchGroup":  
         case "navigationMode":
+        case "orientation":
         case "objectLabel":  
         case "outcomeIdentifier":
         case "responseIdentifier":
@@ -365,8 +366,8 @@ function transform(elem) {
         T.wrapend = "</label></div>";
       } else {
         T.wrapstart = (T.wrapstart||"")
-          + `<wbr/><span class='${HOTTEXT_WRAP}'>`;
-        T.wrapend = "</span>";
+          + `<wbr/><span class='${HOTTEXT_WRAP}'><label>`;
+        T.wrapend = "</label></span>";
       }
       break;
 

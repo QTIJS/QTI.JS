@@ -15,24 +15,36 @@ function submit(item) {
       || QTI.RESULTS_ENDPOINT.startsWith("https://example.com/"))
     return;
 
-  DEBUG("submit: endpoint=",  QTI.RESULTS_ENDPOINT,
-       "headers=", QTI.RESULTS_HEADERS);
+  DEBUG("submit: endpoint=", QTI.RESULTS_ENDPOINT,
+        "headers=", QTI.RESULTS_HEADERS);
 
   let assessmentResult = QTI.DOM.createElement("assessmentResult");
   let context = QTI.DOM.createElement("context");
   let sessionIdentifier = QTI.DOM.createElement("sessionIdentifier");
+  let sessionUuid = getUuidFromStorage(KEY_SESSIONID);
+  let sourcedId = QTI.SOURCEDID||getUuidFromStorage(KEY_USERID);
   let testResult, itemResult;
   let now = new Date().toISOString();
-  
-  sessionIdentifier.setAttribute("sourceId", window.location.origin);
-  sessionIdentifier.setAttribute("identifier",
-                                 getUuidFromStorage(KEY_SESSIONID));
-  context.setAttribute("sourcedId",
-                       QTI.SOURCEDID||getUuidFromStorage(KEY_USERID));
-  context.appendChild(sessionIdentifier);
-  assessmentResult.appendChild(context);
+  const sel = "assessmentTest, testPart, assessmentSection, assessmentItem";
 
-  let emit = (elem) => {
+  sessionIdentifier.setAttribute("sourceId", window.location.origin);
+  sessionIdentifier.setAttribute("identifier", sessionUuid);
+  context.appendChild(sessionIdentifier);
+  context.setAttribute("sourcedId", sourcedId);
+  assessmentResult.appendChild(context);
+  [...QTI.DOM.querySelectorAll(sel)].forEach(child=>{
+    if (child!=item
+        && (child.tagName!=="assessmentItem"
+            || (child.declarations["$dirty"]
+                && child.declarations["$dirty"].value))) {
+      INFO("submit", identifier(child), child.declarations["$dirty"]);
+      emit(child);
+    }
+  });
+  emit(item);
+  post(QTI.RESULTS_ENDPOINT, QTI.RESULTS_HEADERS, assessmentResult);
+
+  function emit(elem) {
     switch (elem.tagName) {
     case "assessmentTest":
       testResult = QTI.DOM.createElement("testResult");
@@ -56,29 +68,9 @@ function submit(item) {
       break;
     }
   }
-
-  // This emits variables of structures other than the item being
-  // submitted, including other items if they are dirty.
-  let sel = "assessmentTest, testPart, assessmentSection, assessmentItem";
-  [...QTI.DOM.querySelectorAll(sel)].forEach(child=>{
-    if (child!=item
-        && (child.tagName!=="assessmentItem"
-            || (child.declarations["$dirty"]
-                && child.declarations["$dirty"].value))) {
-      INFO("submit", identifier(child), child.declarations["$dirty"]);
-      emit(child);
-    }
-  });
-
-  // This emits the item variables.
-  emit(item);
-
-  // Send results
-  post(QTI.RESULTS_ENDPOINT, QTI.RESULTS_HEADERS, assessmentResult);
   
   function appendVariables(result, declarations) {
     let appended = 0;
-    
     [...Object.getOwnPropertyNames(declarations)].forEach(id=>{
       let decl = declarations[id];
       if (decl.value

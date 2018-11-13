@@ -45,7 +45,7 @@ function setupAssessmentItem(item) {
   }
   setupNavigationUI(htmlItem);
   let testPart = getQTITestPart(item);
-  if (testPart.getAttribute("navigationMode")!=="linear")
+  if (!(testPart && testPart.getAttribute("navigationMode")==="linear"))
     templateProcessing(item);
 }
 

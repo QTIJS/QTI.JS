@@ -87,8 +87,6 @@ window.addEventListener("load",function() {
         append(doTransforms(QTI.ROOT));
         setupNavigationUI();
         updatePrintedVariables(QTI.ROOT);
-        if (window.MathJax)
-          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         DEBUG("end expansion", clock()+"msecs");
         setTimeout(start, START_DELAY_TEST);
       });
@@ -127,11 +125,13 @@ window.addEventListener("load",function() {
   function start() {
     INFO("start", clock()+"msecs")
     loadThemeScript();
-    document.body.style.display="block";
+    if (window.MathJax)
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     beginInteractionSessions(QTI.ROOT);
     setTimeout(initializeCurrentItem, 100);
     setInterval(updateTimeLimits, 100);
-    DEBUG("end start", clock()+"msecs");
+    document.body.style.display="block";
+    INFO("end start", clock()+"msecs");
   }
 
   // Checks a CSS custom property giving the name of a "theme script",

@@ -4,7 +4,6 @@
 work/
 tmp/
 temp/
-temp*
 *.tmp
 docroot
 

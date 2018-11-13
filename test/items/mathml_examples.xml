@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentSection visible="true" title="Math Items" identifier="math-examples">
+  <itemSessionControl maxAttempts="0" />
+  <assessmentItemRef identifier="i1" href="math.xml" /> 
+  <assessmentItemRef identifier="i2" href="inline_choice_math.xml" /> 
+  <assessmentItemRef identifier="i3" href="Example03-feedbackBlock-solution.xml" />
+  <assessmentItemRef identifier="i4" href="Example03-feedbackBlock-solution-random.xml" /> 
+  <assessmentItemRef identifier="i5" href="Example04-feedbackBlock-templateBlock.xml" />
+  <assessmentItemRef identifier="i6" href="mc_calc3.xml" />
+  <assessmentItemRef identifier="i7" href="mc_stat2.xml" />
+  <assessmentItemRef identifier="i8" href="mc_calc5.xml" />
+</assessmentSection>

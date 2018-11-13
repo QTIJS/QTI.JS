@@ -1,0 +1,270 @@
+/* 
+** QTI.JS requires a CSS stylesheet to work properly.  A few examples:
+** (1) the showHide mechanism depends on a stylesheet to hide or show
+** elements when showHide is triggered; (2) during a drag-and-drop the
+** draggable must be hidden so that only the "ghost" image is visible.
+** (3) in a "linear" slideshow, CSS is used to position the next item
+** on-screen and the previous item off-screen; (4) QTI.JS generates
+** redundant next/prev buttons at every level of the assessment, but
+** at least one pair of these needs to be positioned somewhere useful
+** in both linear and nonlinear navigation modes, and most of the rest
+** need to be hidden; (5) the engine does not generate any HTML for the
+** item and section titles, assuming that the stylesheet will generate
+** pseudo-elements for these if desired.
+**
+** This stylesheet does those sorts of things. It is minimal not in
+** the aesthetic sense but in the sense of providing the minimal
+** support from CSS for the delivery engine to actually work as
+** intended.  As for aesthetics, styling of things like margins,
+** padding, fonts, colors, and backgrounds are mostly left to the
+** browser defaults.  This results in styling which is minimal in
+** the aesthetic sense too -- probably too minimal for this theme
+** actually to be deployed.
+**
+** Nevertheless the minimal theme may be useful as documentation as to
+** what needs to be in a theme, and also as a possible starting point
+** for the development of a custom theme for QTI.JS.
+*/
+
+@import url('linear-slideshow.css');
+
+/* Number the questions and generate pseudo-element content for item titles */
+[data-qtijs-tag=assessmentTest] {
+  counter-reset: question;
+  user-select: none;  
+}    
+[data-qtijs-tag=assessmentSection] [data-qtijs-tag=assessmentItem]::before {
+  counter-increment: question;
+  content: counter(question) ".  " attr(title);
+  display: block;
+  font-weight: bold;
+}
+
+/* Provide some separation between items. */
+[data-qtijs-tag=assessmentItem] {
+  margin: 1.5em .25em;
+  padding: 1.5em .3em;
+  border-bottom: solid 1px #DDD;
+  background-color: white;
+}
+
+/* Highlight the current item. */
+[data-qtijs-tag=assessmentItem].qtijs-current {
+  background: #EEE;  
+}
+
+/* Pseudo-elements for item titles */
+/* Show/hide template and feedback.  */
+[data-qtijs-template-identifier][data-qtijs-show-hide=show],
+[data-qtijs-outcome-identifier][data-qtijs-show-hide=show],
+[data-qtijs-show-hide=hide].qtijs-triggered {
+  display: none;
+}
+[data-qtijs-template-identifier][data-qtijs-show-hide=hide],
+[data-qtijs-outcome-identifier][data-qtijs-show-hide=hide],
+[data-qtijs-show-hide=show].qtijs-triggered {
+  display: block;
+}
+
+/* testFeedback in slideshow mode */
+[data-qtijs-tag=assessmentTest] > [data-qtijs-tag=testFeedback] {
+  position: absolute;
+  left: 140vw;
+  max-width: 570px;
+}
+[data-qtijs-tag=testFeedback].qtijs-offstage {
+  position: absolute;
+  left: -110vw;
+}
+[data-qtijs-tag=testPart][data-qtijs-navigation-mode=linear] + [data-qtijs-tag=testFeedback] {
+  position: relative;
+  top:1.5em;
+}
+
+/* Multiple nav elements are generated, one for each assessment, testPart,
+   assessmentSection, and assessmentItem. They all do the same thing, 
+   and only one is needed. Multiple are generated for convenience of 
+   styliing.  For "minimal", we just style the testPart level nav, and 
+   hide the rest. */
+.qtijs-navigation {
+  display: none;
+}
+[data-qtijs-tag=assessmentTest] {
+  margin-top: 3em;
+}
+[data-qtijs-tag=testPart] > .qtijs-navigation {
+  display: block;  
+  position: fixed;
+  background: white;  
+  left: 8px;
+  top: -.2em;
+  width: 95%;
+  height: 3em;
+  border-bottom: solid 1px blue;
+  z-index: 3;
+}
+[data-qtijs-tag=testPart] > .qtijs-navigation span.qtijs-prev,
+[data-qtijs-tag=testPart] > .qtijs-navigation span.qtijs-next {
+  display: inline-block;
+  float: right;  
+  width: 1.8em;
+  height: 2.2em;
+  margin: .2em;
+}
+span.qtijs-next {
+  background: url(images/arrow-right.svg) center / 2em 2em;
+}
+span.qtijs-prev {
+  background: url(images/arrow-left.svg) center / 2em 2em;
+}
+[data-qtijs-tag=testPart][data-qtijs-navigation-mode=linear] span.qtijs-prev {
+  display: none;
+}
+
+/* Make sure images and videos fit in the width. */
+img, video {
+  max-width: 100%;
+}
+
+/* Style the element used to create the dragImage. */
+[data-qtijs-tag=assessmentItem] .qtijs-ghost{
+  position: absolute;
+  left: 0;
+  top: 24px;
+  z-index: -1;
+}
+.qtijs-gap .qtijs-ghost {
+  width: auto;
+}
+[data-qtijs-tag=assessmentTest] .qtijs-dragging {
+  opacity: 0;
+}
+
+/* In order and associateInteractions, <li>'s are just blocks. */
+[data-qtijs-tag=orderInteraction] li,
+[data-qtijs-tag=associateInteraction] li,
+[data-qtijs-tag=assessmentItem] .qtijs-ghost {
+  display: block;
+}
+
+/* For gapMatchInteraction, style gap and gapText. */
+[data-qtijs-tag=gapMatchInteraction] span.qtijs-gap {
+  display:inline-block;
+  width: 6em;
+  height: 1em;
+  background: #DDD;
+}
+[data-qtijs-tag=gapText] {
+  display: inline-block;
+  border: solid 1px;
+}
+
+/* For associateInteraction, style the association table. */
+table.qtijs-associate-table {
+  width: 90%;
+  border-top: solid 2px;  
+  border-spacing: 0 1.3em;  
+}
+table.qtijs-associate-table td {
+  height: 2em;
+  border: solid 1px;
+  width: 47.5%;
+}
+table.qtijs-associate-table td:nth-child(2) {
+  border: none;
+  border-top: solid 4px black;
+  position: relative;
+  top: 1em;
+  width: 5%;  
+}
+
+/* For graphic interactions, overlap the stage img and svg. */
+[data-qtijs-tag="assessmentItem"] .qtijs-stage {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: white;
+  overflow: hidden;
+  margin-top: 1em;
+}
+[data-qtijs-tag="assessmentItem"] .qtijs-stage img {
+  display: block;
+  position: relative;  
+  left: 0;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+[data-qtijs-tag="assessmentItem"] .qtijs-stage svg {
+  position: absolute;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100%;
+}
+
+/* For graphic interactions, give hotspots minimal styling.  */
+.qtijs-hotspot, .qtijs-gap {
+  stroke: transparent;
+  fill: transparent;
+  stroke-width: 1px;
+  stroke: black;
+}
+.qtijs-hotspot.qtijs-selected {
+  stroke-width: 1px;
+  fill: black;
+  opacity: .2;
+}
+
+/* Evaporate effect without animation. */
+.qtijs-evaporate {
+  transform: scale(0);
+}
+
+/* In graphicAssociateInteraction, stroke the SVG line. */
+[data-qtijs-tag=graphicAssociateInteraction] line {
+  stroke: black;
+  stroke-width: 2px;
+  stroke-linecap: round;
+}
+
+/* In graphicGapMatchInteraction with text, make text fit.
+   TODO: This is probably too specific to the example. */
+[data-qtijs-tag="graphicGapMatchInteraction"] svg text.qtijs-match {
+  font-size: 6px;
+}
+
+/* Style the drawing tools palette. */
+table.qtijs-drawing-tools td {
+  height: 1.5em;
+  width: 1.5em;
+  opacity: .7;
+  margin: 5px;
+  border: solid 2px transparent;
+}
+table.qtijs-drawing-tools td#pen {
+  background: white url(images/pencil.png) no-repeat center / 1em 1em;
+}
+table.qtijs-drawing-tools td#bucket {
+  background: white url(images/bucket.png) no-repeat center / 1.1em 1.1em;
+}
+table.qtijs-drawing-tools td#c1 { background-color: #FF0000; }
+table.qtijs-drawing-tools td#c2 { background-color: #FF00FF; }
+table.qtijs-drawing-tools td#c3 { background-color: #0000FF; }
+table.qtijs-drawing-tools td#c4 { background-color: #FFFFFF; }
+table.qtijs-drawing-tools td#c5 { background-color: #00FF00; }
+table.qtijs-drawing-tools td#c6 { background-color: #00FFFF; }
+table.qtijs-drawing-tools td#c7 { background-color: #FFFF00; }
+table.qtijs-drawing-tools td#c8 { background-color: #000000; }
+
+/* Hide MathJax messages. */
+#MathJax_Message {
+  height: 0 !important;
+  width: 0;
+  visibility: hidden;
+  position: absolute;
+  left: -1000px;
+}

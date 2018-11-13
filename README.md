@@ -308,16 +308,29 @@ themes, limited to styling only interactions and features found in the
 specific tests.  All of these are in the *theme* subdirectories of the
 respective samples.
 
+In addition to the theme dealing with aesthetic issues such as fonts,
+colors, backgrounds, and layout, the delivery engine delegates to the
+theme such issues as getting items on- and off-screen in a linear
+test, or controlling the visibility of elements subject to the QTI
+showHide mechanism.  The *minimal* theme is one which, as the name
+suggests, provides only this minimal CSS support to the delivery
+engine, generally leaving all aesthetic concerns to the browser
+defaults. The *minimal* theme is provided mainly as documentation, or
+as the starting point for custom themes, and is not used by any of the
+sample tests.
+
 In the future, I hope to provide more documentation on how to create a
 custom QTI.JS theme, and possibly will provide tools to enable someone
 who isn't an HTML/CSS developer to create a new theme by "tweaking"
-*basic* to change colors, fonts, and backgrounds, or add a logo.
+*basic* or *minimal* to change colors, fonts, and backgrounds, or 
+add a logo.
 
 Meanwhile, a person with some knowledge of CSS can probably figure out
-how, without too much effort, to tweak the *basic* or *qtijs* theme to
-make cosmetic changes, such as changing the logo or using different
-fonts and colors. Creating a limited theme, such as the themes for the
-*ccQTIpackage* or *newsquiz* samples, would be harder, but feasible.
+how, without too much effort, to tweak the *minimal*, *basic* or
+*qtijs* themes to make cosmetic changes, such as changing the logo or
+using different fonts and colors. Creating a limited theme, such as
+the themes for the *ccQTIpackage* or *newsquiz* samples is also
+feasible.
 
 If you do have a different theme you wish to use, you can deploy it
 using any of the scenarios described above.  Just copy the theme to
@@ -371,13 +384,13 @@ rather freely.
 QTI.JS ignores QTI extension points and generally passes them through
 verbatim to the HTML it generates, or gives them the default handling
 or styling. It does provide several different ways to hook in
-additional CSS stylesheets or Javascript functions which can style or
-handle extension points in the QTI content, like *data-*, *aria-*, and
+additional CSS stylesheets or Javascript functions to style or handle
+extension points in the QTI content, like *data-*, *aria-*, and
 *class* attributes, or *customInteraction*, *customOperator*, and
 custom *selection* and *ordering* elements, etc.  But if you cannot
-supply stylesheets and/or Javascript code to handle the extensions 
-and customizations in your QTI content, QTI.JS will not be able to 
-handle them on its own.
+supply stylesheets and/or Javascript code to handle the extensions and
+customizations in your QTI content, QTI.JS will not be able to handle
+them on its own.
 
 So, if the extensions are not merely cosmetic but essential to the
 content, what this means is that your QTI 2.2 content, though

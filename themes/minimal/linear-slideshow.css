@@ -1,0 +1,49 @@
+/*
+** LINEAR SLIDESHOW
+** "slideshow" style for linear test Parts.
+** Items are positioned off-screen, and only the "current"
+** item is on-screen.
+*/
+
+[data-qtijs-navigation-mode=linear] [data-qtijs-tag=assessmentItem] {
+  --qtijs-scroll-to: false;
+}
+[data-qtijs-navigation-mode=linear]:not(.qtijs-review-mode) span.qtijs-prev {
+  display: none;
+}
+[data-qtijs-navigation-mode=linear] [data-qtijs-tag=assessmentItem],
+[data-qtijs-navigation-mode=linear] [data-qtijs-tag=testFeedback] {
+  position: absolute;
+  left: 140vw;
+  margin-top: 0;
+}
+[data-qtijs-navigation-mode=linear] [data-qtijs-tag=assessmentSection],
+[data-qtijs-navigation-mode=linear] [data-qtijs-tag=assessmentSection]::before {
+  position: absolute;
+  top: 0;
+  left: 140vw;
+}
+[data-qtijs-navigation-mode=linear] [data-qtijs-tag=assessmentSection][data-qtijs-visible=false] {
+  margin-top: 1em;
+}
+[data-qtijs-navigation-mode=linear] > [data-qtijs-tag=assessmentSection][data-qtijs-visible=true] {
+  margin-top: 4em;
+}
+[data-qtijs-navigation-mode=linear] [data-qtijs-tag=assessmentSection][data-qtijs-visible=true] >
+ [data-qtijs-tag=assessmentSection][data-qtijs-visible=true] {
+  margin-top: 0em;
+}
+[data-qtijs-navigation-mode=linear] .qtijs-current,
+[data-qtijs-navigation-mode=linear] .qtijs-current::before {
+  display: block;
+  position: relative;  
+  top: 0;
+  left: 0 !important;
+  transition: left .5s;
+}
+[data-qtijs-navigation-mode=linear] .qtijs-offstage,
+[data-qtijs-navigation-mode=linear] .qtijs-offstage::before {
+  position: absolute;
+  width: 0;  
+  left: -110vw;
+}

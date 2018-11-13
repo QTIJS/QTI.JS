@@ -10,27 +10,28 @@
 const PREFIX            = "qtijs";
 
 // data-* attributes
-const ID                = `data-${PREFIX}-identifier`;
-const OUTCOME_ID        = `data-${PREFIX}-outcome-identifier`;
-const RESPONSE_ID       = `data-${PREFIX}-response-identifier`;
-const TEMPLATE_ID       = `data-${PREFIX}-template-identifier`;
-const GAP_FILL_ID       = `data-${PREFIX}-gap-fill-id`;
-const ITEM              = `data-${PREFIX}-item`;
 const ACCESS            = `data-${PREFIX}-access`;
+const ACTIVE            = `data-${PREFIX}-active`;
+const DELIMITER         = `data-${PREFIX}-delimiter`;
+const ENDPOINT1         = `data-${PREFIX}-endpoint1`;
+const ENDPOINT2         = `data-${PREFIX}-endpoint2`;
+const GAP_FILL_ID       = `data-${PREFIX}-gap-fill-id`;
+const ID                = `data-${PREFIX}-identifier`;
+const ITEM              = `data-${PREFIX}-item`;
 const MATCHES           = `data-${PREFIX}-matches`;
 const MATCH_MAX         = `data-${PREFIX}-match-max`;
 const MAXCOLS           = `data-${PREFIX}-max-cols`;
 const MESSAGE           = `data-${PREFIX}-message`;
 const NAVMODE           = `data-${PREFIX}-navigation-mode`;
-const SUBMISSION_MODE   = `data-${PREFIX}-submission-mode`;
+const OUTCOME_ID        = `data-${PREFIX}-outcome-identifier`;
 const PIVOT_TARGET      = `data-${PREFIX}-pivot-target`;
-const SHOWHIDE          = `data-${PREFIX}-show-hide`;
-const TAG               = `data-${PREFIX}-tag`;
-const ENDPOINT1         = `data-${PREFIX}-endpoint1`;
-const ENDPOINT2         = `data-${PREFIX}-endpoint2`;
-const SUFFIX            = `data-${PREFIX}-suffix`;
-const DELIMITER         = `data-${PREFIX}-delimiter`;
 const PREFIX_ATTRIB     = `data-${PREFIX}-prefix`;
+const RESPONSE_ID       = `data-${PREFIX}-response-identifier`;
+const SHOWHIDE          = `data-${PREFIX}-show-hide`;
+const SUBMISSION_MODE   = `data-${PREFIX}-submission-mode`;
+const SUFFIX            = `data-${PREFIX}-suffix`;
+const TAG               = `data-${PREFIX}-tag`;
+const TEMPLATE_ID       = `data-${PREFIX}-template-identifier`;
 
 // class and CSS custom property names
 const ASSOCIATE_TABLE   = `${PREFIX}-associate-table`;
@@ -959,6 +960,7 @@ function transform(elem) {
         case "identifier":
         case "matchGroup":  
         case "navigationMode":
+        case "orientation":
         case "objectLabel":  
         case "outcomeIdentifier":
         case "responseIdentifier":
@@ -1045,8 +1047,8 @@ function transform(elem) {
         T.wrapend = "</label></div>";
       } else {
         T.wrapstart = (T.wrapstart||"")
-          + `<wbr/><span class='${HOTTEXT_WRAP}'>`;
-        T.wrapend = "</span>";
+          + `<wbr/><span class='${HOTTEXT_WRAP}'><label>`;
+        T.wrapend = "</label></span>";
       }
       break;
 
@@ -1681,7 +1683,7 @@ function setupAssessmentItem(item) {
   }
   setupNavigationUI(htmlItem);
   let testPart = getQTITestPart(item);
-  if (testPart.getAttribute("navigationMode")!=="linear")
+  if (!(testPart && testPart.getAttribute("navigationMode")==="linear"))
     templateProcessing(item);
 }
 
@@ -2692,7 +2694,9 @@ function postResponseVariable(htmlInteraction, value, variable) {
   }
 }
 
-// Session control
+// Session control: move a specified number of steps in the
+// sequence from the current item.  negative number of steps
+// means move backward.
 function control(evt, k=+1) {
   DEBUG("control", evt);
   let target = evt.currentTarget;
@@ -2707,7 +2711,8 @@ function control(evt, k=+1) {
     }
   }
 
-  let frame = (current && current.id)? QTI.DOM.getElementById(current.id): null;
+  let frame = (current && current.id)
+      ? QTI.DOM.getElementById(current.id): null;
 
   if (frame && frame.tagName=="testFeedback") {
     setCurrent(getNextItem(frame, k), k==1, false);
@@ -2720,17 +2725,26 @@ function control(evt, k=+1) {
     evt.stopPropagation();
 }
 
+// Implements "control" when "current" is an assessmentItem
+// (as opposed to a testFeedback.)
 function controlItem(current, item, k, scrollTo) {
   let forward = (k===1);
   let isSkip = getSetResponseVariables(item).length==0;
   let testPart = getQTITestPart(item);
-  let navigationMode = testPart.getAttribute("navigationMode");
-  let submissionMode = testPart.getAttribute("submissionMode");
+  let navigationMode = "nonlinear";
+  let submissionMode = "individual";
+
+  if (testPart) {
+    navigationMode = testPart.getAttribute("navigationMode");
+    submissionMode = testPart.getAttribute("submissionMode");
+  }
 
   // "dirty" flag means that response/outcome processing changed
   // the visibility of feedbacks or templates, the
   // values of printed variables or math variables, etc,
-  // and we can't advance before letting the user see the new state.
+  // When the current item is dirty, We can't make another item
+  // current, before letting the user see the new presentation
+  // state of the current item.
   let dirty = false;
   
   DEBUG("item=",identifier(item), "k=", k,
@@ -2783,11 +2797,12 @@ function controlItem(current, item, k, scrollTo) {
         k=0;
       }
     } else if (submissionMode=="simultaneous") {
-      // item will be submitted with all others in the
-      // same testPart. "By definition", according to spec,
-      // only one attempt on an item is possible, and whether
-      // the candidate can review simultaneous-mode items and
-      // see item-level feedback is "outside scope" of spec.
+      // item will be submitted with all others in the same
+      // testPart. "By definition", according to spec, when
+      // submissionMode is simultaneous, only one attempt on an item
+      // is possible, and whether the candidate can review
+      // simultaneous-mode items and see item-level feedback is
+      // outside the scope of the spec.
       INFO("simultaneous mode, deferring submission: ",
            identifier(item));
     }      
@@ -2803,18 +2818,26 @@ function controlItem(current, item, k, scrollTo) {
 //
 // In a linear testPart, the candidate may interact only with the
 // "current" item, and must either make an attempt (submit a response)
-// or "skip" the current item in order to make the "next" item
+// or "skip" the current item in order to make a different item 
 // current.  Stylesheets for linear navigationMode almost always use a
-// "slideshow" style (though it is not strictly required), and many
-// non-linear styles are slideshows as well.  In a slideshow style,
-// "current" is the item which is on screen.
+// "slideshow" style (though it is not strictly required), which shows
+// one item at a time. Many non-linear themes are slideshows as well,
+// similar to linear but with an added "previous" button, which lets the
+// candidate move backwards and forwards in the item sequence.
+// The spec explicity states that this style is acceptable for
+// non-linear.  In a slideshow style, whether for linear or
+// non-linear, "current" is the one item which is on-screen.
 //
-// Non-linear testParts may use a style which presents all items in a
-// testPart to the candidate, and the candidate can interact with any
-// of them, possibly multiple times, and submit them in any order.
-// In that style, which item is "current" may not be very important and
-// the candidate may not even be aware that some particular item
-// is "current".
+// But, non-linear testParts may use a style which presents all items in a
+// testPart to the candidate simultaneously, and the candidate can
+// interact with any of them, possibly over multiple submissions,
+// and submit them in any order.  In that style, which item is "current"
+// may not be very important and the candidate may not even be aware
+// that some particular item is "current".
+//
+// Because QTI.JS does not know what the stylesheets are doing, it
+// maintains "current" in all circumstances.
+
 function setCurrent(nextCurrent, forward=true, scrollTo=true) {
   if (nextCurrent)
     Promise.all(QTI.PROMISES).then(setCurrentInternal);
@@ -2905,43 +2928,47 @@ function getItemSessionControl(elem) {
   return data;
 }
 
-// Returns allowReview session control setting for item.
+// Returns allowReview session control setting for item. (default=true)
 function allowReview(item) {
   let sessionControl = getItemSessionControl(item);
   return sessionControl.allowReview!=="false";
 }
 
-// Returns allowSkipping session control setting for item.
+// Returns allowSkipping session control setting for item. (default=true)
 function allowSkipping(item) {
   let sessionControl = getItemSessionControl(item);
   return sessionControl.allowSkipping!=="false";
 }
 
-// Returns allowComment session control setting for item.
+// Returns allowComment session control setting for item. (default=false)
 function allowComment(item) {
   let sessionControl = getItemSessionControl(item);
   return sessionControl.allowComment==="true";
 }
 
-// Returns showFeedback session control setting for item.
+// Feedback should be shown as long as an item is still
+// attemptable, or it is both reviewable and adaptive,
+// or the itemSessionControl setting for showFeedback is true.
 function showFeedback(item) {
   let sessionControl = getItemSessionControl(item);
-  return sessionControl.showFeedback==="true";
+  return isAttemptable(item)
+    || (allowReview(item) && isAdaptive(item))
+    || sessionControl.showFeedback==="true";
 }
 
-// Returns showSolution session control setting for item.
+// Returns showSolution session control setting for item. (default=false)
 function showSolution(item) {
   let sessionControl = getItemSessionControl(item);
   return sessionControl.showSolution==="true";
 }
 
-// Returns validateResponses session control setting for item.
+// Returns validateResponses session control setting for item.  (default=false)
 function validateResponses(item) {
   let sessionControl = getItemSessionControl(item);
   return sessionControl.validateResponses==="true";
 }
 
-// Returns true if the an item is still "attemptable"; that
+// Returns true if an item is still "attemptable"; that
 // is, completionStatus is not "completed" and if a non-adapative item,
 // either maxAttempts is zero, or numAttempts is less than maxAttempts.
 function isAttemptable(item) {
@@ -2995,7 +3022,8 @@ function getNextItem(htmlItem, step=0) {
   if (item) {
     htmlItem = document.getElementById(item.elem.id);
     item.presented = true;
-    if (item.elem.tagName=="assessmentItem" && !item.elem.templateProcessed) {
+    if (item.elem.tagName=="assessmentItem"
+        && !item.elem.templateProcessed) {
       let testPart = getQTITestPart(item.elem);
       let linear = testPart.getAttribute("navigationMode")==="linear";
       if (linear)
@@ -3004,18 +3032,24 @@ function getNextItem(htmlItem, step=0) {
   }
   return htmlItem;
 
+  // Returns previous presented item from SEQUENCE.
   function getPrevItemInSequence(item, step) {
     let presented = QTI.SEQUENCE.filter(entry=>entry.presented);
     let idx = Math.max(0, presented.findIndex(entry=>entry==item)+step)
     return presented[idx];
   }
 
+  // Returns next item in sequence, taking branchRules
+  // and preConditions into consideration.
   function getNextItemInSequence(item, step) {
     if (!item)
       return QTI.SEQUENCE[0];
 
-    let nextItem = applyBranchRules(item) || QTI.SEQUENCE[item.seq+step];
+    let nextItem = applyBranchRules(item)
+        || QTI.SEQUENCE[item.seq+step];
+
     DEBUG("getNextItemInSequence", step, item, nextItem);    
+
     if (!nextItem) {
       return item;
     } if (nextItem.type=="end") {
@@ -3029,6 +3063,10 @@ function getNextItem(htmlItem, step=0) {
       return nextItem;
     }
 
+    // Returns true if the item satisfies its
+    // preconditions.  preConditions are supposed
+    // to be applied only in non-linear testParts, which
+    // is not checked.
     function checkPreconditions(item) {
       let result = [...item.elem.children]
           .filter(ch=>ch.tagName=="preCondition")
@@ -3036,6 +3074,9 @@ function getNextItem(htmlItem, step=0) {
       return result;
     }
 
+    // Returns the branchRule target, if there
+    // *is* a branchRule. It is not checked whether the item
+    // is in a linear testPart.
     function applyBranchRules(item) {
       if (item && item.type!=="begin") {
         let rules = [...item.elem.children]
@@ -3050,6 +3091,12 @@ function getNextItem(htmlItem, step=0) {
       return null;
     }
 
+    // Finds branchRule target.  The spec states that
+    // in the case of a section or item, the target must
+    // be to an item in the same testPart which has not
+    // been presented, and for a testPart the target must
+    // be to another testPart.  These constraints are not
+    // enforced.
     function getBranchRuleTarget(rule) {
       let target = rule.getAttribute("target");
       return target
@@ -3439,7 +3486,7 @@ function value(elem) {
 function responseProcessing(item) {
   item.declarations.numAttempts.value++;
   if (!isAdaptive(item))
-    resetOutcomeVariables(item);
+   resetOutcomeVariables(item);
 
   let rpblocks = [...item.getElementsByTagName("responseProcessing")];
   let completion = (elem, processing)=>{
@@ -3565,25 +3612,47 @@ function untriggerModalFeedback() {
 // components like choices, gaps, gap fills, etc.)
 function triggerShowHide(item) {
   let htmlItem = getHTMLItemById(item.id);
+  const feedbackTypes = [
+    "feedbackInline",
+    "feedbackBlock",
+    "modalFeedback",
+    "testFeedback"
+  ];
 
   [...htmlItem.querySelectorAll(SHOWHIDE_SEL)].forEach(elem=>{
-    let variable = elem.getAttribute(OUTCOME_ID)
-        || elem.getAttribute(TEMPLATE_ID);
+    let variable = elem.getAttribute(OUTCOME_ID)||elem.getAttribute(TEMPLATE_ID);
     let id = elem.getAttribute(ID);
     let decl = item.declarations[variable];
 
     if (decl) {
+      let tag = elem.getAttribute(TAG);
+      if (feedbackTypes.indexOf(tag)>=0) {
+        if (!showFeedback(item)) 
+          return;
+      }
+      INFO(identifier(item), "triggering showHide on", tag, elem);
       let value = decl.value;
       let triggered = elem.classList.contains(TRIGGERED);
       if (!value || (Array.isArray(value) && value.length==0))
         value = getDefaultValue(decl);
+
       if (matchesOrMember(id, value)) {
-        if (!triggered)
+         if (!triggered)
           setDirty(item);
         elem.classList.add(TRIGGERED)
-      } else if (triggered) {
-        setDirty(item);
-        elem.classList.remove(TRIGGERED);
+        triggered = true;
+      } else {
+        if (triggered) {
+          setDirty(item);
+          elem.classList.remove(TRIGGERED);
+        }
+        triggered = false;
+      }
+
+      if (tag=="hottext") {
+        let showHide = elem.getAttribute(SHOWHIDE)
+        let labelActive = triggered? showHide: showHide=="show"? "hide": "show";
+        elem.parentElement.setAttribute(`${ACTIVE}`, labelActive);        
       }
     }
   });
@@ -3620,13 +3689,23 @@ function updatePrintedVariables(item) {
 
 // Updates MathML elements with latest variable values.
 function updateMathMLVariables(item) {
-  if (!window.MathJax)
+  if (!(window.MathJax && item))
     return;
-  
+
   let htmlItem = getHTMLItemById(item.id);
-  let math = [...htmlItem.querySelectorAll(`script[type="math/mml"]`)];
+  let math = [...htmlItem.querySelectorAll("math")]
   let updated = false;
-  
+
+  if (math.length) {
+    DEBUG("MathML item", identifier(item))
+    let mathJaxScripts
+        = [...htmlItem.querySelectorAll(`script[type="math/mml"]`)];
+    if (mathJaxScripts.length) {
+      DEBUG(item, "MathJAX has already processed item once", identifier(item));
+      math = mathJaxScripts;
+    }
+  }
+
   math.forEach(m=>{
     let re = /<[mc]i[^>]*>([^<]*)<\/[mc]i>/g;
     m.innerHTML = m.innerHTML.replace(re, (match,...vars)=>{
@@ -4121,6 +4200,8 @@ function mapResponsePoint(elem) {
   let lookupMethod = function(point) {
     for (let a in decl.areaMapping.entries) {
       let area = decl.areaMapping.entries[a];
+      if (Array.isArray(point))
+        point = point[0];
       if (inside(area, point))
         return area.mappedValue;
     }
@@ -4547,24 +4628,36 @@ function submit(item) {
       || QTI.RESULTS_ENDPOINT.startsWith("https://example.com/"))
     return;
 
-  DEBUG("submit: endpoint=",  QTI.RESULTS_ENDPOINT,
-       "headers=", QTI.RESULTS_HEADERS);
+  DEBUG("submit: endpoint=", QTI.RESULTS_ENDPOINT,
+        "headers=", QTI.RESULTS_HEADERS);
 
   let assessmentResult = QTI.DOM.createElement("assessmentResult");
   let context = QTI.DOM.createElement("context");
   let sessionIdentifier = QTI.DOM.createElement("sessionIdentifier");
+  let sessionUuid = getUuidFromStorage(KEY_SESSIONID);
+  let sourcedId = QTI.SOURCEDID||getUuidFromStorage(KEY_USERID);
   let testResult, itemResult;
   let now = new Date().toISOString();
-  
-  sessionIdentifier.setAttribute("sourceId", window.location.origin);
-  sessionIdentifier.setAttribute("identifier",
-                                 getUuidFromStorage(KEY_SESSIONID));
-  context.setAttribute("sourcedId",
-                       QTI.SOURCEDID||getUuidFromStorage(KEY_USERID));
-  context.appendChild(sessionIdentifier);
-  assessmentResult.appendChild(context);
+  const sel = "assessmentTest, testPart, assessmentSection, assessmentItem";
 
-  let emit = (elem) => {
+  sessionIdentifier.setAttribute("sourceId", window.location.origin);
+  sessionIdentifier.setAttribute("identifier", sessionUuid);
+  context.appendChild(sessionIdentifier);
+  context.setAttribute("sourcedId", sourcedId);
+  assessmentResult.appendChild(context);
+  [...QTI.DOM.querySelectorAll(sel)].forEach(child=>{
+    if (child!=item
+        && (child.tagName!=="assessmentItem"
+            || (child.declarations["$dirty"]
+                && child.declarations["$dirty"].value))) {
+      INFO("submit", identifier(child), child.declarations["$dirty"]);
+      emit(child);
+    }
+  });
+  emit(item);
+  post(QTI.RESULTS_ENDPOINT, QTI.RESULTS_HEADERS, assessmentResult);
+
+  function emit(elem) {
     switch (elem.tagName) {
     case "assessmentTest":
       testResult = QTI.DOM.createElement("testResult");
@@ -4588,29 +4681,9 @@ function submit(item) {
       break;
     }
   }
-
-  // This emits variables of structures other than the item being
-  // submitted, including other items if they are dirty.
-  let sel = "assessmentTest, testPart, assessmentSection, assessmentItem";
-  [...QTI.DOM.querySelectorAll(sel)].forEach(child=>{
-    if (child!=item
-        && (child.tagName!=="assessmentItem"
-            || (child.declarations["$dirty"]
-                && child.declarations["$dirty"].value))) {
-      INFO("submit", identifier(child), child.declarations["$dirty"]);
-      emit(child);
-    }
-  });
-
-  // This emits the item variables.
-  emit(item);
-
-  // Send results
-  post(QTI.RESULTS_ENDPOINT, QTI.RESULTS_HEADERS, assessmentResult);
   
   function appendVariables(result, declarations) {
     let appended = 0;
-    
     [...Object.getOwnPropertyNames(declarations)].forEach(id=>{
       let decl = declarations[id];
       if (decl.value
@@ -5434,8 +5507,6 @@ window.addEventListener("load",function() {
         append(doTransforms(QTI.ROOT));
         setupNavigationUI();
         updatePrintedVariables(QTI.ROOT);
-        if (window.MathJax)
-          MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         DEBUG("end expansion", clock()+"msecs");
         setTimeout(start, START_DELAY_TEST);
       });
@@ -5474,11 +5545,13 @@ window.addEventListener("load",function() {
   function start() {
     INFO("start", clock()+"msecs")
     loadThemeScript();
-    document.body.style.display="block";
+    if (window.MathJax)
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     beginInteractionSessions(QTI.ROOT);
     setTimeout(initializeCurrentItem, 100);
     setInterval(updateTimeLimits, 100);
-    DEBUG("end start", clock()+"msecs");
+    document.body.style.display="block";
+    INFO("end start", clock()+"msecs");
   }
 
   // Checks a CSS custom property giving the name of a "theme script",

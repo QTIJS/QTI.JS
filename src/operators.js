@@ -224,6 +224,8 @@ function mapResponsePoint(elem) {
   let lookupMethod = function(point) {
     for (let a in decl.areaMapping.entries) {
       let area = decl.areaMapping.entries[a];
+      if (Array.isArray(point))
+        point = point[0];
       if (inside(area, point))
         return area.mappedValue;
     }

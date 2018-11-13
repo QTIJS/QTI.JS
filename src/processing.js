@@ -12,7 +12,7 @@
 function responseProcessing(item) {
   item.declarations.numAttempts.value++;
   if (!isAdaptive(item))
-    resetOutcomeVariables(item);
+   resetOutcomeVariables(item);
 
   let rpblocks = [...item.getElementsByTagName("responseProcessing")];
   let completion = (elem, processing)=>{
@@ -138,25 +138,47 @@ function untriggerModalFeedback() {
 // components like choices, gaps, gap fills, etc.)
 function triggerShowHide(item) {
   let htmlItem = getHTMLItemById(item.id);
+  const feedbackTypes = [
+    "feedbackInline",
+    "feedbackBlock",
+    "modalFeedback",
+    "testFeedback"
+  ];
 
   [...htmlItem.querySelectorAll(SHOWHIDE_SEL)].forEach(elem=>{
-    let variable = elem.getAttribute(OUTCOME_ID)
-        || elem.getAttribute(TEMPLATE_ID);
+    let variable = elem.getAttribute(OUTCOME_ID)||elem.getAttribute(TEMPLATE_ID);
     let id = elem.getAttribute(ID);
     let decl = item.declarations[variable];
 
     if (decl) {
+      let tag = elem.getAttribute(TAG);
+      if (feedbackTypes.indexOf(tag)>=0) {
+        if (!showFeedback(item)) 
+          return;
+      }
+      INFO(identifier(item), "triggering showHide on", tag, elem);
       let value = decl.value;
       let triggered = elem.classList.contains(TRIGGERED);
       if (!value || (Array.isArray(value) && value.length==0))
         value = getDefaultValue(decl);
+
       if (matchesOrMember(id, value)) {
-        if (!triggered)
+         if (!triggered)
           setDirty(item);
         elem.classList.add(TRIGGERED)
-      } else if (triggered) {
-        setDirty(item);
-        elem.classList.remove(TRIGGERED);
+        triggered = true;
+      } else {
+        if (triggered) {
+          setDirty(item);
+          elem.classList.remove(TRIGGERED);
+        }
+        triggered = false;
+      }
+
+      if (tag=="hottext") {
+        let showHide = elem.getAttribute(SHOWHIDE)
+        let labelActive = triggered? showHide: showHide=="show"? "hide": "show";
+        elem.parentElement.setAttribute(`${ACTIVE}`, labelActive);        
       }
     }
   });
@@ -193,13 +215,23 @@ function updatePrintedVariables(item) {
 
 // Updates MathML elements with latest variable values.
 function updateMathMLVariables(item) {
-  if (!window.MathJax)
+  if (!(window.MathJax && item))
     return;
-  
+
   let htmlItem = getHTMLItemById(item.id);
-  let math = [...htmlItem.querySelectorAll(`script[type="math/mml"]`)];
+  let math = [...htmlItem.querySelectorAll("math")]
   let updated = false;
-  
+
+  if (math.length) {
+    DEBUG("MathML item", identifier(item))
+    let mathJaxScripts
+        = [...htmlItem.querySelectorAll(`script[type="math/mml"]`)];
+    if (mathJaxScripts.length) {
+      DEBUG(item, "MathJAX has already processed item once", identifier(item));
+      math = mathJaxScripts;
+    }
+  }
+
   math.forEach(m=>{
     let re = /<[mc]i[^>]*>([^<]*)<\/[mc]i>/g;
     m.innerHTML = m.innerHTML.replace(re, (match,...vars)=>{

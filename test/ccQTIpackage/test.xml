@@ -10,7 +10,7 @@
   <timeLimits maxTime="1200" allowLateSubmission="true"/>
 
   <testPart identifier="testpart1" navigationMode="nonlinear" submissionMode="individual">
-    <itemSessionControl maxAttempts="2"/>
+    <itemSessionControl maxAttempts="1"/>
     <assessmentSection identifier="section1" title="Section 1" visible="false">
       <assessmentItemRef identifier="i1"  href="102010.xml"/>
       <assessmentItemRef identifier="i2"  href="102011.xml"/>

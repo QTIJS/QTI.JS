@@ -1,0 +1,29 @@
+body {
+  font-family: sans-serif;
+  font-size: 18px;
+}
+body::before {
+  content: '';
+  display: block;
+  height: 6em;
+  background: #116ea6 url(images/qtijs-logo.svg) no-repeat 1em 1em / 6em;
+  margin-bottom: 2em;
+}          
+table {
+  border-collapse: collapse;
+  border: solid 1px black;
+}
+td, th {
+  padding: 1em;
+  text-align: left;
+  border: solid 1px black;
+}
+a, a:visited {
+  text-decoration: none;
+  font-weight: bold;          
+}
+h1 {
+  font-size: 18px;
+  text-align: center;
+}
+

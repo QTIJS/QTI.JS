@@ -10,27 +10,28 @@
 const PREFIX            = "qtijs";
 
 // data-* attributes
-const ID                = `data-${PREFIX}-identifier`;
-const OUTCOME_ID        = `data-${PREFIX}-outcome-identifier`;
-const RESPONSE_ID       = `data-${PREFIX}-response-identifier`;
-const TEMPLATE_ID       = `data-${PREFIX}-template-identifier`;
-const GAP_FILL_ID       = `data-${PREFIX}-gap-fill-id`;
-const ITEM              = `data-${PREFIX}-item`;
 const ACCESS            = `data-${PREFIX}-access`;
+const ACTIVE            = `data-${PREFIX}-active`;
+const DELIMITER         = `data-${PREFIX}-delimiter`;
+const ENDPOINT1         = `data-${PREFIX}-endpoint1`;
+const ENDPOINT2         = `data-${PREFIX}-endpoint2`;
+const GAP_FILL_ID       = `data-${PREFIX}-gap-fill-id`;
+const ID                = `data-${PREFIX}-identifier`;
+const ITEM              = `data-${PREFIX}-item`;
 const MATCHES           = `data-${PREFIX}-matches`;
 const MATCH_MAX         = `data-${PREFIX}-match-max`;
 const MAXCOLS           = `data-${PREFIX}-max-cols`;
 const MESSAGE           = `data-${PREFIX}-message`;
 const NAVMODE           = `data-${PREFIX}-navigation-mode`;
-const SUBMISSION_MODE   = `data-${PREFIX}-submission-mode`;
+const OUTCOME_ID        = `data-${PREFIX}-outcome-identifier`;
 const PIVOT_TARGET      = `data-${PREFIX}-pivot-target`;
-const SHOWHIDE          = `data-${PREFIX}-show-hide`;
-const TAG               = `data-${PREFIX}-tag`;
-const ENDPOINT1         = `data-${PREFIX}-endpoint1`;
-const ENDPOINT2         = `data-${PREFIX}-endpoint2`;
-const SUFFIX            = `data-${PREFIX}-suffix`;
-const DELIMITER         = `data-${PREFIX}-delimiter`;
 const PREFIX_ATTRIB     = `data-${PREFIX}-prefix`;
+const RESPONSE_ID       = `data-${PREFIX}-response-identifier`;
+const SHOWHIDE          = `data-${PREFIX}-show-hide`;
+const SUBMISSION_MODE   = `data-${PREFIX}-submission-mode`;
+const SUFFIX            = `data-${PREFIX}-suffix`;
+const TAG               = `data-${PREFIX}-tag`;
+const TEMPLATE_ID       = `data-${PREFIX}-template-identifier`;
 
 // class and CSS custom property names
 const ASSOCIATE_TABLE   = `${PREFIX}-associate-table`;
