@@ -180,6 +180,12 @@ function setupDragAndDropInteraction(interaction) {
       let choices=[...interaction.querySelectorAll(SIMPLECHOICE_SEL)];
       let qtiInteraction = QTI.DOM.getElementById(interaction.id);
       let maxChoices = +qtiInteraction.getAttribute("maxChoices")||1;
+
+      if (qtiInteraction.selectionArea) {
+        choices = choices.filter(choice=>{
+          return choice.parentElement.classList.contains(SELECTION_AREA)
+        });
+      }
       value = choices.map(choice=>choice.getAttribute(ID));
       if (maxChoices && maxChoices<value.length)
         value = value.slice(0, maxChoices);

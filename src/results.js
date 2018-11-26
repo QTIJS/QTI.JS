@@ -37,7 +37,7 @@ function submit(item) {
         && (child.tagName!=="assessmentItem"
             || (child.declarations["$dirty"]
                 && child.declarations["$dirty"].value))) {
-      INFO("submit", identifier(child), child.declarations["$dirty"]);
+      DEBUG("submit", identifier(child), child.declarations["$dirty"]);
       emit(child);
     }
   });

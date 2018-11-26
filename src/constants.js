@@ -208,7 +208,32 @@ const QTI = {
     xmlbase,
     verbatim,
   ],
-  INTERACTIONS: [],
+  INTERACTION_STACK: [],
+  INTERACTIONS: {
+    choiceInteraction:           {setup: setupInputInteraction,},
+    endAttemptInteraction:       {setup: setupInputInteraction,},
+    extendedTextInteraction:     {setup: setupInputInteraction,},
+    hottextInteraction:          {setup: setupInputInteraction,},
+    inlineChoiceInteraction:     {setup: setupInputInteraction,},
+    matchInteraction:            {setup: setupInputInteraction,},
+    sliderInteraction:           {setup: setupInputInteraction,},
+    textEntryInteraction:        {setup: setupInputInteraction,},
+    uploadInteraction:           {setup: setupInputInteraction,},
+
+    associateInteraction:        {setup: setupDragAndDropInteraction,},
+    gapMatchInteraction:         {setup: setupDragAndDropInteraction,},
+    orderInteraction:            {setup: setupDragAndDropInteraction,},
+    
+    customInteraction:           {setup: setupCustomInteraction,},
+    drawingInteraction:          {setup: setupDrawingInteraction,},
+    graphicAssociateInteraction: {setup: setupGraphicAssociateInteraction,},
+    graphicGapMatchInteraction:  {setup: setupGraphicGapMatchInteraction,},
+    graphicOrderInteraction:     {setup: setupGraphicOrderInteraction,},
+    hotspotInteraction:          {setup: setupHotspotInteraction,},
+    mediaInteraction:            {setup: setupMediaInteraction,},
+    positionObjectStage:         {setup: setupPositionObjectStage,},
+    selectPointInteraction:      {setup: setupSelectPointInteraction,},
+  },
   LANG: EN,
   LOADING_COUNT: 0,
   THEME_JS: null,
@@ -225,7 +250,5 @@ const QTI = {
   _BTH: null,
   
   postResponseVariable: postResponseVariable,
-  setVariable: setResponseVariable,
-  getVariable: getResponseVariable,
 };
 

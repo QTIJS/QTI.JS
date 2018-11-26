@@ -17,11 +17,18 @@
     </defaultValue>
   </outcomeDeclaration>
 
+  <templateDeclaration identifier="TV1" cardinality="single" baseType="identifier">
+    <defaultValue>
+      <value>E</value>
+    </defaultValue>
+  </templateDeclaration>
+
+  <itemSessionControl maxAttempts="0" />
+  
   <itemBody>
     <rubricBlock view="candidate">
-      <p>
-        Select the error in the following passage of text (or <em>No
-        error</em> if there is none).
+      <p>Select the error in the following passage of text (or <em>No
+          error</em> if there is none).
       </p>
     </rubricBlock>
     <hottextInteraction responseIdentifier="RESPONSE">
@@ -30,7 +37,7 @@
         <hottext identifier="A">who bought</hottext> advertising time on United States television
         <hottext identifier="B">includes</hottext>
         <hottext identifier="C">at least</hottext> a dozen international firms
-        <hottext identifier="D">whose</hottext> names are familiar to American consumers.
+        <hottext identifier="D" templateIdentifier="TV1" showHide="hide"> whose</hottext> names are familiar to American consumers.
         <hottext identifier="E">No error.</hottext>
       </p>
     </hottextInteraction>

@@ -14,39 +14,15 @@
 // items are setup.
 function setupAssessmentItem(item) {
   let htmlItem = getHTMLItemById(item.id);
-  let interactions = {
-    associateInteraction:         setupDragAndDropInteraction,
-    customInteraction:            setupCustomInteraction,
-    choiceInteraction:            setupInputInteraction,
-    drawingInteraction:           setupDrawingInteraction,
-    endAttemptInteraction:        setupInputInteraction,
-    extendedTextInteraction:      setupInputInteraction,
-    gapMatchInteraction:          setupDragAndDropInteraction,
-    graphicAssociateInteraction:  setupGraphicAssociateInteraction,
-    graphicGapMatchInteraction:   setupGraphicGapMatchInteraction,
-    graphicOrderInteraction:      setupGraphicOrderInteraction,
-    hotspotInteraction:           setupHotspotInteraction,
-    hottextInteraction:           setupInputInteraction,
-    inlineChoiceInteraction:      setupInputInteraction,
-    matchInteraction:             setupInputInteraction,
-    mediaInteraction:             setupMediaInteraction,
-    orderInteraction:             setupDragAndDropInteraction,
-    positionObjectStage:          setupPositionObjectStage,
-    selectPointInteraction:       setupSelectPointInteraction,
-    sliderInteraction:            setupInputInteraction,
-    textEntryInteraction:         setupInputInteraction,
-    uploadInteraction:            setupInputInteraction,
-  }
-
-  for (let interaction of Object.keys(interactions)) {
-    htmlItem.querySelectorAll(`[${TAG}="${interaction}"]`).forEach(i=>{
-      interactions[interaction](i);
-    });
-  }
-  setupNavigationUI(htmlItem);
   let testPart = getQTITestPart(item);
-  if (!(testPart && testPart.getAttribute("navigationMode")==="linear"))
+  let linear =  testPart && testPart.getAttribute("navigationMode")==="linear";
+  let interactions = htmlItem.querySelectorAll(INTERACTION_SEL);
+  interactions.forEach(i=>QTI.INTERACTIONS[i.getAttribute(TAG)].setup(i));
+  setupNavigationUI(htmlItem);
+  if (!linear) {
     templateProcessing(item);
+    interactions.forEach(i=>i.init? i.init(): null);
+  }
 }
 
 // Setup next/prev buttons.

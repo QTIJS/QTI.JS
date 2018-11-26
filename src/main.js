@@ -210,5 +210,24 @@ window.addEventListener("load",function() {
       }
     }
   }
+
+  // Where elements have the same "identifier" attribute,
+  // adds an "instance" attribute.
+  function setInstances(dom) {
+    let elements = {};
+    [...dom.querySelectorAll("[identifier]")].forEach(elem=>{
+      let id = identifier(elem);
+      let entry = elements[id];
+      if (!entry) {
+        entry = elements[id] = [];
+      }
+      entry.push(elem);
+    });
+    for (key in elements) {
+      let seq=0;
+      if (elements[key].length>1)
+        elements[key].forEach(elem=>elem.setAttribute("instance", ++seq));
+    }
+  }
 });
 

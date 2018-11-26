@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p2"
+  identifier="order_max_choices"
+  title="Grand Prix of Bahrain"
+  adaptive="false"
+  timeDependent="false">
+
+  <responseDeclaration identifier="RESPONSE" cardinality="ordered" baseType="identifier">
+    <correctResponse>
+      <value>DriverD</value>
+      <value>DriverA</value>
+      <value>DriverB</value>
+    </correctResponse>
+  </responseDeclaration>
+
+  <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float"/>
+
+  <itemBody>
+    <orderInteraction responseIdentifier="RESPONSE" shuffle="true" maxChoices="3">
+      <prompt>
+        Three F1 drivers finished on the podium in the first
+        ever Grand Prix of Bahrain. Arrange them in the correct
+        finishing order.
+      </prompt>
+      <simpleChoice identifier="DriverA">Rubens Barrichello</simpleChoice>
+      <simpleChoice identifier="DriverB">Jenson Button</simpleChoice>
+      <simpleChoice identifier="DriverC">Jarno Trulli</simpleChoice>
+      <simpleChoice identifier="DriverD" fixed="true">Michael Schumacher</simpleChoice>
+      <simpleChoice identifier="DriverE">Fernando Alonso</simpleChoice>
+      <simpleChoice identifier="DriverF">Takuma Sato</simpleChoice>
+    </orderInteraction>
+  </itemBody>
+
+  <responseProcessing
+    template="http://www.imsglobal.org/question/qti_v2p2/rptemplates/match_correct.xml" />
+</assessmentItem>

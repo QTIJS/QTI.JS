@@ -31,19 +31,6 @@ function responseProcessing(item) {
   return true;
 }
 
-// Returns true if an item is adaptive.
-function isAdaptive(item) {
-  return item.getAttribute("adaptive")==="true";
-}
-
-// Initializes outcome variables
-function resetOutcomeVariables(elem) {
-  Object.getOwnPropertyNames(elem.declarations).forEach(id=>{
-    if (elem.declarations[id].elem.tagName=="outcomeDeclaration")
-      elem.declarations[id].value=null;
-  });
-}
-                                
 // Executes Outcome Processing 
 function outcomeProcessing(test=QTI.ROOT) {
   DEBUG("outcomeProcessing", identifier(test), clock()+"msecs");
@@ -69,11 +56,10 @@ function templateProcessing(elem) {
 
   switch (elem.tagName) {
   case "assessmentItem":
-    // Run templateDefaults/templateProcessing for the
+    // Run templateDefaults/templateProcessing for the item.
     [...elem.getElementsByTagName("templateDefault")].forEach(tmplDefault=>{
       exec(tmplDefault);
     });
-
     let tpblocks = [...elem.getElementsByTagName("templateProcessing")];
     if (tpblocks.length)
       tpblocks.forEach(tp=>execProcessing(tp, processingComplete));
@@ -89,6 +75,20 @@ function templateProcessing(elem) {
     break;
   }
   elem.templateProcessed = true;
+}
+
+// Executor for templateDefault.  Noop if invoked during transform.
+// Similar to setDefaultValue if invoked in connection with
+// templateProcessing.
+function templateDefault(elem) {
+  if (QTI.TRANSFORMING)
+    return null;
+  else {
+    let templateVar = elem.getAttribute("templateIdentifier");
+    let decl = getDeclarations(elem)[templateVar];
+    decl.defaultValue = coerce(decl, execChildren(elem,0,1)[0]);
+    return true;
+  }
 }
 
 // Executes Response/Template/Outcome Processing, asynchronously
@@ -156,7 +156,7 @@ function triggerShowHide(item) {
         if (!showFeedback(item)) 
           return;
       }
-      INFO(identifier(item), "triggering showHide on", tag, elem);
+      DEBUG(identifier(item), "triggering showHide on", tag, elem);
       let value = decl.value;
       let triggered = elem.classList.contains(TRIGGERED);
       if (!value || (Array.isArray(value) && value.length==0))
@@ -404,17 +404,22 @@ function setVar(elem, getter=(decl,value)=>value) {
   }
 }
 
-// Sets attribute of a variable, such as "correctResponse"
-function setVarAttribute(elem, values) {
-  execChildren(elem);
-  if (!values)
-    values = elem.values;
-  let parent = elem.parentElement;
-  let id = identifier(parent);
-  let decl = getDeclarations(elem)[id];
-  decl[elem.tagName] = coerce(decl, values);
+// Sets variable attribute to the value of element.
+// Helper for setCorrectResponse, setDefaultValue
+function setAtt(elem, attrib) {
+  let value = execChildren(elem,0,1)[0];
+  let variable = identifier(elem);
+  let decl = getDeclarations(elem)[variable];
+  decl[attrib] = coerce(decl, value);
 }
-  
+
+// Sets the response variable of an HTML-domain interaction
+function setResponseVariable(htmlInteraction, variable, value) {
+  let decl = getResponseVariable(htmlInteraction, variable, value);
+  if (decl)
+    decl.value = coerce(decl, value);
+}
+
 // Gets the response variable for an HTML-domain interaction.
 function getResponseVariable(htmlInteraction, variable) {
   const item = getQTIItemById(htmlInteraction.getAttribute(ITEM));
@@ -422,11 +427,17 @@ function getResponseVariable(htmlInteraction, variable) {
   return item.declarations[variable];
 }
 
-// Sets the response variable of an HTML-domain interaction
-function setResponseVariable(htmlInteraction, variable, value) {
-  let decl = getResponseVariable(htmlInteraction, variable, value);
-  if (decl)
-    decl.value = value;
+// Initializes outcome variables
+function resetOutcomeVariables(elem) {
+  Object.getOwnPropertyNames(elem.declarations).forEach(id=>{
+    if (elem.declarations[id].elem.tagName=="outcomeDeclaration")
+      elem.declarations[id].value=null;
+  });
+}
+
+// Returns true if an item is adaptive.
+function isAdaptive(item) {
+  return item.getAttribute("adaptive")==="true";
 }
 
 // The dirty flag indicates that an item has changed in a way which
@@ -458,45 +469,10 @@ function getDirty(item) {
   return item.declarations["$dirty"].value;
 }
 
-// Ends attempt on current item.
-function endAttempt(item, htmlInteraction) {
-  let responseVar = htmlInteraction.getAttribute(RESPONSE_ID);
-  [...item.querySelectorAll("endAttemptInteraction")].forEach(ea=>{
-    let rv = ea.getAttribute("responseIdentifier");
-    if (rv != responseVar) 
-      item.declarations[rv].value = false;
-  });
-  htmlInteraction.classList.add(CLICKED);
-  control({currentTarget:htmlInteraction}, +1);
-}
-  
 // Logs a variable value change on the console (for debugging).
 function logVarChange(tag, decl, prev) {
   let itemId = identifier(decl.ctx);
   let varId = decl.identifier;
   DEBUG(tag,`${itemId}.${varId} = ${decl.value} ${prev?prev:""}`);
-}
-
-// Sets variable attribute to the value of element.
-// Helper for setCorrectResponse, setDefaultValue
-function setAtt(elem, attrib) {
-  let value = execChildren(elem,0,1)[0];
-  let variable = identifier(elem);
-  let decl = getDeclarations(elem)[variable];
-  decl[attrib] = coerce(decl, value);
-}
-
-// Executor for templateDefault.  Noop if invoked during transform.
-// Similar to setDefaultValue if invoked in connection with
-// templateProcessing.
-function templateDefault(elem) {
-  if (QTI.TRANSFORMING)
-    return null;
-  else {
-    let templateVar = elem.getAttribute("templateIdentifier");
-    let decl = getDeclarations(elem)[templateVar];
-    decl.defaultValue = coerce(decl, execChildren(elem,0,1)[0]);
-    return true;
-  }
 }
 

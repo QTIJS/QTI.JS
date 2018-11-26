@@ -208,7 +208,32 @@ const QTI = {
     xmlbase,
     verbatim,
   ],
-  INTERACTIONS: [],
+  INTERACTION_STACK: [],
+  INTERACTIONS: {
+    choiceInteraction:           {setup: setupInputInteraction,},
+    endAttemptInteraction:       {setup: setupInputInteraction,},
+    extendedTextInteraction:     {setup: setupInputInteraction,},
+    hottextInteraction:          {setup: setupInputInteraction,},
+    inlineChoiceInteraction:     {setup: setupInputInteraction,},
+    matchInteraction:            {setup: setupInputInteraction,},
+    sliderInteraction:           {setup: setupInputInteraction,},
+    textEntryInteraction:        {setup: setupInputInteraction,},
+    uploadInteraction:           {setup: setupInputInteraction,},
+
+    associateInteraction:        {setup: setupDragAndDropInteraction,},
+    gapMatchInteraction:         {setup: setupDragAndDropInteraction,},
+    orderInteraction:            {setup: setupDragAndDropInteraction,},
+    
+    customInteraction:           {setup: setupCustomInteraction,},
+    drawingInteraction:          {setup: setupDrawingInteraction,},
+    graphicAssociateInteraction: {setup: setupGraphicAssociateInteraction,},
+    graphicGapMatchInteraction:  {setup: setupGraphicGapMatchInteraction,},
+    graphicOrderInteraction:     {setup: setupGraphicOrderInteraction,},
+    hotspotInteraction:          {setup: setupHotspotInteraction,},
+    mediaInteraction:            {setup: setupMediaInteraction,},
+    positionObjectStage:         {setup: setupPositionObjectStage,},
+    selectPointInteraction:      {setup: setupSelectPointInteraction,},
+  },
   LANG: EN,
   LOADING_COUNT: 0,
   THEME_JS: null,
@@ -225,8 +250,6 @@ const QTI = {
   _BTH: null,
   
   postResponseVariable: postResponseVariable,
-  setVariable: setResponseVariable,
-  getVariable: getResponseVariable,
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -715,7 +738,7 @@ function transform(elem) {
   
   let item = getQTIAssessmentItem(elem);
   let id = elem.getAttribute("id");
-  let interaction = QTI.INTERACTIONS[QTI.INTERACTIONS.length-1];
+  let interaction = QTI.INTERACTION_STACK[QTI.INTERACTION_STACK.length-1];
   
   if (!id) {
     id = getId(elem);
@@ -1015,7 +1038,7 @@ function transform(elem) {
     
   // Transforms hottext, simpleChoice, or simpleAssociableChoice.
   function transformChoice(elem, T) {
-    let interaction = QTI.INTERACTIONS[QTI.INTERACTIONS.length-1];
+    let interaction = QTI.INTERACTION_STACK[QTI.INTERACTION_STACK.length-1];
 
     switch(interaction.tagName) {
     case "customInteraction":
@@ -1056,6 +1079,8 @@ function transform(elem) {
     case "associateInteraction":
       // renders choice as as an <li> inside an <ol>
       if (interaction.choices === undefined) {
+        let choices = interaction.getElementsByTagName(elem.tagName).length;
+        interaction.choices = choices;
         T.wrapstart = "";
         if (interaction.tagName=="orderInteraction") {
           let countChoices = interaction.querySelectorAll("simpleChoice").length
@@ -1064,16 +1089,17 @@ function transform(elem) {
           if ((maxChoices>0 && maxChoices!=countChoices)
               || (minChoices>0 && minChoices!=countChoices)) {
             T.wrapstart = `<ol class="${CHOICES} ${SELECTION_AREA}"></ol>`;
+            interaction.selectionArea = true;
           }
         }
         T.wrapstart += `<ol class="${CHOICES}">`;
-        interaction.choices =
-          interaction.getElementsByTagName(elem.tagName).length;
       }
       T.tag = "li";
       T.attribs.push({name:"draggable", value:"true", prefix:false});
-      if (--interaction.choices===0)
+      if (--interaction.choices===0) {
         T.wrapend = (T.wrapend||"") + `</ol>`;
+        delete interaction.choices;
+      }
       break;
     }
   }
@@ -1113,7 +1139,7 @@ function transform(elem) {
     </tr>
     </table>`;
 
-    let interaction = QTI.INTERACTIONS[QTI.INTERACTIONS.length-1];
+    let interaction = QTI.INTERACTION_STACK[QTI.INTERACTION_STACK.length-1];
     
     T.tag = elem.tagName;
     if (interaction) {
@@ -1126,12 +1152,6 @@ function transform(elem) {
         break;
       }
     }
-  }
-
-  // Generates textarea for an extendedTextInteraction
-  function transformExtendedTextInteraction(elem, T) {
-    let ph = getPlaceholder(elem, "");
-    T.content.push(`<textarea placeholder="${ph}"></textarea>`);
   }
 
   // Generates details/summary for an infoControl
@@ -1147,6 +1167,12 @@ function transform(elem) {
     T.content.push(`<option selected="true">Choose...</option>`);
   }
 
+  // Generates textarea for an extendedTextInteraction
+  function transformExtendedTextInteraction(elem, T) {
+    let ph = getPlaceholder(elem, "");
+    T.content.push(`<textarea placeholder="${ph}"></textarea>`);
+  }
+  
   // Generates an input type=text for textEntryInteraction
   function transformTextEntryInteraction(elem, T) {
     T.tag = "span";
@@ -1154,6 +1180,20 @@ function transform(elem) {
       `<input type="text" placeholder="${getPlaceholder(elem, "")}"/>`);
   }
 
+  // Returns placeholder text for an input or textarea.
+  function getPlaceholder(elem, defaultValue) {
+    let placeholder = elem.getAttribute("placeholderText")||defaultValue;
+    let expectedLength = elem.getAttribute("expectedLength");
+    let expectedLines = elem.getAttribute("expectedLines");
+    let expected = "";
+    if (expectedLength) 
+      return`${placeholder} ${QTI.LANG.EXPECTED_CHARS(expectedLength)})`;
+    else if (expectedLines)
+      return `${placeholder} ${QTI.LANG.EXPECTED_LINES(expectedLines)})`;
+    else
+      return `${placeholder}`
+  }
+  
   // Generates an input type=file for uploadInteraction
   function transformUploadInteraction(elem, T) {
     T.content.push(`<label>${QTI.LANG.UPLOAD}: <input type="file"/></label>`);
@@ -1418,9 +1458,9 @@ function transform(elem) {
 // transforms of interaction children to find the interaction in which
 // they are nested.
 function interaction(elem) {
-  QTI.INTERACTIONS.push(elem);
+  QTI.INTERACTION_STACK.push(elem);
   let result = transform(elem);
-  QTI.INTERACTIONS.pop(elem);
+  QTI.INTERACTION_STACK.pop(elem);
   return result;
 }
 
@@ -1652,39 +1692,15 @@ function shuffle(array) {
 // items are setup.
 function setupAssessmentItem(item) {
   let htmlItem = getHTMLItemById(item.id);
-  let interactions = {
-    associateInteraction:         setupDragAndDropInteraction,
-    customInteraction:            setupCustomInteraction,
-    choiceInteraction:            setupInputInteraction,
-    drawingInteraction:           setupDrawingInteraction,
-    endAttemptInteraction:        setupInputInteraction,
-    extendedTextInteraction:      setupInputInteraction,
-    gapMatchInteraction:          setupDragAndDropInteraction,
-    graphicAssociateInteraction:  setupGraphicAssociateInteraction,
-    graphicGapMatchInteraction:   setupGraphicGapMatchInteraction,
-    graphicOrderInteraction:      setupGraphicOrderInteraction,
-    hotspotInteraction:           setupHotspotInteraction,
-    hottextInteraction:           setupInputInteraction,
-    inlineChoiceInteraction:      setupInputInteraction,
-    matchInteraction:             setupInputInteraction,
-    mediaInteraction:             setupMediaInteraction,
-    orderInteraction:             setupDragAndDropInteraction,
-    positionObjectStage:          setupPositionObjectStage,
-    selectPointInteraction:       setupSelectPointInteraction,
-    sliderInteraction:            setupInputInteraction,
-    textEntryInteraction:         setupInputInteraction,
-    uploadInteraction:            setupInputInteraction,
-  }
-
-  for (let interaction of Object.keys(interactions)) {
-    htmlItem.querySelectorAll(`[${TAG}="${interaction}"]`).forEach(i=>{
-      interactions[interaction](i);
-    });
-  }
-  setupNavigationUI(htmlItem);
   let testPart = getQTITestPart(item);
-  if (!(testPart && testPart.getAttribute("navigationMode")==="linear"))
+  let linear =  testPart && testPart.getAttribute("navigationMode")==="linear";
+  let interactions = htmlItem.querySelectorAll(INTERACTION_SEL);
+  interactions.forEach(i=>QTI.INTERACTIONS[i.getAttribute(TAG)].setup(i));
+  setupNavigationUI(htmlItem);
+  if (!linear) {
     templateProcessing(item);
+    interactions.forEach(i=>i.init? i.init(): null);
+  }
 }
 
 // Setup next/prev buttons.
@@ -1706,13 +1722,16 @@ function setupNavigationUI(item) {
 //
 
 // Common code for setting up interactions that are transformed
-// to HTML form input elements (input, select, textarea, button),
-// including choiceInteraction, inlineChoiceInteraction,
-// matchInteraction, etc.
+// to HTML form input elements; namely, choiceInteraction (radio/checkbox),
+// endAttemptInteraction (button), extendedTextInteraction (textarea),
+// hottextInteraction (radio/checkbox), inlineChoiceInteraction (select/option)
+// matchInteraction (radio/checkbox matrix), sliderInteraction (range),
+// textEntryInteraction (text), uploadInteraction (file).
+//
 function setupInputInteraction(interaction) {
   let qtiInteraction = QTI.DOM.getElementById(interaction.id);
   let responseVariable = getResponseVariable(interaction);
-  
+
   switch(interaction.tagName) {
   case "SELECT":
     interaction.onchange=handleResponse;
@@ -1726,7 +1745,10 @@ function setupInputInteraction(interaction) {
     inputs.forEach(input=>input.onchange=handleResponse);
     break;
   }
-  
+
+  // Called after templateProcessing, just before presentation.
+  interaction.init = initInteraction;
+    
   // Handler for change and click events.
   function handleResponse(evt) {
     const input = evt.currentTarget;
@@ -1789,6 +1811,28 @@ function setupInputInteraction(interaction) {
       || responseVariable.value.length<maxChoices;    
   }
   
+  // Inits interactions after templateProcessing and before
+  // first attempt on interaction.
+  function initInteraction() {
+    let decl = responseVariable;
+    if (decl.defaultValue) {
+      decl.value = coerce(decl, decl.defaultValue);
+      let sel = "input, textarea, select, button";
+      [...interaction.querySelectorAll(sel)].forEach(input=>{
+        switch(input.tagName){
+        case "INPUT":
+          switch(input.getAttribute("type")){
+          case "radio":
+          case "checkbox":
+            // choiceInteraction, hottextInteraction
+            input.checked = decl.value.includes(input.getAttribute(ID));
+            break;
+          }
+        }
+      });
+    }
+  }
+
   // Sets response variable after the user does input.
   function setInputResponseVariable(input) {
     let value;
@@ -1797,28 +1841,35 @@ function setupInputInteraction(interaction) {
       switch(input.getAttribute("type")) {
       case "radio":
       case "checkbox":
+        // choiceInteraction, hottextInteraction, matchInteraction
         value = check(input.getAttribute(ID), input.checked);
         break;
       case "text":
+        // textEntryInteraction
         if (input.value.length)
           input.style.width = input.value.length+"ch";
         value = input.value;
         break;
       case "range":
+        // sliderInteraction
         value = input.value;
         break;
       case "file":
+        // uploadInteraction
         value = input.files[0].name;
         break;
       }
       break;
     case "TEXTAREA":
+      // extendedTextInteraction
       value = input.value;
       break;
     case "SELECT":
+      // inlineChoiceInteraction
       value = input.options[input.selectedIndex].getAttribute(ID);
       break;
     case "BUTTON":
+      // endAttemptInteraction
       value = true;
       break;
     default:
@@ -1832,6 +1883,8 @@ function setupInputInteraction(interaction) {
   function check(identifier, checked) {
     if (!responseVariable.value)
       responseVariable.value=[];
+    if (!Array.isArray(responseVariable.value))
+      responseVariable.value=[responseVariable.value];
     if (checked && !responseVariable.value.includes(identifier)) {
       responseVariable.value.push(identifier);
     } else if (!checked) {
@@ -1842,7 +1895,6 @@ function setupInputInteraction(interaction) {
     return responseVariable.value;
   }
 }
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // dragdrop_interactions.js
@@ -2025,6 +2077,12 @@ function setupDragAndDropInteraction(interaction) {
       let choices=[...interaction.querySelectorAll(SIMPLECHOICE_SEL)];
       let qtiInteraction = QTI.DOM.getElementById(interaction.id);
       let maxChoices = +qtiInteraction.getAttribute("maxChoices")||1;
+
+      if (qtiInteraction.selectionArea) {
+        choices = choices.filter(choice=>{
+          return choice.parentElement.classList.contains(SELECTION_AREA)
+        });
+      }
       value = choices.map(choice=>choice.getAttribute(ID));
       if (maxChoices && maxChoices<value.length)
         value = value.slice(0, maxChoices);
@@ -2694,6 +2752,18 @@ function postResponseVariable(htmlInteraction, value, variable) {
   }
 }
 
+// Ends attempt on current item.
+function endAttempt(item, htmlInteraction) {
+  let responseVar = htmlInteraction.getAttribute(RESPONSE_ID);
+  [...item.querySelectorAll("endAttemptInteraction")].forEach(ea=>{
+    let rv = ea.getAttribute("responseIdentifier");
+    if (rv != responseVar) 
+      item.declarations[rv].value = false;
+  });
+  htmlInteraction.classList.add(CLICKED);
+  control({currentTarget:htmlInteraction}, +1);
+}
+  
 // Session control: move a specified number of steps in the
 // sequence from the current item.  negative number of steps
 // means move backward.
@@ -2729,7 +2799,7 @@ function control(evt, k=+1) {
 // (as opposed to a testFeedback.)
 function controlItem(current, item, k, scrollTo) {
   let forward = (k===1);
-  let isSkip = getSetResponseVariables(item).length==0;
+  let isSkip = getResponses(item).length==0;
   let testPart = getQTITestPart(item);
   let navigationMode = "nonlinear";
   let submissionMode = "individual";
@@ -2803,7 +2873,7 @@ function controlItem(current, item, k, scrollTo) {
       // is possible, and whether the candidate can review
       // simultaneous-mode items and see item-level feedback is
       // outside the scope of the spec.
-      INFO("simultaneous mode, deferring submission: ",
+      DEBUG("simultaneous mode, deferring submission: ",
            identifier(item));
     }      
   }
@@ -2828,12 +2898,12 @@ function controlItem(current, item, k, scrollTo) {
 // non-linear.  In a slideshow style, whether for linear or
 // non-linear, "current" is the one item which is on-screen.
 //
-// But, non-linear testParts may use a style which presents all items in a
-// testPart to the candidate simultaneously, and the candidate can
-// interact with any of them, possibly over multiple submissions,
-// and submit them in any order.  In that style, which item is "current"
-// may not be very important and the candidate may not even be aware
-// that some particular item is "current".
+// But, non-linear testParts may use a style which presents all items
+// in a testPart to the candidate simultaneously, and the candidate
+// can interact with any of them, possibly over multiple submissions,
+// and submit them in any order.  In that style, which item is
+// "current" may not be very important and the candidate may not even
+// be aware that some particular item is "current".
 //
 // Because QTI.JS does not know what the stylesheets are doing, it
 // maintains "current" in all circumstances.
@@ -2985,6 +3055,12 @@ function isAttemptable(item) {
     && (adaptive || maxAttempts==0 || numAttempts<maxAttempts);
 }
 
+// Returns true if an item has children which can be shown/hidden
+// via the showHide mechanism.
+function hasTriggerables(item) {
+  return item.querySelectorAll(SHOWHIDE_SEL).length;
+}
+
 // Returns array of interactions which
 // (1) are children of the element
 // (1) are visible (interaction parentOffset!=null)
@@ -3003,8 +3079,8 @@ function inSection(item, section) {
   return section.querySelector(`#${item.id}`);
 }
 
-// Returns the item which is +1 or -1 in document sequence
-// from the specified item.
+// Preps the item which is +1 or -1 in document sequence
+// from the specified item and returns it.
 function getNextItem(htmlItem, step=0) {
   let item = null;
 
@@ -3016,9 +3092,11 @@ function getNextItem(htmlItem, step=0) {
     item = QTI.SEQUENCE[0];
     step = 0;
   }
+
   item = step>=0
     ? getNextItemInSequence(item, step)
     : getPrevItemInSequence(item, step);
+
   if (item) {
     htmlItem = document.getElementById(item.elem.id);
     item.presented = true;
@@ -3026,8 +3104,11 @@ function getNextItem(htmlItem, step=0) {
         && !item.elem.templateProcessed) {
       let testPart = getQTITestPart(item.elem);
       let linear = testPart.getAttribute("navigationMode")==="linear";
-      if (linear)
+      if (linear) {
         templateProcessing(item.elem);
+        let interactions = htmlItem.querySelectorAll(INTERACTION_SEL);
+        interactions.forEach(i=>i.init? i.init(): null);
+      }
     }
   }
   return htmlItem;
@@ -3472,6 +3553,31 @@ function value(elem) {
   elem.parentElement.values.push(elem.textContent);
 }
 
+// Returns variables declared in an element (including children
+// in the case of tests, testParts, or sections.)
+function getVariables(elem=QTI.ROOT) {
+  let declarations = {};
+  if (elem.tagName=="assessmentItem" && elem.declarations) {
+    declarations[identifier(elem)]=elem.declarations;
+  } else {
+    if (elem.tagName=="assessmentTest" && elem.declarations)
+      declarations[identifier(elem)]=elem.declarations;
+    let sel = "assessmentItem, assessmentSection, testPart";
+    [...elem.querySelectorAll(sel)].forEach(item=>{
+      if (item.declarations)
+        declarations[identifier(item)]=item.declarations;
+    });
+  }
+  return declarations;
+}
+
+// Returns the variables from responseDeclarations in an item.
+function getResponseVariables(item) {
+  let ids = Object.getOwnPropertyNames(item.declarations);
+  return ids
+    .filter(id=>item.declarations[id].elem.tagName=="responseDeclaration")
+    .map(id=>item.declarations[id]);
+}
 //////////////////////////////////////////////////////////////////////////////
 //
 // processing.js
@@ -3505,19 +3611,6 @@ function responseProcessing(item) {
   return true;
 }
 
-// Returns true if an item is adaptive.
-function isAdaptive(item) {
-  return item.getAttribute("adaptive")==="true";
-}
-
-// Initializes outcome variables
-function resetOutcomeVariables(elem) {
-  Object.getOwnPropertyNames(elem.declarations).forEach(id=>{
-    if (elem.declarations[id].elem.tagName=="outcomeDeclaration")
-      elem.declarations[id].value=null;
-  });
-}
-                                
 // Executes Outcome Processing 
 function outcomeProcessing(test=QTI.ROOT) {
   DEBUG("outcomeProcessing", identifier(test), clock()+"msecs");
@@ -3543,11 +3636,10 @@ function templateProcessing(elem) {
 
   switch (elem.tagName) {
   case "assessmentItem":
-    // Run templateDefaults/templateProcessing for the
+    // Run templateDefaults/templateProcessing for the item.
     [...elem.getElementsByTagName("templateDefault")].forEach(tmplDefault=>{
       exec(tmplDefault);
     });
-
     let tpblocks = [...elem.getElementsByTagName("templateProcessing")];
     if (tpblocks.length)
       tpblocks.forEach(tp=>execProcessing(tp, processingComplete));
@@ -3563,6 +3655,20 @@ function templateProcessing(elem) {
     break;
   }
   elem.templateProcessed = true;
+}
+
+// Executor for templateDefault.  Noop if invoked during transform.
+// Similar to setDefaultValue if invoked in connection with
+// templateProcessing.
+function templateDefault(elem) {
+  if (QTI.TRANSFORMING)
+    return null;
+  else {
+    let templateVar = elem.getAttribute("templateIdentifier");
+    let decl = getDeclarations(elem)[templateVar];
+    decl.defaultValue = coerce(decl, execChildren(elem,0,1)[0]);
+    return true;
+  }
 }
 
 // Executes Response/Template/Outcome Processing, asynchronously
@@ -3630,7 +3736,7 @@ function triggerShowHide(item) {
         if (!showFeedback(item)) 
           return;
       }
-      INFO(identifier(item), "triggering showHide on", tag, elem);
+      DEBUG(identifier(item), "triggering showHide on", tag, elem);
       let value = decl.value;
       let triggered = elem.classList.contains(TRIGGERED);
       if (!value || (Array.isArray(value) && value.length==0))
@@ -3878,17 +3984,22 @@ function setVar(elem, getter=(decl,value)=>value) {
   }
 }
 
-// Sets attribute of a variable, such as "correctResponse"
-function setVarAttribute(elem, values) {
-  execChildren(elem);
-  if (!values)
-    values = elem.values;
-  let parent = elem.parentElement;
-  let id = identifier(parent);
-  let decl = getDeclarations(elem)[id];
-  decl[elem.tagName] = coerce(decl, values);
+// Sets variable attribute to the value of element.
+// Helper for setCorrectResponse, setDefaultValue
+function setAtt(elem, attrib) {
+  let value = execChildren(elem,0,1)[0];
+  let variable = identifier(elem);
+  let decl = getDeclarations(elem)[variable];
+  decl[attrib] = coerce(decl, value);
 }
-  
+
+// Sets the response variable of an HTML-domain interaction
+function setResponseVariable(htmlInteraction, variable, value) {
+  let decl = getResponseVariable(htmlInteraction, variable, value);
+  if (decl)
+    decl.value = coerce(decl, value);
+}
+
 // Gets the response variable for an HTML-domain interaction.
 function getResponseVariable(htmlInteraction, variable) {
   const item = getQTIItemById(htmlInteraction.getAttribute(ITEM));
@@ -3896,11 +4007,17 @@ function getResponseVariable(htmlInteraction, variable) {
   return item.declarations[variable];
 }
 
-// Sets the response variable of an HTML-domain interaction
-function setResponseVariable(htmlInteraction, variable, value) {
-  let decl = getResponseVariable(htmlInteraction, variable, value);
-  if (decl)
-    decl.value = value;
+// Initializes outcome variables
+function resetOutcomeVariables(elem) {
+  Object.getOwnPropertyNames(elem.declarations).forEach(id=>{
+    if (elem.declarations[id].elem.tagName=="outcomeDeclaration")
+      elem.declarations[id].value=null;
+  });
+}
+
+// Returns true if an item is adaptive.
+function isAdaptive(item) {
+  return item.getAttribute("adaptive")==="true";
 }
 
 // The dirty flag indicates that an item has changed in a way which
@@ -3932,46 +4049,11 @@ function getDirty(item) {
   return item.declarations["$dirty"].value;
 }
 
-// Ends attempt on current item.
-function endAttempt(item, htmlInteraction) {
-  let responseVar = htmlInteraction.getAttribute(RESPONSE_ID);
-  [...item.querySelectorAll("endAttemptInteraction")].forEach(ea=>{
-    let rv = ea.getAttribute("responseIdentifier");
-    if (rv != responseVar) 
-      item.declarations[rv].value = false;
-  });
-  htmlInteraction.classList.add(CLICKED);
-  control({currentTarget:htmlInteraction}, +1);
-}
-  
 // Logs a variable value change on the console (for debugging).
 function logVarChange(tag, decl, prev) {
   let itemId = identifier(decl.ctx);
   let varId = decl.identifier;
   DEBUG(tag,`${itemId}.${varId} = ${decl.value} ${prev?prev:""}`);
-}
-
-// Sets variable attribute to the value of element.
-// Helper for setCorrectResponse, setDefaultValue
-function setAtt(elem, attrib) {
-  let value = execChildren(elem,0,1)[0];
-  let variable = identifier(elem);
-  let decl = getDeclarations(elem)[variable];
-  decl[attrib] = coerce(decl, value);
-}
-
-// Executor for templateDefault.  Noop if invoked during transform.
-// Similar to setDefaultValue if invoked in connection with
-// templateProcessing.
-function templateDefault(elem) {
-  if (QTI.TRANSFORMING)
-    return null;
-  else {
-    let templateVar = elem.getAttribute("templateIdentifier");
-    let decl = getDeclarations(elem)[templateVar];
-    decl.defaultValue = coerce(decl, execChildren(elem,0,1)[0]);
-    return true;
-  }
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -4437,6 +4519,7 @@ function declAttribute(elem, attrib, id=identifier(elem),
   return result;
 }
 
+// Returns the default value.
 function getDefaultValue(decl) {
   return decl.defaultValue;
 }
@@ -4457,6 +4540,7 @@ function getRange(elem) {
   return range;
 }
 
+// Counts items
 function countItems(elem, selOp) {
   let filters = getFilters(elem);
   return QTI.SEQUENCE.filter(selOp)
@@ -4464,39 +4548,83 @@ function countItems(elem, selOp) {
     .length;
 }
 
+// Returns true if the item is "selected".  Since the
+// selection/ordering logic removes items from the QTI DOM
+// which aren't "selected", all items remaining in the DOM are
+// "selected".
 function isSelected(frame) {
   return frame.elem.tagName=="assessmentItem";
 }
 
+// Returns true if the item is "presented".  The session control
+// logic sets the "presented" attribute on items which are to count
+// as presented.
 function isPresented(frame) {
-  return frame.elem.tagName=="assessmentItem"
-    && frame.presented;
+  return frame.elem.tagName=="assessmentItem"  && frame.presented;
 }
 
+// Returns true if at least one interaction in an item has a "response"
 function isResponded(frame) {
   return frame.elem.tagName=="assessmentItem"
-    && getSetResponseVariables(frame.elem).length>0;
+    && getResponses(frame.elem).length>0;
 }
 
+// Returns the response variables with non-null and non-default values.
+function getResponses(item) {
+  return getResponseVariables(item).filter(decl=>{
+    return !(decl.value === null
+             || (decl.defaultValue && match(decl.defaultValue, decl.value))
+             || (decl.cardinality=="multiple" && decl.value.length==0));
+  });
+}
+
+// 
 // Returns true if all the response variables for the item which have
-// correctResponse defined have a value which matches the
-// correctResponse.
-function isCorrect(frame) {
+// the specified property ("correctResponse" or "defaultValue")
+// defined have a value which matches the property.
+function valueMatches(frame, prop) {
   if (frame.elem.tagName=="assessmentItem") {
-    let vars = getResponseVariables(frame.elem);
-    let correct = vars.filter(decl=>{
-      return decl.correctResponse
-        && decl.value
-        && match(decl.correctResponse, decl.value);
-    })
-    return correct.length==vars.length;
+    let vars = getResponseVariables(frame.elem).filter(decl=>decl[prop]);
+    let matches = vars.filter(decl=>decl.value && match(decl[prop], decl.value));
+    return matches.length==vars.length;
   } else {
     return false;
   }
 }
 
+// Returns true if all item responses where there is a correctResponse
+// match that correctResponse.
+function isCorrect(frame) {
+  return valueMatches(frame, "correctResponse");
+}
+
+// Returns true if an item has at least one response which is
+// not correct.
 function isIncorrect(frame) {
   return isResponded(frame) && !isCorrect(frame);
+}
+
+// Returns true if all item responses where there is a defaultValue
+// match that defaultValue.
+function isDefault(frame) {
+  return valueMatches(frame, "defaultValue");
+}
+
+// Selects from the children at random.
+function random(elem) {
+  let operand = execChildren(elem);
+  if (operand.length==1 && Array.isArray(operand[0]))
+    operand = operand[0];
+  return shuffle(operand)[0];
+}
+
+// Returns true if the first two child expressions are equal after
+// rounding.
+function equalRounded(elem) {
+  return op2(elem, (a,b)=>{
+    let f=figures(elem);
+    return +a.toFixed(f)==+b.toFixed(f);
+  });
 }
 
 // Logs textContent of element on console.
@@ -4504,6 +4632,17 @@ function consoleLog(elem) {
   console.log("console: ",trim(elem.textContent));
 }
 
+// Sets attribute of a variable, such as "correctResponse".
+// Used by "correct" and "default" operators.
+function setVarAttribute(elem, values) {
+  execChildren(elem);
+  if (!values)
+    values = elem.values;
+  let parent = elem.parentElement;
+  let id = identifier(parent);
+  let decl = getDeclarations(elem)[id];
+  decl[elem.tagName] = coerce(decl, values);
+}
 //////////////////////////////////////////////////////////////////////////////
 //
 // rptemplates.js
@@ -4650,7 +4789,7 @@ function submit(item) {
         && (child.tagName!=="assessmentItem"
             || (child.declarations["$dirty"]
                 && child.declarations["$dirty"].value))) {
-      INFO("submit", identifier(child), child.declarations["$dirty"]);
+      DEBUG("submit", identifier(child), child.declarations["$dirty"]);
       emit(child);
     }
   });
@@ -4901,27 +5040,10 @@ function randomFloat(range={}) {
   return min+(RANDOM_FUNCTION()*(max-min));
 }
 
-// Selects from the children at random.
-function random(elem) {
-  let operand = execChildren(elem);
-  if (operand.length==1 && Array.isArray(operand[0]))
-    operand = operand[0];
-  return shuffle(operand)[0];
-}
-
 // Generates a random number between 0 <= r < 1, given SEED.
 function seededRandom() {
   QTI.SEED = ((QTI.SEED*9301)+49297)%233280;
   return QTI.SEED/233280;
-}
-
-// Returns true if the first child expressions are equal after
-// rounding.
-function equalRounded(elem) {
-  return op2(elem, (a,b)=>{
-    let f=figures(elem);
-    return +a.toFixed(f)==+b.toFixed(f);
-  });
 }
 
 // Flattens an array
@@ -4997,20 +5119,6 @@ function appendScript(script) {
   document.documentElement.append(scriptElem);
 }
 
-// Returns placeholder text for an input or textarea.
-function getPlaceholder(elem, defaultValue) {
-  let placeholder = elem.getAttribute("placeholderText")||defaultValue;
-  let expectedLength = elem.getAttribute("expectedLength");
-  let expectedLines = elem.getAttribute("expectedLines");
-  let expected = "";
-  if (expectedLength) 
-    return`${placeholder} ${QTI.LANG.EXPECTED_CHARS(expectedLength)})`;
-  else if (expectedLines)
-    return `${placeholder} ${QTI.LANG.EXPECTED_LINES(expectedLines)})`;
-  else
-    return `${placeholder}`
-}
-
 // Returns number of rows in a table.
 function tableRows(table) {
   return table.querySelectorAll("tr").length;
@@ -5052,68 +5160,9 @@ function getBase(base) {
   return getAncestorAttribute(base, "xml:base")||base.baseURI;
 }
 
-// Returns variables declared in an element (including children
-// in the case of tests, testParts, or sections.)
-function getVariables(elem=QTI.ROOT) {
-  let declarations = {};
-  if (elem.tagName=="assessmentItem" && elem.declarations) {
-    declarations[identifier(elem)]=elem.declarations;
-  } else {
-    if (elem.tagName=="assessmentTest" && elem.declarations)
-      declarations[identifier(elem)]=elem.declarations;
-    let sel = "assessmentItem, assessmentSection, testPart";
-    [...elem.querySelectorAll(sel)].forEach(item=>{
-      if (item.declarations)
-        declarations[identifier(item)]=item.declarations;
-    });
-  }
-  return declarations;
-}
-
-// Returns the variables from responseDeclarations in an item.
-function getResponseVariables(item) {
-  let ids = Object.getOwnPropertyNames(item.declarations);
-  return ids
-    .filter(id=>item.declarations[id].elem.tagName=="responseDeclaration")
-    .map(id=>item.declarations[id]);
-}
-
-// Returns the response variables with non-null values.
-function getSetResponseVariables(item) {
-  return getResponseVariables(item).filter(decl=>{
-    return !(decl.value === null
-             || (decl.cardinality=="multiple" && decl.value.length==0));
-  });
-}
-
-// Returns true if an item has children which can be shown/hidden
-// via the showHide mechanism.
-function hasTriggerables(item) {
-  return item.querySelectorAll(SHOWHIDE_SEL).length;
-}
-
 // Returns milliseconds since specified time.
 function clock(since=LOAD_TIME) {
   return new Date().getTime()-since.getTime();
-}
-
-// Where elements have the same "identifier" attribute,
-// adds an "instance" attribute.
-function setInstances(dom) {
-  let elements = {};
-  [...dom.querySelectorAll("[identifier]")].forEach(elem=>{
-    let id = identifier(elem);
-    let entry = elements[id];
-    if (!entry) {
-      entry = elements[id] = [];
-    }
-    entry.push(elem);
-  });
-  for (key in elements) {
-    let seq=0;
-    if (elements[key].length>1)
-      elements[key].forEach(elem=>elem.setAttribute("instance", ++seq));
-  }
 }
 
 // Returns a version 4 random UUID in string format.
@@ -5628,6 +5677,25 @@ window.addEventListener("load",function() {
         tf.innerHTML = QTI.LANG.END_TEST;
         QTI.ROOT.appendChild(tf);
       }
+    }
+  }
+
+  // Where elements have the same "identifier" attribute,
+  // adds an "instance" attribute.
+  function setInstances(dom) {
+    let elements = {};
+    [...dom.querySelectorAll("[identifier]")].forEach(elem=>{
+      let id = identifier(elem);
+      let entry = elements[id];
+      if (!entry) {
+        entry = elements[id] = [];
+      }
+      entry.push(elem);
+    });
+    for (key in elements) {
+      let seq=0;
+      if (elements[key].length>1)
+        elements[key].forEach(elem=>elem.setAttribute("instance", ++seq));
     }
   }
 });

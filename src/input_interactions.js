@@ -5,13 +5,16 @@
 //
 
 // Common code for setting up interactions that are transformed
-// to HTML form input elements (input, select, textarea, button),
-// including choiceInteraction, inlineChoiceInteraction,
-// matchInteraction, etc.
+// to HTML form input elements; namely, choiceInteraction (radio/checkbox),
+// endAttemptInteraction (button), extendedTextInteraction (textarea),
+// hottextInteraction (radio/checkbox), inlineChoiceInteraction (select/option)
+// matchInteraction (radio/checkbox matrix), sliderInteraction (range),
+// textEntryInteraction (text), uploadInteraction (file).
+//
 function setupInputInteraction(interaction) {
   let qtiInteraction = QTI.DOM.getElementById(interaction.id);
   let responseVariable = getResponseVariable(interaction);
-  
+
   switch(interaction.tagName) {
   case "SELECT":
     interaction.onchange=handleResponse;
@@ -25,7 +28,10 @@ function setupInputInteraction(interaction) {
     inputs.forEach(input=>input.onchange=handleResponse);
     break;
   }
-  
+
+  // Called after templateProcessing, just before presentation.
+  interaction.init = initInteraction;
+    
   // Handler for change and click events.
   function handleResponse(evt) {
     const input = evt.currentTarget;
@@ -88,6 +94,48 @@ function setupInputInteraction(interaction) {
       || responseVariable.value.length<maxChoices;    
   }
   
+  // Inits interactions after templateProcessing and before
+  // first attempt on interaction.
+  function initInteraction() {
+    let decl = responseVariable;
+    if (decl.defaultValue) {
+      decl.value = coerce(decl, decl.defaultValue);
+      let sel = "input, textarea, select, button";
+      [...interaction.querySelectorAll(sel)].forEach(input=>{
+        switch(input.tagName){
+        case "INPUT":
+          switch(input.getAttribute("type")){
+          case "radio":
+          case "checkbox":
+            // choiceInteraction, hottextInteraction, matchInteraction
+            input.checked = decl.value.includes(input.getAttribute(ID));
+            break;
+          case "text":
+            // textEntryInteraction
+            value = decl.value;
+            break;
+          case "range":
+            // sliderInteraction
+            value = decl.value;
+            break;
+          case "file":
+            // uploadInteraction
+            break;
+          }
+        case "TEXTAREA":
+          // extendedTextInteraction
+          value = decl.value;
+          break;
+        case "SELECT":
+          // inlineChoiceInteraction
+          break;
+        case "BUTTON":
+          break;
+        }
+      });
+    }
+  }
+
   // Sets response variable after the user does input.
   function setInputResponseVariable(input) {
     let value;
@@ -96,28 +144,35 @@ function setupInputInteraction(interaction) {
       switch(input.getAttribute("type")) {
       case "radio":
       case "checkbox":
+        // choiceInteraction, hottextInteraction, matchInteraction
         value = check(input.getAttribute(ID), input.checked);
         break;
       case "text":
+        // textEntryInteraction
         if (input.value.length)
           input.style.width = input.value.length+"ch";
         value = input.value;
         break;
       case "range":
+        // sliderInteraction
         value = input.value;
         break;
       case "file":
+        // uploadInteraction
         value = input.files[0].name;
         break;
       }
       break;
     case "TEXTAREA":
+      // extendedTextInteraction
       value = input.value;
       break;
     case "SELECT":
+      // inlineChoiceInteraction
       value = input.options[input.selectedIndex].getAttribute(ID);
       break;
     case "BUTTON":
+      // endAttemptInteraction
       value = true;
       break;
     default:
@@ -131,6 +186,8 @@ function setupInputInteraction(interaction) {
   function check(identifier, checked) {
     if (!responseVariable.value)
       responseVariable.value=[];
+    if (!Array.isArray(responseVariable.value))
+      responseVariable.value=[responseVariable.value];
     if (checked && !responseVariable.value.includes(identifier)) {
       responseVariable.value.push(identifier);
     } else if (!checked) {
@@ -141,4 +198,3 @@ function setupInputInteraction(interaction) {
     return responseVariable.value;
   }
 }
-

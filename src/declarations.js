@@ -158,3 +158,28 @@ function value(elem) {
   elem.parentElement.values.push(elem.textContent);
 }
 
+// Returns variables declared in an element (including children
+// in the case of tests, testParts, or sections.)
+function getVariables(elem=QTI.ROOT) {
+  let declarations = {};
+  if (elem.tagName=="assessmentItem" && elem.declarations) {
+    declarations[identifier(elem)]=elem.declarations;
+  } else {
+    if (elem.tagName=="assessmentTest" && elem.declarations)
+      declarations[identifier(elem)]=elem.declarations;
+    let sel = "assessmentItem, assessmentSection, testPart";
+    [...elem.querySelectorAll(sel)].forEach(item=>{
+      if (item.declarations)
+        declarations[identifier(item)]=item.declarations;
+    });
+  }
+  return declarations;
+}
+
+// Returns the variables from responseDeclarations in an item.
+function getResponseVariables(item) {
+  let ids = Object.getOwnPropertyNames(item.declarations);
+  return ids
+    .filter(id=>item.declarations[id].elem.tagName=="responseDeclaration")
+    .map(id=>item.declarations[id]);
+}

@@ -10,17 +10,6 @@
   <outcomeDeclaration identifier="ALL_SCORES" cardinality="multiple"
                       baseType="identifier" view="testConstructor"/>  
 
-  <!--
-  <testPart identifier="testpart1" navigationMode="nonlinear" submissionMode="individual">
-    <timeLimits maxTime="7200" />
-   <assessmentSectionRef identifier="s1" href="simple_examples.xml" />
-  </testPart>
-  <testPart identifier="testpart2" navigationMode="nonlinear" submissionMode="individual">
-    <timeLimits maxTime="7200" />
-    <assessmentSectionRef identifier="s2" href="advanced_examples.xml" />
-  </testPart>
-  -->
-
   <testPart identifier="testpart1" navigationMode="nonlinear" submissionMode="individual">
     <timeLimits maxTime="7200" />
    <assessmentSectionRef identifier="section" href="section.xml" />

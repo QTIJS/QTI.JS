@@ -34,7 +34,7 @@ function transform(elem) {
   
   let item = getQTIAssessmentItem(elem);
   let id = elem.getAttribute("id");
-  let interaction = QTI.INTERACTIONS[QTI.INTERACTIONS.length-1];
+  let interaction = QTI.INTERACTION_STACK[QTI.INTERACTION_STACK.length-1];
   
   if (!id) {
     id = getId(elem);
@@ -334,7 +334,7 @@ function transform(elem) {
     
   // Transforms hottext, simpleChoice, or simpleAssociableChoice.
   function transformChoice(elem, T) {
-    let interaction = QTI.INTERACTIONS[QTI.INTERACTIONS.length-1];
+    let interaction = QTI.INTERACTION_STACK[QTI.INTERACTION_STACK.length-1];
 
     switch(interaction.tagName) {
     case "customInteraction":
@@ -375,6 +375,8 @@ function transform(elem) {
     case "associateInteraction":
       // renders choice as as an <li> inside an <ol>
       if (interaction.choices === undefined) {
+        let choices = interaction.getElementsByTagName(elem.tagName).length;
+        interaction.choices = choices;
         T.wrapstart = "";
         if (interaction.tagName=="orderInteraction") {
           let countChoices = interaction.querySelectorAll("simpleChoice").length
@@ -383,16 +385,17 @@ function transform(elem) {
           if ((maxChoices>0 && maxChoices!=countChoices)
               || (minChoices>0 && minChoices!=countChoices)) {
             T.wrapstart = `<ol class="${CHOICES} ${SELECTION_AREA}"></ol>`;
+            interaction.selectionArea = true;
           }
         }
         T.wrapstart += `<ol class="${CHOICES}">`;
-        interaction.choices =
-          interaction.getElementsByTagName(elem.tagName).length;
       }
       T.tag = "li";
       T.attribs.push({name:"draggable", value:"true", prefix:false});
-      if (--interaction.choices===0)
+      if (--interaction.choices===0) {
         T.wrapend = (T.wrapend||"") + `</ol>`;
+        delete interaction.choices;
+      }
       break;
     }
   }
@@ -432,7 +435,7 @@ function transform(elem) {
     </tr>
     </table>`;
 
-    let interaction = QTI.INTERACTIONS[QTI.INTERACTIONS.length-1];
+    let interaction = QTI.INTERACTION_STACK[QTI.INTERACTION_STACK.length-1];
     
     T.tag = elem.tagName;
     if (interaction) {
@@ -445,12 +448,6 @@ function transform(elem) {
         break;
       }
     }
-  }
-
-  // Generates textarea for an extendedTextInteraction
-  function transformExtendedTextInteraction(elem, T) {
-    let ph = getPlaceholder(elem, "");
-    T.content.push(`<textarea placeholder="${ph}"></textarea>`);
   }
 
   // Generates details/summary for an infoControl
@@ -466,6 +463,12 @@ function transform(elem) {
     T.content.push(`<option selected="true">Choose...</option>`);
   }
 
+  // Generates textarea for an extendedTextInteraction
+  function transformExtendedTextInteraction(elem, T) {
+    let ph = getPlaceholder(elem, "");
+    T.content.push(`<textarea placeholder="${ph}"></textarea>`);
+  }
+  
   // Generates an input type=text for textEntryInteraction
   function transformTextEntryInteraction(elem, T) {
     T.tag = "span";
@@ -473,6 +476,20 @@ function transform(elem) {
       `<input type="text" placeholder="${getPlaceholder(elem, "")}"/>`);
   }
 
+  // Returns placeholder text for an input or textarea.
+  function getPlaceholder(elem, defaultValue) {
+    let placeholder = elem.getAttribute("placeholderText")||defaultValue;
+    let expectedLength = elem.getAttribute("expectedLength");
+    let expectedLines = elem.getAttribute("expectedLines");
+    let expected = "";
+    if (expectedLength) 
+      return`${placeholder} ${QTI.LANG.EXPECTED_CHARS(expectedLength)})`;
+    else if (expectedLines)
+      return `${placeholder} ${QTI.LANG.EXPECTED_LINES(expectedLines)})`;
+    else
+      return `${placeholder}`
+  }
+  
   // Generates an input type=file for uploadInteraction
   function transformUploadInteraction(elem, T) {
     T.content.push(`<label>${QTI.LANG.UPLOAD}: <input type="file"/></label>`);
@@ -737,9 +754,9 @@ function transform(elem) {
 // transforms of interaction children to find the interaction in which
 // they are nested.
 function interaction(elem) {
-  QTI.INTERACTIONS.push(elem);
+  QTI.INTERACTION_STACK.push(elem);
   let result = transform(elem);
-  QTI.INTERACTIONS.pop(elem);
+  QTI.INTERACTION_STACK.pop(elem);
   return result;
 }
 

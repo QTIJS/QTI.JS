@@ -29,6 +29,18 @@ function postResponseVariable(htmlInteraction, value, variable) {
   }
 }
 
+// Ends attempt on current item.
+function endAttempt(item, htmlInteraction) {
+  let responseVar = htmlInteraction.getAttribute(RESPONSE_ID);
+  [...item.querySelectorAll("endAttemptInteraction")].forEach(ea=>{
+    let rv = ea.getAttribute("responseIdentifier");
+    if (rv != responseVar) 
+      item.declarations[rv].value = false;
+  });
+  htmlInteraction.classList.add(CLICKED);
+  control({currentTarget:htmlInteraction}, +1);
+}
+  
 // Session control: move a specified number of steps in the
 // sequence from the current item.  negative number of steps
 // means move backward.
@@ -64,7 +76,7 @@ function control(evt, k=+1) {
 // (as opposed to a testFeedback.)
 function controlItem(current, item, k, scrollTo) {
   let forward = (k===1);
-  let isSkip = getSetResponseVariables(item).length==0;
+  let isSkip = getResponses(item).length==0;
   let testPart = getQTITestPart(item);
   let navigationMode = "nonlinear";
   let submissionMode = "individual";
@@ -138,7 +150,7 @@ function controlItem(current, item, k, scrollTo) {
       // is possible, and whether the candidate can review
       // simultaneous-mode items and see item-level feedback is
       // outside the scope of the spec.
-      INFO("simultaneous mode, deferring submission: ",
+      DEBUG("simultaneous mode, deferring submission: ",
            identifier(item));
     }      
   }
@@ -163,12 +175,12 @@ function controlItem(current, item, k, scrollTo) {
 // non-linear.  In a slideshow style, whether for linear or
 // non-linear, "current" is the one item which is on-screen.
 //
-// But, non-linear testParts may use a style which presents all items in a
-// testPart to the candidate simultaneously, and the candidate can
-// interact with any of them, possibly over multiple submissions,
-// and submit them in any order.  In that style, which item is "current"
-// may not be very important and the candidate may not even be aware
-// that some particular item is "current".
+// But, non-linear testParts may use a style which presents all items
+// in a testPart to the candidate simultaneously, and the candidate
+// can interact with any of them, possibly over multiple submissions,
+// and submit them in any order.  In that style, which item is
+// "current" may not be very important and the candidate may not even
+// be aware that some particular item is "current".
 //
 // Because QTI.JS does not know what the stylesheets are doing, it
 // maintains "current" in all circumstances.
@@ -320,6 +332,12 @@ function isAttemptable(item) {
     && (adaptive || maxAttempts==0 || numAttempts<maxAttempts);
 }
 
+// Returns true if an item has children which can be shown/hidden
+// via the showHide mechanism.
+function hasTriggerables(item) {
+  return item.querySelectorAll(SHOWHIDE_SEL).length;
+}
+
 // Returns array of interactions which
 // (1) are children of the element
 // (1) are visible (interaction parentOffset!=null)
@@ -338,8 +356,8 @@ function inSection(item, section) {
   return section.querySelector(`#${item.id}`);
 }
 
-// Returns the item which is +1 or -1 in document sequence
-// from the specified item.
+// Preps the item which is +1 or -1 in document sequence
+// from the specified item and returns it.
 function getNextItem(htmlItem, step=0) {
   let item = null;
 
@@ -351,9 +369,11 @@ function getNextItem(htmlItem, step=0) {
     item = QTI.SEQUENCE[0];
     step = 0;
   }
+
   item = step>=0
     ? getNextItemInSequence(item, step)
     : getPrevItemInSequence(item, step);
+
   if (item) {
     htmlItem = document.getElementById(item.elem.id);
     item.presented = true;
@@ -361,8 +381,11 @@ function getNextItem(htmlItem, step=0) {
         && !item.elem.templateProcessed) {
       let testPart = getQTITestPart(item.elem);
       let linear = testPart.getAttribute("navigationMode")==="linear";
-      if (linear)
+      if (linear) {
         templateProcessing(item.elem);
+        let interactions = htmlItem.querySelectorAll(INTERACTION_SEL);
+        interactions.forEach(i=>i.init? i.init(): null);
+      }
     }
   }
   return htmlItem;

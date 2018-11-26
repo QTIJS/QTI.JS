@@ -176,27 +176,10 @@ function randomFloat(range={}) {
   return min+(RANDOM_FUNCTION()*(max-min));
 }
 
-// Selects from the children at random.
-function random(elem) {
-  let operand = execChildren(elem);
-  if (operand.length==1 && Array.isArray(operand[0]))
-    operand = operand[0];
-  return shuffle(operand)[0];
-}
-
 // Generates a random number between 0 <= r < 1, given SEED.
 function seededRandom() {
   QTI.SEED = ((QTI.SEED*9301)+49297)%233280;
   return QTI.SEED/233280;
-}
-
-// Returns true if the first child expressions are equal after
-// rounding.
-function equalRounded(elem) {
-  return op2(elem, (a,b)=>{
-    let f=figures(elem);
-    return +a.toFixed(f)==+b.toFixed(f);
-  });
 }
 
 // Flattens an array
@@ -272,20 +255,6 @@ function appendScript(script) {
   document.documentElement.append(scriptElem);
 }
 
-// Returns placeholder text for an input or textarea.
-function getPlaceholder(elem, defaultValue) {
-  let placeholder = elem.getAttribute("placeholderText")||defaultValue;
-  let expectedLength = elem.getAttribute("expectedLength");
-  let expectedLines = elem.getAttribute("expectedLines");
-  let expected = "";
-  if (expectedLength) 
-    return`${placeholder} ${QTI.LANG.EXPECTED_CHARS(expectedLength)})`;
-  else if (expectedLines)
-    return `${placeholder} ${QTI.LANG.EXPECTED_LINES(expectedLines)})`;
-  else
-    return `${placeholder}`
-}
-
 // Returns number of rows in a table.
 function tableRows(table) {
   return table.querySelectorAll("tr").length;
@@ -327,68 +296,9 @@ function getBase(base) {
   return getAncestorAttribute(base, "xml:base")||base.baseURI;
 }
 
-// Returns variables declared in an element (including children
-// in the case of tests, testParts, or sections.)
-function getVariables(elem=QTI.ROOT) {
-  let declarations = {};
-  if (elem.tagName=="assessmentItem" && elem.declarations) {
-    declarations[identifier(elem)]=elem.declarations;
-  } else {
-    if (elem.tagName=="assessmentTest" && elem.declarations)
-      declarations[identifier(elem)]=elem.declarations;
-    let sel = "assessmentItem, assessmentSection, testPart";
-    [...elem.querySelectorAll(sel)].forEach(item=>{
-      if (item.declarations)
-        declarations[identifier(item)]=item.declarations;
-    });
-  }
-  return declarations;
-}
-
-// Returns the variables from responseDeclarations in an item.
-function getResponseVariables(item) {
-  let ids = Object.getOwnPropertyNames(item.declarations);
-  return ids
-    .filter(id=>item.declarations[id].elem.tagName=="responseDeclaration")
-    .map(id=>item.declarations[id]);
-}
-
-// Returns the response variables with non-null values.
-function getSetResponseVariables(item) {
-  return getResponseVariables(item).filter(decl=>{
-    return !(decl.value === null
-             || (decl.cardinality=="multiple" && decl.value.length==0));
-  });
-}
-
-// Returns true if an item has children which can be shown/hidden
-// via the showHide mechanism.
-function hasTriggerables(item) {
-  return item.querySelectorAll(SHOWHIDE_SEL).length;
-}
-
 // Returns milliseconds since specified time.
 function clock(since=LOAD_TIME) {
   return new Date().getTime()-since.getTime();
-}
-
-// Where elements have the same "identifier" attribute,
-// adds an "instance" attribute.
-function setInstances(dom) {
-  let elements = {};
-  [...dom.querySelectorAll("[identifier]")].forEach(elem=>{
-    let id = identifier(elem);
-    let entry = elements[id];
-    if (!entry) {
-      entry = elements[id] = [];
-    }
-    entry.push(elem);
-  });
-  for (key in elements) {
-    let seq=0;
-    if (elements[key].length>1)
-      elements[key].forEach(elem=>elem.setAttribute("instance", ++seq));
-  }
 }
 
 // Returns a version 4 random UUID in string format.

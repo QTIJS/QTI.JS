@@ -9,6 +9,9 @@
     <correctResponse>
       <value>B</value>
     </correctResponse>
+    <defaultValue>
+      <value>F</value>
+    </defaultValue>
   </responseDeclaration>
 
   <outcomeDeclaration identifier="SCORE" cardinality="single" baseType="float">
@@ -17,11 +20,18 @@
     </defaultValue>
   </outcomeDeclaration>
 
+  <templateDeclaration identifier="TV1" cardinality="single" baseType="identifier">
+    <defaultValue>
+      <value>E</value>
+    </defaultValue>
+  </templateDeclaration>
+
+  <itemSessionControl maxAttempts="0" allowSkipping="false"/>
+  
   <itemBody>
     <rubricBlock view="candidate">
-      <p>
-        Select the error in the following passage of text (or <em>No
-        error</em> if there is none).
+      <p>Select the error in the following passage of text (or <em>No
+          error</em> if there is none).
       </p>
     </rubricBlock>
     <hottextInteraction responseIdentifier="RESPONSE">
@@ -32,6 +42,7 @@
         <hottext identifier="C">at least</hottext> a dozen international firms
         <hottext identifier="D">whose</hottext> names are familiar to American consumers.
         <hottext identifier="E">No error.</hottext>
+        <hottext identifier="F">Not answered.</hottext>
       </p>
     </hottextInteraction>
   </itemBody>

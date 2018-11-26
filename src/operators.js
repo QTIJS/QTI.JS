@@ -461,6 +461,7 @@ function declAttribute(elem, attrib, id=identifier(elem),
   return result;
 }
 
+// Returns the default value.
 function getDefaultValue(decl) {
   return decl.defaultValue;
 }
@@ -481,6 +482,7 @@ function getRange(elem) {
   return range;
 }
 
+// Counts items
 function countItems(elem, selOp) {
   let filters = getFilters(elem);
   return QTI.SEQUENCE.filter(selOp)
@@ -488,39 +490,83 @@ function countItems(elem, selOp) {
     .length;
 }
 
+// Returns true if the item is "selected".  Since the
+// selection/ordering logic removes items from the QTI DOM
+// which aren't "selected", all items remaining in the DOM are
+// "selected".
 function isSelected(frame) {
   return frame.elem.tagName=="assessmentItem";
 }
 
+// Returns true if the item is "presented".  The session control
+// logic sets the "presented" attribute on items which are to count
+// as presented.
 function isPresented(frame) {
-  return frame.elem.tagName=="assessmentItem"
-    && frame.presented;
+  return frame.elem.tagName=="assessmentItem"  && frame.presented;
 }
 
+// Returns true if at least one interaction in an item has a "response"
 function isResponded(frame) {
   return frame.elem.tagName=="assessmentItem"
-    && getSetResponseVariables(frame.elem).length>0;
+    && getResponses(frame.elem).length>0;
 }
 
+// Returns the response variables with non-null and non-default values.
+function getResponses(item) {
+  return getResponseVariables(item).filter(decl=>{
+    return !(decl.value === null
+             || (decl.defaultValue && match(decl.defaultValue, decl.value))
+             || (decl.cardinality=="multiple" && decl.value.length==0));
+  });
+}
+
+// 
 // Returns true if all the response variables for the item which have
-// correctResponse defined have a value which matches the
-// correctResponse.
-function isCorrect(frame) {
+// the specified property ("correctResponse" or "defaultValue")
+// defined have a value which matches the property.
+function valueMatches(frame, prop) {
   if (frame.elem.tagName=="assessmentItem") {
-    let vars = getResponseVariables(frame.elem);
-    let correct = vars.filter(decl=>{
-      return decl.correctResponse
-        && decl.value
-        && match(decl.correctResponse, decl.value);
-    })
-    return correct.length==vars.length;
+    let vars = getResponseVariables(frame.elem).filter(decl=>decl[prop]);
+    let matches = vars.filter(decl=>decl.value && match(decl[prop], decl.value));
+    return matches.length==vars.length;
   } else {
     return false;
   }
 }
 
+// Returns true if all item responses where there is a correctResponse
+// match that correctResponse.
+function isCorrect(frame) {
+  return valueMatches(frame, "correctResponse");
+}
+
+// Returns true if an item has at least one response which is
+// not correct.
 function isIncorrect(frame) {
   return isResponded(frame) && !isCorrect(frame);
+}
+
+// Returns true if all item responses where there is a defaultValue
+// match that defaultValue.
+function isDefault(frame) {
+  return valueMatches(frame, "defaultValue");
+}
+
+// Selects from the children at random.
+function random(elem) {
+  let operand = execChildren(elem);
+  if (operand.length==1 && Array.isArray(operand[0]))
+    operand = operand[0];
+  return shuffle(operand)[0];
+}
+
+// Returns true if the first two child expressions are equal after
+// rounding.
+function equalRounded(elem) {
+  return op2(elem, (a,b)=>{
+    let f=figures(elem);
+    return +a.toFixed(f)==+b.toFixed(f);
+  });
 }
 
 // Logs textContent of element on console.
@@ -528,3 +574,14 @@ function consoleLog(elem) {
   console.log("console: ",trim(elem.textContent));
 }
 
+// Sets attribute of a variable, such as "correctResponse".
+// Used by "correct" and "default" operators.
+function setVarAttribute(elem, values) {
+  execChildren(elem);
+  if (!values)
+    values = elem.values;
+  let parent = elem.parentElement;
+  let id = identifier(parent);
+  let decl = getDeclarations(elem)[id];
+  decl[elem.tagName] = coerce(decl, values);
+}
