@@ -4779,7 +4779,7 @@ function submit(item) {
   let now = new Date().toISOString();
   const sel = "assessmentTest, testPart, assessmentSection, assessmentItem";
 
-  sessionIdentifier.setAttribute("sourceId", window.location.origin);
+  sessionIdentifier.setAttribute("sourceID", window.location.origin);
   sessionIdentifier.setAttribute("identifier", sessionUuid);
   context.appendChild(sessionIdentifier);
   context.setAttribute("sourcedId", sourcedId);
